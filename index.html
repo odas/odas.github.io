@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orpita Das — AI Toolbuilder</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --paper: #F8F5F0;
+  --ink: #1C1814;
+  --ink-soft: #4A4440;
+  --ink-muted: #8A8480;
+  --rust: #B05A2F;
+  --rust-light: #F5EDE6;
+  --rule: rgba(28,24,20,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── LAYOUT ── */
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  padding: 1.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0;
+}
+
+.topbar-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+.topbar-role {
+  color: var(--ink-muted);
+  font-weight: 300;
+}
+
+.topbar-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.topbar-link {
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.15s;
+}
+.topbar-link:hover { color: var(--ink); }
+
+.topbar-email {
+  font-size: 0.8rem;
+  color: var(--rust);
+  text-decoration: none;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.topbar-email:hover { text-decoration: underline; }
+
+/* ── HERO ── */
+.hero {
+  padding: 4rem 0 3.5rem;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 520px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+  .hero-photo { width: 120px; height: 120px; }
+}
+
+.hero-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: var(--rust-light);
+  border: 2px solid rgba(176,90,47,0.2);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-placeholder {
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  text-align: center;
+  line-height: 1.5;
+  padding: 1rem;
+}
+
+.hero-content { padding-top: 0.5rem; }
+
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 6vw, 3.4rem);
+  font-weight: 600;
+  line-height: 1.0;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.hero-title {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--rust);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.hero-ask {
+  font-size: 0.97rem;
+  color: var(--ink);
+  font-weight: 400;
+  line-height: 1.75;
+  max-width: 380px;
+}
+
+.hero-email {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--rust);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(176,90,47,0.3);
+  padding-bottom: 1px;
+  transition: border-color 0.18s;
+}
+.hero-email:hover { border-color: var(--rust); }
+
+.hero-divider {
+  width: 32px;
+  height: 1px;
+  background: var(--rule);
+  margin: 1.5rem 0;
+}
+
+.hero-hook {
+  margin-top: 0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink-soft);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+}
+
+.hero-collab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.collab-label {
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.collab-pill {
+  font-size: 0.7rem;
+  color: var(--rust);
+  background: var(--rust-light);
+  border: 1px solid rgba(176,90,47,0.2);
+  padding: 0.15rem 0.6rem;
+  border-radius: 99px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 600;
+  line-height: 1.0;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.hero-desc {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 400px;
+}
+
+.hero-cta {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cta-primary {
+  font-size: 0.875rem;
+  color: var(--paper);
+  background: var(--rust);
+  text-decoration: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 2px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: background 0.18s;
+}
+.cta-primary:hover { background: #8B4020; }
+
+.cta-ghost {
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+  font-weight: 400;
+  transition: color 0.18s, border-color 0.18s;
+}
+.cta-ghost:hover { color: var(--ink); border-color: var(--ink-soft); }
+
+/* ── SECTION ── */
+.section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--rule);
+}
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 1.75rem;
+}
+
+/* ── VIDEO ── */
+.video-wrap {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--ink);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-placeholder {
+  text-align: center;
+  color: rgba(248,245,240,0.5);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.video-placeholder strong {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: rgba(248,245,240,0.7);
+  font-weight: 300;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+.video-caption {
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+/* ── VIDEO ── */
+.video-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.video-header .section-label { margin-bottom: 0; }
+
+.video-badge {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--rust);
+  background: var(--rust-light);
+  border: 1px solid rgba(176,90,47,0.2);
+  padding: 0.2rem 0.65rem;
+  border-radius: 99px;
+  letter-spacing: 0.04em;
+}
+
+.video-story {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.story-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.5rem 0;
+  flex: 1;
+  min-width: 100px;
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.story-divider {
+  width: 1px;
+  height: 36px;
+  background: var(--rule);
+  margin: 0 1.25rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .story-divider { display: none; }
+  .video-story { flex-direction: column; gap: 0.75rem; }
+}
+
+/* ── TOOLS ── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tool-card {
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  transition: background 0.15s;
+}
+.tool-card:hover { background: #F2EDE6; }
+
+.tool-screenshot {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+  background: #EDE8E2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tool-screenshot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.screenshot-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--ink-muted);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.screenshot-placeholder .s-emoji { font-size: 1.75rem; opacity: 0.5; }
+
+.tool-body {
+  padding: 1rem 1.1rem 1.1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-tag {
+  font-size: 0.68rem;
+  color: var(--rust);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.tool-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.35rem;
+  line-height: 1.2;
+}
+
+.tool-desc {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+  line-height: 1.65;
+  flex: 1;
+}
+
+.tool-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  width: fit-content;
+}
+.tool-link:hover { color: var(--rust); border-color: var(--rust); }
+
+/* ── TIMELINE ── */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tl-entry {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1.25rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+
+.tl-entry:first-child { border-top: 1px solid var(--rule); }
+
+.tl-year {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  padding-top: 0.1rem;
+}
+
+.tl-content {}
+
+.tl-role {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.15rem;
+}
+
+.tl-org {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+.tl-note {
+  margin-top: 0.25rem;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+/* ── CONTACT ── */
+.contact-block {
+  padding: 3rem 0 4rem;
+  border-top: 1px solid var(--rule);
+}
+
+.contact-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.75rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+
+.contact-sub {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+.contact-email {
+  font-size: 1.1rem;
+  color: var(--rust);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(176,90,47,0.3);
+  padding-bottom: 2px;
+  transition: border-color 0.18s;
+}
+.contact-email:hover { border-color: var(--rust); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+footer a {
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+footer a:hover { color: var(--ink); }
+
+.footer-links { display: flex; gap: 1.25rem; }
+
+/* ── FADE IN ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-photo  { animation: fadeUp 0.5s 0s ease both; }
+.hero-name   { animation: fadeUp 0.5s 0.08s ease both; }
+.hero-title  { animation: fadeUp 0.5s 0.14s ease both; }
+.hero-desc   { animation: fadeUp 0.5s 0.2s ease both; }
+.hero-cta    { animation: fadeUp 0.5s 0.26s ease both; }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span class="topbar-name">🪳 Orpita Das <span class="topbar-role">· Freelance AI Tooler</span></span>
+    <div class="topbar-links">
+      <a href="#workshop" class="topbar-link">Work</a>
+      <a href="#background" class="topbar-link">Background</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-photo">
+      <!-- Replace with: <img src="photo.jpg" alt="Orpita Das"> -->
+      <div class="photo-placeholder">Add<br>your photo</div>
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-name">Orpita Das</h1>
+      <p class="hero-hook">I build AI-powered tools for small teams — fast.</p>
+      <div class="hero-collab">
+        <span class="collab-label">In collaboration with</span>
+        <span class="collab-pill">Claude</span>
+        <span class="collab-pill">Gemini</span>
+      </div>
+      <div class="hero-divider"></div>
+      <p class="hero-ask">Small team, annoying manual process, data nobody can read — tell me what's broken. I'll tell you if I can fix it, and roughly how long it takes.</p>
+      <a href="mailto:orpita.d@gmail.com" class="hero-email">orpita.d@gmail.com</a>
+      <div class="hero-cta">
+        <a href="resume_May26.pdf" target="_blank" class="cta-ghost">Download résumé</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="section">
+    <div class="video-header">
+      <p class="section-label">See it working</p>
+      <span class="video-badge">Built in 3 days — hardened over weeks of daily use.</span>
+    </div>
+    <div class="video-wrap">
+      <!-- Option A – local file:  <video src="noetone-demo.mp4" controls playsinline style="width:100%;height:100%;object-fit:cover;"></video> -->
+      <!-- Option B – YouTube:     <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe> -->
+      <div class="video-placeholder">
+        <strong>Noëtone demo</strong>
+        Scan a book → Gemini reads it aloud<br>
+        <span style="font-size:0.75rem; opacity:0.6;">Add your 60-second screen recording here</span>
+      </div>
+    </div>
+    <div class="video-story">
+      <div class="story-stat">
+        <span class="stat-num">Day 1</span>
+        <span class="stat-label">Working prototype</span>
+      </div>
+      <div class="story-divider"></div>
+      <div class="story-stat">
+        <span class="stat-num">Days 2–3</span>
+        <span class="stat-label">Edge cases, UAT, making it actually shippable</span>
+      </div>
+      <div class="story-divider"></div>
+      <div class="story-stat">
+        <span class="stat-num">Now</span>
+        <span class="stat-label">I use it every day</span>
+      </div>
+    </div>
+    <p class="video-caption">I didn't write every line. But I knew exactly what to ask, what to test, and what to fix. That process is repeatable — for your problem too.</p>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="section" id="workshop">
+    <p class="section-label">Things I've built</p>
+    <div class="tools-grid">
+
+      <div class="tool-card">
+        <div class="tool-screenshot">
+          <!-- Use screenshot from Upwork listing — the dark UI with topics sidebar + XP tracking -->
+          <!-- Replace with: <img src="screenshots/quiz-app.png" alt="AI Quiz & Training App"> -->
+          <div class="screenshot-placeholder"><span class="s-emoji">🧠</span>Quiz App screenshot</div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-tag">Team training, without the spreadsheets</p>
+          <p class="tool-name">AI Quiz & Training App</p>
+          <p class="tool-desc">Your topics, your team, delivered in 3 days. Questions adapt as your team improves, progress tracked automatically. Built on Python + Streamlit + Gemini. You get full source code and a setup call — live on a shareable link by day 3. Available on Upwork for $300.</p>
+          <a href="https://www.upwork.com/services/product/development-it-custom-ai-powered-quiz-training-app-for-your-team-2055695153974625207" class="tool-link" target="_blank">View on Upwork →</a>
+        </div>
+      </div>
+
+
+      <div class="tool-card">
+        <div class="tool-screenshot">
+          <!-- Replace with: <img src="screenshots/kobo.png" alt="Kobo Dashboard"> -->
+          <div class="screenshot-placeholder"><span class="s-emoji">📚</span>Kobo Dashboard screenshot</div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-tag">Wall art that's actually useful</p>
+          <p class="tool-name">Kobo Sky Dashboard</p>
+          <p class="tool-desc">A real-time night sky map served to a Kobo e-reader via its browser. Stars, planets, moon phase, weather and AQI for Pune — mounted upside-down on a wall and auto-refreshing every 30 minutes. Built with Flask + PyEphem. Zero API keys needed.</p>
+          <a href="https://github.com/odas/sky-kobo-dashboard" class="tool-link" target="_blank">github.com/odas/sky-kobo-dashboard →</a>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <div class="tool-screenshot">
+          <!-- Replace with: <img src="screenshots/ncbi.png" alt="NCBI Taxonomy Explorer"> -->
+          <div class="screenshot-placeholder"><span class="s-emoji">🧬</span>NCBI Explorer screenshot</div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-tag">Science meets natural language</p>
+          <p class="tool-name">NCBI Taxonomy Explorer</p>
+          <p class="tool-desc">Ask "which genus has the most species named after people?" — natural language queries on biological taxonomy data. No bioinformatics degree required.</p>
+          <a href="#" class="tool-link">Demo coming →</a>
+        </div>
+      </div>
+
+
+      <div class="tool-card">
+        <div class="tool-screenshot">
+          <!-- Replace with: <img src="screenshots/Noëtone.png" alt="Noëtone"> -->
+          <div class="screenshot-placeholder"><span class="s-emoji">📖</span>Noëtone screenshot</div>
+        </div>
+        <div class="tool-body">
+          <p class="tool-tag">Own your audiobooks</p>
+          <p class="tool-name">Noëtone</p>
+          <p class="tool-desc">Scan any physical book, get an audiobook. Gemini TTS — noticeably better than gTTS. Every audio file is yours, saved on your own machine.</p>
+          <a href="https://github.com/odas/noetone" class="tool-link" target="_blank">github.com/odas/noetone →</a>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="section" id="background">
+    <p class="section-label">Background</p>
+    <div class="timeline">
+
+      <div class="tl-entry">
+        <span class="tl-year">2024–now</span>
+        <div class="tl-content">
+          <p class="tl-role">Founder & Data-Driven Strategist</p>
+          <p class="tl-org">catadoption_pune initiative, Pune</p>
+          <p class="tl-note">AI-supported project management to get 200+ stray cats adopted. Building and shipping AI tools for small teams alongside.</p>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <span class="tl-year">2023–2024</span>
+        <div class="tl-content">
+          <p class="tl-role">Cloud Engineer</p>
+          <p class="tl-org">Algorithmic Biologics, Bangalore</p>
+          <p class="tl-note">AWS → GCP migration. Julia, Python, Docker, IAM. Reduced storage costs 50%.</p>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <span class="tl-year">2020–2023</span>
+        <div class="tl-content">
+          <p class="tl-role">Data Engineer</p>
+          <p class="tl-org">Snowflake, Pune</p>
+          <p class="tl-note">SOX-compliance pipelines saving 100+ manual audit hrs/quarter. Invited talk at IIA San Jose. Among Snowflake Pune's first hires.</p>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <span class="tl-year">2015–2020</span>
+        <div class="tl-content">
+          <p class="tl-role">Research & Study</p>
+          <p class="tl-org">UBC · NIT Warangal</p>
+          <p class="tl-note">MSc Molecular Biology (UBC). BTech Biotechnology, NITW.</p>
+        </div>
+      </div>
+
+      <div class="tl-entry">
+        <span class="tl-year">cert</span>
+        <div class="tl-content">
+          <p class="tl-role">SnowPro Core Certified</p>
+          <p class="tl-org">Snowflake · 2023</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div class="contact-block">
+    <h2 class="contact-heading">Let's work together.</h2>
+    <p class="contact-sub">I build data tools and AI-powered applications — using APIs like Gemini to add intelligent features to real working products. Ex-Snowflake Data Engineer, among the first few employees in their Pune office.</p>
+    <a href="mailto:orpita.d@gmail.com" class="contact-email">orpita.d@gmail.com</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Orpita Das · Pune, India</span>
+    <div class="footer-links">
+      <a href="https://github.com/odas" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/orpitadas" target="_blank">LinkedIn</a>
+      <a href="resume_May26.pdf" target="_blank">Résumé</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
