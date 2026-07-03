@@ -1,4 +1,44 @@
 {
+  "meta": {
+    "documentTitle": "Orpita Das · Career Map"
+  },
+  "map": {
+    "title": "Orpita Das · Career Map",
+    "origin": [550, 360],
+    "ambientSpores": [
+      [148, 178],
+      [355, 118],
+      [722, 252],
+      [935, 348],
+      [262, 545],
+      [658, 476],
+      [810, 146],
+      [458, 616],
+      [975, 500],
+      [498, 82],
+      [340, 300],
+      [760, 390],
+      [600, 200],
+      [180, 620],
+      [870, 280]
+    ]
+  },
+  "ui": {
+    "hintLines": [
+      "click a node → recall trigger",
+      "click a trunk → trunk overview",
+      "click a throughline → the thread that crosses everything"
+    ],
+    "legendLabel": "throughlines",
+    "legendPrefix": "⟿ ",
+    "nodeTriggerLabel": "recall trigger",
+    "trunkTriggerLabel": "trunk trigger",
+    "trunkThreadCountSuffix": "threads — click individual nodes to explore.",
+    "throughlineTriggerLabel": "throughline",
+    "throughlineNodeListLabel": "nodes on this thread",
+    "throughlineNextMarker": "→",
+    "throughlineEndMarker": "⊙"
+  },
   "trunks": [
     {
       "id": "bio-root",

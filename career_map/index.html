@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Orpita Das · Career Map</title>
+<title>Career Map</title>
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -119,14 +119,10 @@
 <div id="app">
   <div id="map">
     <svg id="svg" viewBox="-55 -15 1210 730" preserveAspectRatio="xMidYMid meet"></svg>
-    <div class="map-title">Orpita Das · Career Map</div>
-    <div class="map-hint" id="hint">
-      click a node → recall trigger<br />
-      click a trunk → trunk overview<br />
-      click a throughline → the thread that crosses everything
-    </div>
+    <div class="map-title" id="mapTitle"></div>
+    <div class="map-hint" id="hint"></div>
     <div class="legend" id="legend">
-      <span class="legend-label">throughlines</span>
+      <span class="legend-label" id="legendLabel"></span>
     </div>
   </div>
   <div id="panel">
@@ -138,32 +134,121 @@
 <script>
 "use strict";
 
-// ── ORIGIN SPORE ──
-const O = [550, 360];
-
 async function loadCareerData() {
   const response = await fetch("career.json");
   if (!response.ok) throw new Error(`career.json responded with ${response.status}`);
 
   const data = await response.json();
-  if (!Array.isArray(data.trunks) || !Array.isArray(data.throughlines)) {
-    throw new Error("career.json must contain trunks and throughlines arrays");
-  }
+  validateCareerData(data);
   return data;
 }
 
 loadCareerData()
-  .then(({ trunks, throughlines }) => initCareerMap(trunks, throughlines))
+  .then(initCareerMap)
   .catch(error => {
     console.error("Unable to load career data", error);
     document.getElementById("hint").textContent = "Unable to load career.json.";
   });
 
-function initCareerMap(TRUNKS, THROUGHLINES) {
+function warnData(message, context) {
+  console.warn(`[career.json] ${message}`, context || "");
+}
+
+function hasProp(item, prop) {
+  return Object.prototype.hasOwnProperty.call(item, prop);
+}
+
+function validateRequired(item, props, label) {
+  props.forEach(prop => {
+    if (!item || !hasProp(item, prop)) warnData(`${label} is missing required property "${prop}"`, item);
+  });
+}
+
+function validateCareerData(data) {
+  if (!data || typeof data !== "object") {
+    warnData("Root value should be an object", data);
+    return;
+  }
+
+  if (!Array.isArray(data.trunks)) warnData("Missing required property \"trunks\" as an array", data);
+  if (!Array.isArray(data.throughlines)) warnData("Missing required property \"throughlines\" as an array", data);
+  validateRequired(data.meta || {}, ["documentTitle"], "meta");
+  validateRequired(data.map || {}, ["title", "origin", "ambientSpores"], "map");
+  validateRequired(data.ui || {}, [
+    "hintLines",
+    "legendLabel",
+    "legendPrefix",
+    "nodeTriggerLabel",
+    "trunkTriggerLabel",
+    "trunkThreadCountSuffix",
+    "throughlineTriggerLabel",
+    "throughlineNodeListLabel",
+    "throughlineNextMarker",
+    "throughlineEndMarker"
+  ], "ui");
+
+  const trunks = Array.isArray(data.trunks) ? data.trunks : [];
+  const throughlines = Array.isArray(data.throughlines) ? data.throughlines : [];
+  const ids = new Set();
+  const nodeIds = new Set();
+
+  trunks.forEach((trunk, trunkIndex) => {
+    validateRequired(trunk, ["id", "name", "trigger", "color", "pos", "threads"], `trunks[${trunkIndex}]`);
+    if (trunk && trunk.id) {
+      if (ids.has(trunk.id)) warnData(`Duplicate id "${trunk.id}"`, trunk);
+      ids.add(trunk.id);
+    }
+    if (trunk && !Array.isArray(trunk.threads)) {
+      warnData(`trunks[${trunkIndex}].threads should be an array`, trunk);
+      return;
+    }
+
+    (trunk.threads || []).forEach((node, nodeIndex) => {
+      validateRequired(node, ["id", "name", "years", "trigger", "detail", "pos"], `trunks[${trunkIndex}].threads[${nodeIndex}]`);
+      if (!node || !node.id) return;
+      if (ids.has(node.id)) warnData(`Duplicate id "${node.id}"`, node);
+      ids.add(node.id);
+      nodeIds.add(node.id);
+    });
+  });
+
+  throughlines.forEach((throughline, throughlineIndex) => {
+    validateRequired(throughline, ["id", "name", "trigger", "nodeIds", "color"], `throughlines[${throughlineIndex}]`);
+    if (throughline && throughline.id) {
+      if (ids.has(throughline.id)) warnData(`Duplicate id "${throughline.id}"`, throughline);
+      ids.add(throughline.id);
+    }
+    if (throughline && !Array.isArray(throughline.nodeIds)) {
+      warnData(`throughlines[${throughlineIndex}].nodeIds should be an array`, throughline);
+      return;
+    }
+    (throughline.nodeIds || []).forEach(nodeId => {
+      if (!nodeIds.has(nodeId)) warnData(`Throughline "${throughline.id}" references missing node "${nodeId}"`, throughline);
+    });
+  });
+}
+
+function initCareerMap(data) {
+const trunks = Array.isArray(data.trunks) ? data.trunks : [];
+const throughlines = Array.isArray(data.throughlines) ? data.throughlines : [];
+const meta = data.meta || {};
+const mapConfig = data.map || {};
+const ui = data.ui || {};
+const origin = Array.isArray(mapConfig.origin) ? mapConfig.origin : [0, 0];
+
+document.title = meta.documentTitle || mapConfig.title || document.title;
+document.getElementById("mapTitle").textContent = mapConfig.title || "";
+const hintEl = document.getElementById("hint");
+hintEl.replaceChildren();
+(Array.isArray(ui.hintLines) ? ui.hintLines : []).forEach((line, index) => {
+  if (index > 0) hintEl.appendChild(document.createElement("br"));
+  hintEl.appendChild(document.createTextNode(line));
+});
+document.getElementById("legendLabel").textContent = ui.legendLabel || "";
 
 // ── LOOKUPS ──
 const NODE_POS = {}, NODE_BY_ID = {}, TRUNK_BY_ID = {};
-TRUNKS.forEach(t => {
+trunks.forEach(t => {
   TRUNK_BY_ID[t.id] = t;
   t.threads.forEach(th => { NODE_POS[th.id] = th.pos; NODE_BY_ID[th.id] = { th, t }; });
 });
@@ -195,7 +280,7 @@ bgG.appendChild(svg("stop", { offset:"0%", "stop-color":"#0d1826" }));
 bgG.appendChild(svg("stop", { offset:"100%", "stop-color":"#030810" }));
 defs.appendChild(bgG);
 // per-trunk glow
-TRUNKS.forEach(t => {
+trunks.forEach(t => {
   const f = svg("filter", { id:`gf-${t.id}`, x:"-80%", y:"-80%", width:"260%", height:"260%" });
   f.appendChild(svg("feGaussianBlur", { stdDeviation:"5.5", result:"b" }));
   const m = svg("feMerge", {});
@@ -220,12 +305,11 @@ svgEl.appendChild(defs);
 svgEl.appendChild(svg("rect", { x:"-55", y:"-15", width:"1210", height:"730", fill:"url(#bgG)" }));
 
 // ambient spores
-const SPORE = [[148,178],[355,118],[722,252],[935,348],[262,545],[658,476],
-  [810,146],[458,616],[975,500],[498,82],[340,300],[760,390],[600,200],[180,620],[870,280]];
-SPORE.forEach(([x,y]) => svgEl.appendChild(svg("circle",{ cx:x, cy:y, r:1.5, fill:"#8bafc8", opacity:0.09 })));
+const spores = Array.isArray(mapConfig.ambientSpores) ? mapConfig.ambientSpores : [];
+spores.forEach(([x,y]) => svgEl.appendChild(svg("circle",{ cx:x, cy:y, r:1.5, fill:"#8bafc8", opacity:0.09 })));
 
 // throughline paths
-THROUGHLINES.forEach(tl => {
+throughlines.forEach(tl => {
   const pts = tl.nodeIds.map(id => NODE_POS[id]).filter(Boolean);
   for (let i=0;i<pts.length-1;i++){
     const p = svg("path", {
@@ -242,22 +326,22 @@ THROUGHLINES.forEach(tl => {
 });
 
 // origin → trunk
-TRUNKS.forEach(t => svgEl.appendChild(svg("path", {
-  d:qPath(O,t.pos,52), stroke:t.color, "stroke-width":2.5,
+trunks.forEach(t => svgEl.appendChild(svg("path", {
+  d:qPath(origin,t.pos,52), stroke:t.color, "stroke-width":2.5,
   fill:"none", opacity:0.30, filter:`url(#gf-${t.id})`
 })));
 
 // trunk → thread
-TRUNKS.forEach(t => t.threads.forEach(th => svgEl.appendChild(svg("path", {
+trunks.forEach(t => t.threads.forEach(th => svgEl.appendChild(svg("path", {
   d:qPath(t.pos,th.pos,14), stroke:t.color, "stroke-width":1.8, fill:"none", opacity:0.46
 }))));
 
 // origin spore
-svgEl.appendChild(svg("circle",{ cx:O[0], cy:O[1], r:11, fill:"#0a1422", stroke:"#1e3a5f", "stroke-width":1, filter:"url(#gf-origin)" }));
-svgEl.appendChild(svg("circle",{ cx:O[0], cy:O[1], r:4, fill:"#4a7fa5", opacity:0.65 }));
+svgEl.appendChild(svg("circle",{ cx:origin[0], cy:origin[1], r:11, fill:"#0a1422", stroke:"#1e3a5f", "stroke-width":1, filter:"url(#gf-origin)" }));
+svgEl.appendChild(svg("circle",{ cx:origin[0], cy:origin[1], r:4, fill:"#4a7fa5", opacity:0.65 }));
 
 // trunk nodes
-TRUNKS.forEach(t => {
+trunks.forEach(t => {
   const g = svg("g", { class:"trunk-group" });
   g.appendChild(svg("circle",{ cx:t.pos[0], cy:t.pos[1], r:28, fill:"none", stroke:t.color, "stroke-width":0.6, opacity:0.18 }));
   const main = svg("circle",{
@@ -275,7 +359,7 @@ TRUNKS.forEach(t => {
 });
 
 // thread nodes
-TRUNKS.forEach(t => t.threads.forEach(th => {
+trunks.forEach(t => t.threads.forEach(th => {
   const g = svg("g", { class:"node-group" });
   g.appendChild(svg("circle",{
     "data-node":th.id, "data-color":t.color,
@@ -292,9 +376,9 @@ TRUNKS.forEach(t => t.threads.forEach(th => {
 
 // ── LEGEND ──
 const legend = document.getElementById("legend");
-THROUGHLINES.forEach(tl => {
+throughlines.forEach(tl => {
   const b = document.createElement("button");
-  b.textContent = "⟿ " + tl.name;
+  b.textContent = (ui.legendPrefix || "") + tl.name;
   b.style.border = `1px dashed ${tl.color}65`;
   b.style.color = tl.color;
   b.addEventListener("click", () => select({ type:"tl", tl }));
@@ -349,15 +433,15 @@ function renderPanel() {
     html += `<div class="eyebrow" style="color:${t.color};">${t.name}</div>`;
     html += `<div class="title-lg">${th.name}</div>`;
     html += `<div class="years">${th.years}</div>`;
-    html += triggerBox(t.color, "recall trigger", th.trigger, false);
+    html += triggerBox(t.color, ui.nodeTriggerLabel || "", th.trigger, false);
     html += `<div class="detail">${th.detail}</div>`;
   }
 
   if (selected.type === "trunk") {
     const t = selected.t;
     html += `<div class="title-lg" style="color:${t.color};">${t.name}</div>`;
-    html += triggerBox(t.color, "trunk trigger", t.trigger, false);
-    html += `<div class="years" style="margin-top:14px;">${t.threads.length} threads — click individual nodes to explore.</div>`;
+    html += triggerBox(t.color, ui.trunkTriggerLabel || "", t.trigger, false);
+    html += `<div class="years" style="margin-top:14px;">${t.threads.length} ${ui.trunkThreadCountSuffix || ""}</div>`;
     html += `<div class="sub-list">`;
     t.threads.forEach(th => {
       html += `<button class="sub-btn" data-goto="${th.id}" style="background:${t.color}0d;border-color:${t.color}30;">
@@ -370,11 +454,11 @@ function renderPanel() {
   if (selected.type === "tl") {
     const tl = selected.tl;
     html += `<div class="title-lg" style="color:${tl.color};font-size:16px;">${tl.name}</div>`;
-    html += triggerBox(tl.color, "throughline", tl.trigger, true);
-    html += `<div class="sub-list"><div class="tl-list-label">nodes on this thread</div>`;
+    html += triggerBox(tl.color, ui.throughlineTriggerLabel || "", tl.trigger, true);
+    html += `<div class="sub-list"><div class="tl-list-label">${ui.throughlineNodeListLabel || ""}</div>`;
     tl.nodeIds.forEach((id, i) => {
       const ref = NODE_BY_ID[id]; if (!ref) return;
-      const marker = i + 1 < tl.nodeIds.length ? "→" : "⊙";
+      const marker = i + 1 < tl.nodeIds.length ? ui.throughlineNextMarker : ui.throughlineEndMarker;
       html += `<button class="tl-node-btn" data-goto="${id}" style="background:${tl.color}08;border-color:${tl.color}35;">
         <span style="color:${tl.color};font-size:10px;">${marker}</span>
         <div><div class="n-name">${ref.th.name}</div>
