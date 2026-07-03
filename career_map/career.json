@@ -1,0 +1,232 @@
+{
+  "trunks": [
+    {
+      "id": "bio-root",
+      "name": "The Bio-Root",
+      "trigger": "I started as a biologist. That's not the detour — that's the source code.",
+      "color": "#4ade80",
+      "pos": [178, 118],
+      "threads": [
+        {
+          "id": "nitw",
+          "name": "NITW Biotech",
+          "years": "2008–12",
+          "trigger": "Top 1% nationally. C++ before I knew what a pipeline was.",
+          "detail": "B.Tech Biotechnology Engineering, NIT Warangal. AIEEE top 1% nationally. MITACS-funded research internship at McGill. Merit scholarship 2011–12. The computation habits formed here.",
+          "pos": [72, 38]
+        },
+        {
+          "id": "ubc",
+          "name": "UBC M.Sc.",
+          "years": "2012–15",
+          "trigger": "Best Student Talk at Banff — only M.Sc. in a room of PhDs.",
+          "detail": "Fully funded NSERC Scholar. Arabidopsis thesis: diurnal regulation of lignin biosynthetic genes. RNA-seq, statistical analysis on messy biological datasets. The thesis was a data project. (Note: parchment reads Botany; work was molecular/cell biology — see degree-wording task.)",
+          "pos": [208, 38]
+        },
+        {
+          "id": "sci-comm",
+          "name": "Science Communicator",
+          "years": "2014–16",
+          "trigger": "Explaining DNA to Grade 8 kids. The IIA talk came from here.",
+          "detail": "GenomeBC / Let's Talk Science. Genomics workshops Grades 8–12. Explaining complex things simply is a practiced skill, not a personality trait.",
+          "pos": [295, 152]
+        }
+      ]
+    },
+    {
+      "id": "bio-adjacent",
+      "name": "Bio-Adjacent Circuit",
+      "trigger": "Post-MSc: tried three directions. Then tried a PhD. The pivot story runs through all of this.",
+      "color": "#22d3ee",
+      "pos": [102, 388],
+      "threads": [
+        {
+          "id": "stemshock",
+          "name": "StemShock Startup",
+          "years": "2016",
+          "trigger": "Formulated an mRNA herbicide. Got a raise in 3 months. Company was acquired.",
+          "detail": "Biological Technician, StemShock Inc. (acq. by Terramera). Formulated RNAi mRNA herbicide. Supported investor fundraising. Multi-hat startup context: first time bridging science to business communication.",
+          "pos": [35, 298]
+        },
+        {
+          "id": "freelance-research",
+          "name": "Freelance Research",
+          "years": "2017–18",
+          "trigger": "Literature review for a psychiatrist. Federal forestry lab contract.",
+          "detail": "Core Medical Centre (mental health lit review) + Natural Resources Canada contract. Domain-transfer proof: the research methodology is portable across fields.",
+          "pos": [35, 428]
+        },
+        {
+          "id": "uoft-phd",
+          "name": "UofT PhD",
+          "years": "2018–19",
+          "trigger": "Started a PhD. Left. That decision led to Lantern — and eventually Snowflake.",
+          "detail": "PhD student, U of Toronto. Conifer cold tolerance (dehydrin proteins). A+ in Computational Biology & Bioinformatics — Python SNP analysis in microbial genomes. The pivot wasn't drift.",
+          "pos": [108, 510]
+        }
+      ]
+    },
+    {
+      "id": "deliberate-pivot",
+      "name": "The Deliberate Pivot",
+      "trigger": "Left a PhD, went back to school for data, then shipped four projects in three months.",
+      "color": "#818cf8",
+      "pos": [315, 572],
+      "threads": [
+        {
+          "id": "lantern",
+          "name": "Lantern Data Cert.",
+          "years": "Sept–Dec 2019",
+          "trigger": "91st percentile on DataCamp. Four months, then immediately shipped projects.",
+          "detail": "Data Analytics & Data Science Certificate, Lantern Institute, Toronto. SQL, Tableau, R, Python (pandas, numpy, scikit-learn, keras). The pivot was a structured 4-month commitment, not a drift.",
+          "pos": [188, 642]
+        },
+        {
+          "id": "freelance-ds",
+          "name": "4 Projects in 3 Months",
+          "years": "Jan–Mar 2020",
+          "trigger": "A fintech dashboard, health viz, two Kaggles. Three months.",
+          "detail": "Interac KPI dashboard (Tableau). Samsung Health viz app (Dash/Plotly, GCP App Engine). Kaggle: Credit Card Fraud (Autoencoder + XGBoost, +12%). Kaggle: NLP Tweets (87% accuracy). Breadth-first entry.",
+          "pos": [318, 654]
+        },
+        {
+          "id": "bugseq",
+          "name": "BugSeq Taxonomy DB",
+          "years": "Apr 2020",
+          "trigger": "SQLite from NCBI FTP to validate a microbial taxonomy ML model. Biology met DE.",
+          "detail": "Data Scientist Intern, Next Gen Microbiology. NCBI Taxonomy FTP → SQLite. Schema design to validate BugSeq ML model. First explicit DE work — and first time biology knowledge directly accelerated it.",
+          "pos": [432, 636]
+        },
+        {
+          "id": "waterloo",
+          "name": "Protein ML (Waterloo)",
+          "years": "Apr–Jul 2020",
+          "trigger": "Bayesian hyperparameter search through combinatorial protein sequence space.",
+          "detail": "ML Intern, U of Waterloo. Feature extraction from protein databases. Ensemble ML + Bayesian tuning (Hyperopt) + Dask parallelism. QSAR prediction. Research-grade ML fluency, not just applied tooling.",
+          "pos": [492, 560]
+        }
+      ]
+    },
+    {
+      "id": "production-engineering",
+      "name": "Production Data Engineering",
+      "trigger": "2.5 years shipping real pipelines and compliance automation at Snowflake itself.",
+      "color": "#c084fc",
+      "pos": [600, 588],
+      "threads": [
+        {
+          "id": "pipelines",
+          "name": "Pipeline Architect (20+)",
+          "years": "2020–23",
+          "trigger": "GitHub GraphQL, ServiceNow, Salesforce, Okta — 20+ APIs, one CI/CD pipeline.",
+          "detail": "Data Engineer, Snowflake, Pune. Among earliest Pune office employees. ELT via Lambda, API Gateway, External Functions, Fivetran, Airflow. SnowPro Core Certified. DataShare proposal for GitHub data.",
+          "pos": [498, 658]
+        },
+        {
+          "id": "sox",
+          "name": "SOX Compliance Automation",
+          "years": "2020–23",
+          "trigger": "SQL that replaced 100+ manual audit hours per quarter. Audit became a partner team.",
+          "detail": "Real-time SQL monitoring: Access Management exceptions, SSO/SCIM gaps, Password Control violations. 100+ audit hours saved per quarter. Changed business processes. Not just pipelines — systems that change behaviour.",
+          "pos": [638, 660]
+        },
+        {
+          "id": "presenter",
+          "name": "7 Audiences + IIA",
+          "years": "2022–23",
+          "trigger": "Presented SOX architecture to the Institute of Internal Auditors, San Jose.",
+          "detail": "7 external customer presentations. IIA San Jose chapter. Represented Snowflake at US industry events. A Data Engineer who presents to external auditors is unusual. Connects directly to Banff 2014.",
+          "pos": [742, 572]
+        }
+      ]
+    },
+    {
+      "id": "genomics-cloud-bridge",
+      "name": "Genomics–Cloud Bridge",
+      "trigger": "The one role where biology and production cloud engineering happened simultaneously.",
+      "color": "#38bdf8",
+      "pos": [832, 452],
+      "threads": [
+        {
+          "id": "algo-bio",
+          "name": "Algorithmic Biologics",
+          "years": "Jul–Dec 2023",
+          "trigger": "Gene expression app to AWS. Batch → GKE. Biology + cloud + production. All three at once.",
+          "detail": "Cloud Engineer, Algorithmic Biologics, Bengaluru. Deployed Tapestry gene expression app to AWS. AWS Batch → GKE migration. Collaborated with bioinformaticians on variant calling. For bio roles: this is already the work.",
+          "pos": [912, 528]
+        }
+      ]
+    },
+    {
+      "id": "ai-tools-era",
+      "name": "AI Tools Era",
+      "trigger": "Built independently. Got clear on what I want.",
+      "color": "#f59e0b",
+      "pos": [958, 132],
+      "threads": [
+        {
+          "id": "ai-portfolio",
+          "name": "7 AI Apps",
+          "years": "2023–present",
+          "trigger": "Seven friction-killers in a chat window. No pipeline, no team.",
+          "detail": "ReceiptIQ (Gemini Vision), Daily dashboard (Skyfield + Sheets), FOLIO (mutual funds), Gamified interview prep (SQLite + XP), Write-like-me, Noetone (TTS audiobook), AI quiz. Each from a real friction point. 'The syntax got cheap. The judgment didn't.'",
+          "pos": [878, 50]
+        },
+        {
+          "id": "catadoption",
+          "name": "catadoption_pune",
+          "years": "2024–present",
+          "trigger": "~120 street cats adopted in 6 months. Data-driven animal welfare.",
+          "detail": "Founder. ~120 Indie cats adopted. Same Streamlit/Gemini/Plotly stack as portfolio apps. Measurable outcomes, real community impact. The AI tooling isn't padding — it's applied to a real problem.",
+          "pos": [998, 50]
+        },
+        {
+          "id": "upwork",
+          "name": "Upwork Freelancer",
+          "years": "2023–present",
+          "trigger": "Selling custom AI quiz and training apps to small teams. Skills become services.",
+          "detail": "Freelance AI tools developer. Custom quiz and training app builds. Commercial validation — not just portfolio exploration.",
+          "pos": [1058, 148]
+        },
+        {
+          "id": "snowflake-genai",
+          "name": "Snowflake GenAI Cert",
+          "years": "2025–present",
+          "trigger": "Labs-first. Snowflake domain meets GenAI — intentional positioning.",
+          "detail": "Snowflake GenAI Professional Certificate (Coursera). Labs-first approach. Positioning at the intersection of deep Snowflake expertise and the GenAI wave.",
+          "pos": [1042, 240]
+        }
+      ]
+    }
+  ],
+  "throughlines": [
+    {
+      "id": "tl-present",
+      "name": "The Presentation Thread",
+      "trigger": "This has been true since 2014. Not a skill listed — a habit built.",
+      "nodeIds": ["sci-comm", "presenter", "algo-bio"],
+      "color": "#fbbf24"
+    },
+    {
+      "id": "tl-bio",
+      "name": "Biology as Domain Accelerator",
+      "trigger": "The biology is not background — it keeps paying dividends.",
+      "nodeIds": ["ubc", "uoft-phd", "bugseq", "waterloo", "algo-bio"],
+      "color": "#34d399"
+    },
+    {
+      "id": "tl-merit",
+      "name": "Funded by Competitive Selection",
+      "trigger": "I moved countries fully funded, on merit. More than once.",
+      "nodeIds": ["nitw", "ubc", "uoft-phd"],
+      "color": "#a78bfa"
+    },
+    {
+      "id": "tl-systems",
+      "name": "I Think in Systems",
+      "trigger": "'A data engineer who thinks in systems and loves taking friction out of them.'",
+      "nodeIds": ["sox", "catadoption", "ai-portfolio"],
+      "color": "#fb923c"
+    }
+  ]
+}
