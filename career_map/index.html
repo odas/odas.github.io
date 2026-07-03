@@ -134,8 +134,7 @@
   /* panel */
   #panel{
     position:fixed;
-    top:78px;
-    right:28px;
+    top:78px;right:28px;bottom:auto;
     width:var(--panel-w);
     max-width:calc(100vw - 56px);
     max-height:calc(100vh - 170px);
@@ -148,8 +147,7 @@
     opacity:0;
     pointer-events:none;
     transition:transform .22s ease, opacity .22s ease;
-    display:flex;
-    flex-direction:column;
+    display:flex;flex-direction:column;
     overflow:hidden;
   }
   #panel.open{
@@ -157,11 +155,22 @@
     opacity:1;
     pointer-events:auto;
   }
-  #panel .inner{
-    overflow-y:auto;
-    padding:26px 24px 34px;
-    flex:1;
+  #panel.dragging{
+    transition:none;
+    user-select:none;
   }
+  #panel .dragbar{
+    min-height:30px;
+    padding:8px 54px 4px 16px;
+    cursor:grab;
+    color:var(--spore-dim);
+    font:400 10px 'Spline Sans Mono',monospace;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    border-bottom:1px solid rgba(236,228,212,.08);
+  }
+  #panel.dragging .dragbar{cursor:grabbing}
+  #panel .inner{overflow-y:auto;padding:18px 24px 34px;flex:1}
   #panel .kicker{
     font-family:'Spline Sans Mono',monospace;font-size:10.5px;
     letter-spacing:.12em;text-transform:uppercase;color:var(--spore-dim);
@@ -220,12 +229,15 @@
 
   @media (max-width:899px){
     #panel{
-      top:auto;left:0;right:0;bottom:0;width:100%;
+      top:auto!important;left:0!important;right:0!important;bottom:0!important;width:100%;
       max-height:62vh;border-left:none;border-top:1px solid var(--hairline);
       border-radius:16px 16px 0 0;
       transform:translateY(105%);
+      opacity:1;
+      pointer-events:auto;
     }
     #panel.open{transform:translateY(0)}
+    #panel .dragbar{display:none}
   }
 
   /* question index */
@@ -283,6 +295,7 @@
 </div>
 
 <aside id="panel" aria-live="polite">
+  <div class="dragbar" id="paneldrag" role="button" tabindex="0" aria-label="Drag panel">drag panel</div>
   <button class="closebtn" id="panelclose" aria-label="Close panel">✕</button>
   <div class="inner" id="panelinner"></div>
 </aside>
@@ -613,6 +626,69 @@ function findEntity(id){
 
 /* ---------- panel ---------- */
 const panel=document.getElementById("panel"), pinner=document.getElementById("panelinner");
+const panelDrag=document.getElementById("paneldrag");
+const desktopPanel=window.matchMedia("(min-width:900px)");
+let panelDragState=null;
+
+function clampPanelPosition(left,top){
+  const gap=14;
+  const bottomReserve=92;
+  const rect=panel.getBoundingClientRect();
+  const maxLeft=Math.max(gap,window.innerWidth-rect.width-gap);
+  const maxTop=Math.max(gap,window.innerHeight-rect.height-bottomReserve);
+  return {
+    left:Math.min(Math.max(gap,left),maxLeft),
+    top:Math.min(Math.max(gap,top),maxTop)
+  };
+}
+
+function placePanel(left,top){
+  const pos=clampPanelPosition(left,top);
+  panel.style.left=pos.left+"px";
+  panel.style.top=pos.top+"px";
+  panel.style.right="auto";
+  panel.style.bottom="auto";
+}
+
+function resetPanelInlinePosition(){
+  panel.style.left="";
+  panel.style.top="";
+  panel.style.right="";
+  panel.style.bottom="";
+}
+
+panelDrag.addEventListener("pointerdown",e=>{
+  if(!desktopPanel.matches)return;
+  e.preventDefault();
+  const rect=panel.getBoundingClientRect();
+  placePanel(rect.left,rect.top);
+  panelDragState={dx:e.clientX-rect.left,dy:e.clientY-rect.top};
+  panel.classList.add("dragging");
+  panelDrag.setPointerCapture(e.pointerId);
+});
+
+panelDrag.addEventListener("pointermove",e=>{
+  if(!panelDragState)return;
+  placePanel(e.clientX-panelDragState.dx,e.clientY-panelDragState.dy);
+});
+
+function stopPanelDrag(e){
+  if(!panelDragState)return;
+  panelDragState=null;
+  panel.classList.remove("dragging");
+  if(e&&panelDrag.hasPointerCapture(e.pointerId)) panelDrag.releasePointerCapture(e.pointerId);
+}
+
+panelDrag.addEventListener("pointerup",stopPanelDrag);
+panelDrag.addEventListener("pointercancel",stopPanelDrag);
+window.addEventListener("resize",()=>{
+  if(!desktopPanel.matches){
+    resetPanelInlinePosition();
+    return;
+  }
+  if(panel.style.left&&panel.style.top) placePanel(parseFloat(panel.style.left),parseFloat(panel.style.top));
+});
+
 function txt(tag,cls,content,parent){ const e=document.createElement(tag);
   if(cls)e.className=cls; if(content!=null)e.textContent=content; parent.appendChild(e); return e; }
 function triggerBlock(label,text,color,parent){
