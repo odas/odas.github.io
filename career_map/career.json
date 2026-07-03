@@ -4,6 +4,7 @@
   },
   "map": {
     "title": "Orpita Das · Career Map",
+    "backgroundImage": "bg.jpg",
     "origin": [550, 360],
     "ambientSpores": [
       [148, 178],
