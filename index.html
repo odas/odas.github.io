@@ -92,7 +92,9 @@ body {
 
 /* ── HERO ── */
 .hero {
-  padding: 4rem 0 3.5rem;
+  /* 2026-08-22: tightened from 4rem/3.5rem - OD asked the hero to take less
+     vertical space so the catadoption box below it is reachable sooner. */
+  padding: 2.6rem 0 2.2rem;
   display: grid;
   grid-template-columns: 160px 1fr;
   gap: 2.5rem;
@@ -157,7 +159,7 @@ body {
   font-size: 0.97rem;
   color: var(--ink);
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.62;
   max-width: 380px;
 }
 
@@ -237,7 +239,7 @@ body {
 }
 
 .hero-cta {
-  margin-top: 1.5rem;
+  margin-top: 1.05rem;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -606,6 +608,194 @@ footer a:hover { color: var(--ink); }
 .hero-title  { animation: fadeUp 0.5s 0.14s ease both; }
 .hero-desc   { animation: fadeUp 0.5s 0.2s ease both; }
 .hero-cta    { animation: fadeUp 0.5s 0.26s ease both; }
+/* ── CATADOPTION RECALL BLOCK (rebuilt 2026-08-22) ──────────────────────────
+   ⚠ HOUSE RULE IS "two brands, never mixed": catadoption uses the brunch palette,
+   OD's own work uses hers. This block is a DELIBERATE, SCOPED exception she asked
+   for — a visitor arriving off the catadoption banner should recognise the colours
+   instantly. The brunch tokens are therefore namespaced to `.cad` and used NOWHERE
+   else on this page, so the block reads as a quotation of that brand rather than a
+   blend of two. Hexes are the LOCKED July-4 set (P-website/site/assets/style.css);
+   don't re-pick them by eye. */
+.cad {
+  --peri:#8c78f4; --yellow:#f0c840; --sage:#74ac84;
+  --sky:#94d0e4;  --butter:#f8f8a8; --cad-ink:#141118;
+  margin: 1.5rem 0 0;
+  border: 1px solid rgba(140,120,244,0.3);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+.cad-head { background: var(--peri); color: #fff; padding: 1.15rem 1.35rem; }
+.cad-eyebrow {
+  font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase;
+  font-weight: 500; opacity: 0.9; margin-bottom: 0.4rem;
+}
+.cad-head h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem; font-weight: 600; line-height: 1.22; color: #fff;
+}
+.cad-body { padding: 1.3rem 1.35rem 1.4rem; }
+.cad-lede { font-size: 0.93rem; color: var(--ink-soft); margin-bottom: 1.2rem; }
+
+/* the idea graph — HTML/CSS, not SVG, on purpose: it stays legible and selectable
+   at 360px, which an SVG of this width would not. */
+.cad-graph {
+  display: flex; flex-wrap: wrap; align-items: stretch;
+  gap: 0.4rem; margin-bottom: 0.5rem;
+}
+.cad-node {
+  flex: 1 1 128px; min-width: 118px;
+  border: 1px solid var(--rule); border-top: 3px solid var(--sky);
+  border-radius: 5px; padding: 0.6rem 0.65rem; background: #FCFBF9;
+}
+.cad-node b {
+  display: block; font-size: 0.78rem; font-weight: 600;
+  color: var(--cad-ink); line-height: 1.3; margin-bottom: 0.2rem;
+}
+.cad-node span { display: block; font-size: 0.68rem; color: var(--ink-muted); line-height: 1.45; }
+.cad-node--store { border-top-color: var(--sage); }
+.cad-node--ai    { border-top-color: var(--peri); }
+.cad-node--out   { border-top-color: var(--sage); }
+/* The human gate is the point of the whole diagram, so it is the one node that
+   carries a fill rather than just an edge. */
+.cad-node--gate {
+  border-top-color: var(--yellow); background: var(--butter);
+  border-color: rgba(240,200,64,0.55);
+}
+.cad-node--gate b { color: var(--cad-ink); }
+.cad-arrow {
+  align-self: center; color: var(--peri); font-size: 0.85rem;
+  flex: 0 0 auto; padding: 0 0.05rem;
+}
+.cad-gatenote {
+  font-size: 0.8rem; color: var(--ink-soft); background: #FCFBF9;
+  border-left: 3px solid var(--yellow); padding: 0.6rem 0.8rem;
+  border-radius: 0 4px 4px 0; margin: 0.9rem 0 1.1rem;
+}
+.cad-nums {
+  display: flex; flex-wrap: wrap; gap: 1.3rem;
+  padding: 0.85rem 0; margin-bottom: 1rem;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.cad-num { display: flex; flex-direction: column; }
+.cad-num b {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+  font-weight: 600; color: var(--cad-ink); line-height: 1.1;
+}
+.cad-num span { font-size: 0.68rem; color: var(--ink-muted); }
+.cad-link {
+  font-size: 0.88rem; color: var(--peri); text-decoration: none; font-weight: 500;
+  border-bottom: 1px solid rgba(140,120,244,0.35); padding-bottom: 1px;
+}
+.cad-link:hover { border-color: var(--peri); }
+.cad-built { font-size: 0.72rem; color: var(--ink-muted); margin-top: 0.9rem; }
+.cad-built b { color: var(--ink-soft); font-weight: 500; }
+
+/* ── CREDENTIALS + PROOF LINKS (added 2026-08-22) ──
+   OD's ask: draw attention to Snowflake / NITW / UBC, and link the things that show
+   she is someone. Sits in the hero because a visitor who just met her via a cat
+   adoption board has no reason yet to assume an enterprise data background. */
+.creds { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.9rem 0 0.2rem; }
+.cred {
+  font-size: 0.7rem; color: var(--ink-soft); background: var(--paper);
+  border: 1px solid var(--rule); border-radius: 3px; padding: 0.22rem 0.55rem;
+  letter-spacing: 0.01em;
+}
+.cred--strong { color: var(--rust); background: var(--rust-light); border-color: rgba(176,90,47,0.22); font-weight: 500; }
+.proof-links { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.proof-links a {
+  font-size: 0.82rem; color: var(--ink-soft); text-decoration: none;
+  border-bottom: 1px solid var(--rule); padding-bottom: 1px; width: fit-content;
+}
+.proof-links a:hover { color: var(--rust); border-color: rgba(176,90,47,0.4); }
+.proof-links .pl-note { font-size: 0.7rem; color: var(--ink-muted); border: none; }
+
+@media (max-width: 560px) {
+  .cad-node { flex: 1 1 100%; }
+  .cad-arrow { transform: rotate(90deg); align-self: center; margin: 0 auto; }
+  .cad-nums { gap: 1rem; }
+}
+
+
+/* ── THE ASK PANEL (2026-08-22) — see the HTML comment for the design rules ── */
+.ask-pill {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 40;
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500;
+  color: var(--ink-soft); background: var(--paper);
+  border: 1px solid var(--rule); border-radius: 99px;
+  padding: 0.5rem 0.95rem; cursor: pointer;
+  box-shadow: 0 1px 2px rgba(28,24,20,0.05), 0 6px 20px rgba(28,24,20,0.07);
+  transition: color 0.15s, border-color 0.15s, box-shadow 0.2s, opacity 0.2s;
+}
+.ask-pill:hover { color: var(--rust); border-color: rgba(176,90,47,0.35); }
+.ask-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--rust); flex: 0 0 auto;
+}
+.ask.is-open .ask-pill { opacity: 0; pointer-events: none; }
+
+.ask-panel {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 41;
+  width: min(340px, calc(100vw - 2.5rem));
+  max-height: min(78vh, 620px); overflow-y: auto;
+  background: #FFFFFF; border: 1px solid var(--rule); border-radius: 8px;
+  padding: 1.25rem 1.3rem 1.1rem;
+  box-shadow: 0 2px 6px rgba(28,24,20,0.06), 0 18px 48px rgba(28,24,20,0.14);
+  opacity: 0; transform: translateY(10px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.ask.is-open .ask-panel { opacity: 1; transform: none; }
+.ask-close {
+  position: absolute; top: 0.55rem; right: 0.7rem;
+  background: none; border: none; cursor: pointer; line-height: 1;
+  font-size: 1.25rem; color: var(--ink-muted); padding: 0.2rem 0.3rem;
+}
+.ask-close:hover { color: var(--ink); }
+.ask-eyebrow {
+  font-size: 0.63rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--rust); font-weight: 500; margin-bottom: 0.35rem;
+}
+.ask-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.3rem;
+  font-weight: 600; line-height: 1.2; margin-bottom: 0.3rem;
+}
+.ask-sub { font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 0.9rem; line-height: 1.5; }
+.ask-panel .why-chips { flex-direction: column; gap: 0.4rem; }
+.ask-panel .why-chip { width: 100%; font-size: 0.79rem; padding: 0.45rem 0.8rem; }
+.ask-panel .why-followup { padding: 0.9rem 0; border: none; border-top: 1px solid var(--rule); border-radius: 0; background: none; }
+.ask-panel .why-privacy { margin-top: 0.85rem; }
+
+@media (max-width: 560px) {
+  /* a right-hand panel at 360px is just a covered screen - become a bottom sheet */
+  .ask-panel {
+    right: 0; left: 0; bottom: 0; width: 100%;
+    border-radius: 10px 10px 0 0; max-height: 82vh;
+    padding-bottom: 1.4rem;
+  }
+  .ask-pill { right: 0.9rem; bottom: 0.9rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ask-panel { transition: none; transform: none; }
+  .ask-pill { transition: none; }
+}
+@media print { .ask { display: none; } }
+
+
+.video-cred {
+  margin-top: 0.85rem; font-size: 0.8rem; color: var(--ink-soft); line-height: 1.6;
+}
+.video-cred a { color: var(--rust); text-decoration: none; border-bottom: 1px solid rgba(176,90,47,0.3); }
+.video-cred-badge {
+  display: inline-block; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+  font-weight: 600; color: #7a5c12; background: #F5E4B0; border: 1px solid rgba(122,92,18,0.25);
+  border-radius: 3px; padding: 0.1rem 0.4rem; margin-right: 0.35rem; vertical-align: 1px;
+}
+.pl-label {
+  font-size: 0.63rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--ink-muted); font-weight: 500; margin-bottom: 0.2rem;
+}
+.proof-links { margin-top: 2rem; }
+
 </style>
 </head>
 <body>
@@ -614,7 +804,7 @@ footer a:hover { color: var(--ink); }
 
   <!-- TOP BAR -->
   <div class="topbar">
-    <span class="topbar-name">🪳 Orpita Das <span class="topbar-role">· Freelance AI Tooler</span></span>
+    <span class="topbar-name">Orpita Das <span class="topbar-role">· Freelance AI Tooler</span></span>
     <div class="topbar-links">
       <a href="#workshop" class="topbar-link">Work</a>
       <a href="career_map/" class="topbar-link">Career Map</a>
@@ -630,6 +820,14 @@ footer a:hover { color: var(--ink); }
     <div class="hero-content">
       <h1 class="hero-name">Orpita Das</h1>
       <p class="hero-hook">I build AI-powered tools for small teams — fast.</p>
+      <!-- Credentials, OD 2026-08-22. A visitor who arrived via a cat adoption board
+           has no reason to assume an enterprise data background; say it early. -->
+      <div class="creds">
+        <span class="cred cred--strong">Ex-Snowflake Data Engineer</span>
+        <span class="cred">SnowPro Core Certified</span>
+        <span class="cred">M.Sc. UBC</span>
+        <span class="cred">B.Tech NIT Warangal</span>
+      </div>
       <div class="hero-collab">
         <span class="collab-label">In collaboration with</span>
         <span class="collab-pill">Claude</span>
@@ -644,21 +842,88 @@ footer a:hover { color: var(--ink); }
     </div>
   </section>
 
+  <!-- CATADOPTION RECALL BLOCK — sits directly under the hero. It was briefly moved
+       above it (2026-08-22); OD moved it back the same day — "my photo and blurb, it was
+       better" — so a visitor meets the person first, then the proof. Keep that order.
+       Most arrivals come off the banner on catadoption.in/adoptable.html, hence the
+       brunch palette, scoped to .cad only so the two brands quote rather than blend. -->
+  <section class="cad">
+    <div class="cad-head">
+      <p class="cad-eyebrow">You came from catadoption.in</p>
+      <h2>Three years of Instagram DMs, turned into a live adoption board.</h2>
+    </div>
+    <div class="cad-body">
+      <p class="cad-lede">Rescuers send me kittens by DM — photos, an age, a phone number,
+      buried in a thread among thousands. That pile is now a pipeline. Here is the whole
+      of it:</p>
+
+      <div class="cad-graph">
+        <div class="cad-node">
+          <b>Instagram DMs</b><span>3 years of rescuer messages</span>
+        </div>
+        <span class="cad-arrow">&rarr;</span>
+        <div class="cad-node">
+          <b>Export &rarr; Drive</b><span>Meta's scheduled export, landing on its own</span>
+        </div>
+        <span class="cad-arrow">&rarr;</span>
+        <div class="cad-node cad-node--store">
+          <b>JSONL + DuckDB</b><span>Parsed, deduped, queryable in seconds</span>
+        </div>
+        <span class="cad-arrow">&rarr;</span>
+        <div class="cad-node cad-node--ai">
+          <b>LLM judgement</b><span>Claude reads each candidate and its photos</span>
+        </div>
+        <span class="cad-arrow">&rarr;</span>
+        <div class="cad-node cad-node--gate">
+          <b>A human says go</b><span>Every listing. No exceptions.</span>
+        </div>
+        <span class="cad-arrow">&rarr;</span>
+        <div class="cad-node cad-node--out">
+          <b>Live board</b><span>Published to the public site</span>
+        </div>
+      </div>
+
+      <p class="cad-gatenote"><strong>The yellow box is the design decision.</strong>
+      The model never publishes — it prepares a case and a human approves it. Automation
+      that can act on its own is automation you have to supervise forever, which is not
+      a saving. I built it to run once, without me, and it published something it
+      shouldn't have; the gate is what came out of that.</p>
+
+      <div class="cad-nums">
+        <div class="cad-num"><b>~24,000</b><span>messages ingested</span></div>
+        <div class="cad-num"><b>~2,450</b><span>conversations</span></div>
+        <div class="cad-num"><b>3 years</b><span>rebuilt from scratch in seconds</span></div>
+      </div>
+
+      <a class="cad-link" href="https://catadoption.in/adoptable.html?utm_source=odas&amp;utm_medium=recall&amp;utm_campaign=catadoption" target="_blank">See the board it produces &rarr;</a>
+      <p class="cad-built">Built with <b>Claude</b> — the pipeline, the judgement stage and
+      this page. I decide what it should do and check what it did.</p>
+    </div>
+  </section>
+
   <!-- VIDEO -->
   <section class="section">
     <div class="video-header">
-      <p class="section-label">See it working</p>
+      <p class="section-label">Noëtone — see it working</p>
       <span class="video-badge">Built in 3 days — hardened over weeks of daily use.</span>
     </div>
+    <!-- The real Noëtone demo, wired 2026-08-22. The file is the one on OD's Kanz
+         portfolio page; Kanz serves it with access-control-allow-origin:*, so it
+         embeds cleanly here.
+         ⚠ TWO THINGS TO KNOW: it is ~50MB, hence preload="metadata" - nothing but the
+         header downloads until someone presses play, which matters on Indian mobile
+         data. And it is a THIRD-PARTY URL: if Kanz ever rotates it the video breaks
+         and the link below still works. The durable fix is a compressed local copy. -->
     <div class="video-wrap">
-      <!-- Option A – local file:  <video src="noetone-demo.mp4" controls playsinline style="width:100%;height:100%;object-fit:cover;"></video> -->
-      <!-- Option B – YouTube:     <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe> -->
-      <div class="video-placeholder">
-        <strong>Noëtone demo</strong>
-        Scan a book → Gemini reads it aloud<br>
-        <span style="font-size:0.75rem; opacity:0.6;">Add your 60-second screen recording here</span>
-      </div>
+      <video src="https://oclvdlvvdrtebkapjdek.supabase.co/functions/v1/media-proxy/orpita-das-1784607161771/demo-video-1784607161775.mp4"
+             controls playsinline preload="metadata"
+             style="width:100%;height:100%;object-fit:cover;background:#1C1814;"></video>
     </div>
+    <p class="video-cred">
+      <span class="video-cred-badge">Gold</span>
+      Independently assessed on the <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz AI Portfolio</a>
+      — certificate KANZ-ADV-1601. <em>“Resilient AI Pipeline: turning scans and handwriting into audiobooks.”</em>
+    </p>
     <div class="video-story">
       <div class="story-stat">
         <span class="stat-num">Day 1</span>
@@ -792,6 +1057,19 @@ footer a:hover { color: var(--ink); }
       </div>
 
     </div>
+
+    <!-- Elsewhere, OD 2026-08-22: "add links to the LinkedIn stuff that shows I am someone."
+         ⚠ The IIA San Jose webinar has NO URL - she pasted the post's text, not its address,
+         and a LinkedIn permalink must not be invented. It renders as plain text until she
+         supplies one; wrap it in an <a href> then and nothing else needs changing. -->
+    <div class="proof-links">
+      <p class="pl-label">Elsewhere</p>
+      <span class="pl-note">Speaker, <em>Automate SOX, Internal Controls Monitoring &amp; Audits
+      with Snowflake</em> — IIA San Jose Chapter webinar, alongside Snowflake leadership.</span>
+      <a href="https://www.linkedin.com/pulse/you-already-have-what-takes-build-ai-orpita-das-rf4nc/" target="_blank" rel="noopener">Article: “You already have what it takes to build AI” &rarr;</a>
+      <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz AI Portfolio — Noëtone, rated Gold &rarr;</a>
+      <a href="https://linkedin.com/in/orpitadas" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+    </div>
   </section>
 
   <!-- CONTACT -->
@@ -813,5 +1091,57 @@ footer a:hover { color: var(--ink); }
   </footer>
 
 </div>
+<!-- ── "WHAT BROUGHT YOU HERE" PANEL ────────────────────────────────────────────
+     OD, 2026-08-22: "make the one tap line a pop-up on the right side... perhaps you
+     can make it show up in a more professional manner and less 90s virus type pop-up."
+
+     What makes it not that, concretely — each of these is the opposite of a specific
+     thing 90s pop-ups did:
+       · It NEVER opens on load. It waits for an intent signal (half the page scrolled,
+         or 30s), because someone who has read half the page has a reason to be here.
+       · No dimming backdrop, no modal trap. The page stays usable behind it; this is
+         a corner panel, not a lightbox.
+       · A quiet trigger pill is always parked bottom-right, so the panel is
+         discoverable without ever being forced.
+       · Dismiss once and it stays dismissed — remembered in localStorage, per browser.
+       · Esc closes it. Focus returns to the trigger.
+     ⚠ Nothing here blocks the page: if localStorage throws (private mode) or JS fails,
+     the pill simply sits there and the rest of the site is unaffected. -->
+<div class="ask" id="ask">
+  <button type="button" class="ask-pill" id="ask-pill" aria-expanded="false" aria-controls="ask-panel">
+    <span class="ask-dot" aria-hidden="true"></span>What brought you here?
+  </button>
+
+  <div class="ask-panel" id="ask-panel" role="dialog" aria-modal="false"
+       aria-labelledby="ask-title" hidden>
+    <button type="button" class="ask-close" id="ask-close" aria-label="Close">&times;</button>
+    <p class="ask-eyebrow">One tap</p>
+    <h3 class="ask-title" id="ask-title">What brought you here?</h3>
+    <p class="ask-sub">It decides what I build next, and what this page says. No signup.</p>
+
+    <div class="why-chips">
+      <button type="button" class="why-chip" data-why="rescue-welfare">I run a rescue / animal welfare account</button>
+      <button type="button" class="why-chip" data-why="drowning-in-dms">I'm drowning in DMs or messages</button>
+      <button type="button" class="why-chip" data-why="messy-data">I have data nobody can read</button>
+      <button type="button" class="why-chip" data-why="manual-process">A manual process eats my week</button>
+      <button type="button" class="why-chip" data-why="hiring">I'm hiring or scoping a project</button>
+      <button type="button" class="why-chip" data-why="curious">Just curious how this was built</button>
+    </div>
+
+    <div class="why-followup" id="why-followup" hidden>
+      <label for="why-line">One line — what's the actual problem?</label>
+      <textarea id="why-line" placeholder="e.g. 300 unanswered DMs a month and no way to tell which ones matter"></textarea>
+      <div class="why-actions">
+        <button type="button" class="why-btn" id="why-send">Send it</button>
+        <button type="button" class="why-alt" id="why-copy">or copy it and my email</button>
+      </div>
+      <p class="why-done" id="why-done" hidden>Copied — paste it wherever you like. orpita.d@gmail.com</p>
+    </div>
+    <p class="why-privacy">Counted anonymously. Nothing is sent until you press a button.</p>
+  </div>
+</div>
+
+
+<script defer src="analytics.js"></script>
 </body>
 </html>
