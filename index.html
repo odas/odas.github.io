@@ -917,10 +917,15 @@ footer a:hover { color: var(--ink); }
     <!-- The real Noëtone demo, wired 2026-08-22. The file is the one on OD's Kanz
          portfolio page; Kanz serves it with access-control-allow-origin:*, so it
          embeds cleanly here.
-         ⚠ TWO THINGS TO KNOW: it is ~50MB, hence preload="metadata" - nothing but the
-         header downloads until someone presses play, which matters on Indian mobile
-         data. And it is a THIRD-PARTY URL: if Kanz ever rotates it the video breaks
-         and the link below still works. The durable fix is a compressed local copy. -->
+         ⚠ It is ~50MB, hence preload="metadata" - nothing but the header downloads until
+         someone presses play, which matters on Indian mobile data.
+         ✅ HOSTING SETTLED, OD 2026-08-29 - LEAVE IT ON KANZ, and do not re-propose a local
+         copy. The old note here said "the durable fix is a compressed local copy"; her
+         reasoning retires it. Kanz is an AI RECRUITING startup and her profile is an asset
+         to THEM - it shows their clients a diversity of talent across countries - so they
+         have a commercial reason to keep the page up. "Let them pay for video storage."
+         The risk was never zero, but it was mis-assessed as a third party's indifference
+         when it is actually a third party's incentive. The link below is the fallback. -->
     <div class="video-wrap">
       <video src="https://oclvdlvvdrtebkapjdek.supabase.co/functions/v1/media-proxy/orpita-das-1784607161771/demo-video-1784607161775.mp4"
              controls playsinline preload="metadata"
@@ -989,6 +994,12 @@ footer a:hover { color: var(--ink); }
         </div>
       </div>
 
+      <!-- ⛔ DO NOT CUT THIS TILE — asked and answered, OD 2026-08-29. It looks like an
+           unbacked claim (the idea predates her regular Claude use, there is no repo in
+           ~/dev and no row in apps-inventory) and a session WILL propose deleting it on
+           those grounds. Two reasons it stays: she still intends to build it, and the
+           molecular-biology strand is part of who she is — "I feel incomplete with the
+           DNA strands off the page." The 🧬 is doing identity work, not product work. -->
       <div class="tool-card">
         <div class="tool-screenshot">
           <!-- Replace with: <img src="screenshots/ncbi.png" alt="NCBI Taxonomy Explorer"> -->
@@ -1003,19 +1014,17 @@ footer a:hover { color: var(--ink); }
       </div>
 
 
-      <div class="tool-card">
-        <div class="tool-screenshot">
-          <!-- Replace with: <img src="screenshots/Noëtone.png" alt="Noëtone"> -->
-          <div class="screenshot-placeholder"><span class="s-emoji">📖</span>Noëtone screenshot</div>
-        </div>
-        <div class="tool-body">
-          <p class="tool-tag">Own your audiobooks</p>
-          <p class="tool-name">Noëtone</p>
-          <p class="tool-desc">Scan any physical book, get an audiobook. Gemini TTS — noticeably better than gTTS. Every audio file is yours, saved on your own machine.</p>
-          <a href="https://github.com/odas/noetone" class="tool-link" target="_blank">github.com/odas/noetone →</a>
-        </div>
-      </div>
-
+      <!-- The Noëtone tile was REMOVED 2026-08-28, OD's call — "Noetone is repeated, that
+           bothers me." It was the third mention on one page and the weakest of the three:
+           the VIDEO section above already carries the working demo, the Gold badge, the
+           3,500-submission denominator and the rubric. A placeholder-emoji tile sitting
+           under all of that undersells it.
+           ⚠ It was also the one genuinely STALE LINK on the page: it pointed at
+           github.com/odas/noetone — the OLD CLONE, kept alive on purpose so friends'
+           existing links keep working (OD's call, 07-28). The live repo is
+           odas/noetone-batch, and every other reference was repointed at the time. This
+           site was missed because it lives in a different repo and was on no
+           outward-surfaces list — the same reason its résumé PDF went stale for 8 weeks. -->
 
     </div>
   </section>
@@ -1030,7 +1039,12 @@ footer a:hover { color: var(--ink); }
         <div class="tl-content">
           <p class="tl-role">Founder & Data-Driven Strategist</p>
           <p class="tl-org">catadoption_pune initiative, Pune</p>
-          <p class="tl-note">AI-supported project management to rehome 120+ street & Indie cats. Building and shipping AI tools for small teams alongside.</p>
+          <!-- "~120", not "120+" and never "200+" — OD's own rule, 12 Aug 2026, and it
+               binds every public surface: "I don't accurately track cat numbers… 120
+               sounds like a right number to put." The success claim must not rest on the
+               count anyway; it rests on near-total kitten placement in the 1.5–3 month
+               window, high daily inbound DMs and near-daily posts. -->
+          <p class="tl-note">AI-supported project management to rehome ~120 street & Indie cats. Building and shipping AI tools for small teams alongside.</p>
         </div>
       </div>
 
@@ -1072,13 +1086,13 @@ footer a:hover { color: var(--ink); }
     </div>
 
     <!-- Elsewhere, OD 2026-08-22: "add links to the LinkedIn stuff that shows I am someone."
-         ⚠ The IIA San Jose webinar has NO URL - she pasted the post's text, not its address,
-         and a LinkedIn permalink must not be invented. It renders as plain text until she
-         supplies one; wrap it in an <a href> then and nothing else needs changing. -->
+         ✅ The IIA San Jose webinar URL was SUPPLIED BY OD 2026-08-29 (read off her own
+         browser address bar, not constructed - a LinkedIn permalink must never be invented).
+         It is her own 4-year-old activity post carrying the IIA speaker announcement. -->
     <div class="proof-links">
       <p class="pl-label">Elsewhere</p>
-      <span class="pl-note">Speaker, <em>Automate SOX, Internal Controls Monitoring &amp; Audits
-      with Snowflake</em> — IIA San Jose Chapter webinar, alongside Snowflake leadership.</span>
+      <a href="https://www.linkedin.com/feed/update/urn:li:activity:6950686148881002496/" target="_blank" rel="noopener">Speaker, <em>Automate SOX, Internal Controls Monitoring &amp; Audits
+      with Snowflake</em> — IIA San Jose Chapter webinar, alongside Snowflake leadership &rarr;</a>
       <a href="https://www.linkedin.com/pulse/you-already-have-what-takes-build-ai-orpita-das-rf4nc/" target="_blank" rel="noopener">Article: “You already have what it takes to build AI” &rarr;</a>
       <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz AI Portfolio — Noëtone, rated Gold &rarr;</a>
       <a href="https://linkedin.com/in/orpitadas" target="_blank" rel="noopener">LinkedIn &rarr;</a>
