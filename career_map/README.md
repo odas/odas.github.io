@@ -8,7 +8,6 @@ A static, JSON-driven SVG career map. The app has no framework, build step, tran
 - `career.json`: contains the career data and career-specific UI/map configuration.
 - `README.md`: editing guide.
 - `CHANGES.md`: notes for the maintainability refactor.
-- `index1.html`: compatibility copy of `index.html` for any existing direct links.
 
 ## JSON Structure
 

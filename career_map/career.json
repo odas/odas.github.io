@@ -349,9 +349,9 @@
         {
           "id": "upwork",
           "name": "Upwork Freelancer",
-          "years": "2023–present",
-          "trigger": "Selling custom AI quiz and training apps to small teams. Skills become services.",
-          "detail": "Freelance AI tools developer. Custom quiz and training app builds. Commercial validation — not just portfolio exploration.",
+          "years": "2026",
+          "trigger": "A short freelance run in 2026: a quiz-and-training app built in three days and listed. A branch, not the trunk.",
+          "detail": "Built and listed a custom quiz-and-training app for small teams (Python, Streamlit, Gemini). Low volume by design; the full-time data-engineering track is the trunk.",
           "pos": [
             1058,
             148
