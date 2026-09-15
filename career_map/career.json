@@ -1,10 +1,27 @@
 {
   "meta": {
-    "documentTitle": "Orpita Das · Career Map"
+    "documentTitle": "Orpita Das · Career Map",
+    "schema_version": 2,
+    "generated": {
+      "on": "2026-09-16",
+      "source": "P-resume/career_map.json",
+      "source_sha256": "ed199520c6b1544ca23c591bbc64accc05f1cd29ce908a53f0b20ad10db041e6",
+      "generator_version": "2.0.0",
+      "note": "GENERATED — do not hand-edit. Edit the source, run tools/career-map-gen/gen.py build."
+    },
+    "question_taxonomy": [
+      "why this field",
+      "ownership",
+      "failure and recovery",
+      "ambiguity",
+      "stakeholders",
+      "technical depth",
+      "learning fast",
+      "judgement call"
+    ]
   },
   "map": {
     "title": "Orpita Das · Career Map",
-    "backgroundImage": "bg.jpg",
     "origin": [
       550,
       360
@@ -70,7 +87,8 @@
         870,
         280
       ]
-    ]
+    ],
+    "backgroundImageDark": "bg.jpg"
   },
   "ui": {
     "hintLines": [
@@ -93,7 +111,7 @@
       "id": "bio-root",
       "name": "The Bio-Root",
       "trigger": "I started as a biologist. That's not the detour — that's the source code.",
-      "color": "#4ade80",
+      "color": "cab-3",
       "pos": [
         178,
         118
@@ -103,8 +121,22 @@
           "id": "nitw",
           "name": "NITW Biotech",
           "years": "2008–12",
+          "years_full": "2008–2012",
           "trigger": "Top 1% nationally. C++ before I knew what a pipeline was.",
           "detail": "B.Tech Biotechnology Engineering, NIT Warangal. AIEEE top 1% nationally. MITACS-funded research internship at McGill. Merit scholarship 2011–12. The computation habits formed here.",
+          "plain_line": "B.Tech, Biotechnology Engineering — NIT Warangal. AIEEE top 1% nationally; MITACS-funded research summer at McGill.",
+          "kind": "education",
+          "employer": "NIT Warangal",
+          "start": "2008-07",
+          "end": "2012-05",
+          "question_types": [
+            "why this field",
+            "learning fast"
+          ],
+          "keywords": [
+            "C++",
+            "statistics"
+          ],
           "pos": [
             72,
             38
@@ -114,8 +146,25 @@
           "id": "ubc",
           "name": "UBC M.Sc.",
           "years": "2012–15",
+          "years_full": "2012–2015",
           "trigger": "Best Student Talk at Banff — only M.Sc. in a room of PhDs.",
-          "detail": "Fully funded NSERC Scholar. Arabidopsis thesis: diurnal regulation of lignin biosynthetic genes. RNA-seq, statistical analysis on messy biological datasets. The thesis was a data project. (Note: parchment reads Botany; work was molecular/cell biology — see degree-wording task.)",
+          "detail": "Fully funded NSERC scholar. Arabidopsis thesis: diurnal regulation of lignin biosynthetic genes. RNA-seq and statistical analysis on messy biological datasets — the thesis was a data project. M.Sc., Plant Molecular Biology (degree conferred in Botany).",
+          "plain_line": "M.Sc., Plant Molecular Biology — University of British Columbia (degree conferred in Botany). Fully funded; Best Student Talk, Banff 2014.",
+          "kind": "education",
+          "employer": "University of British Columbia",
+          "start": "2012-09",
+          "end": "2015-08",
+          "question_types": [
+            "technical depth",
+            "ambiguity",
+            "stakeholders"
+          ],
+          "keywords": [
+            "RNA-seq",
+            "statistical analysis",
+            "hypothesis testing",
+            "research presentation"
+          ],
           "pos": [
             208,
             38
@@ -125,8 +174,20 @@
           "id": "sci-comm",
           "name": "Science Communicator",
           "years": "2014–16",
+          "years_full": "2014–2016",
           "trigger": "Explaining DNA to Grade 8 kids. The IIA talk came from here.",
           "detail": "GenomeBC / Let's Talk Science. Genomics workshops Grades 8–12. Explaining complex things simply is a practiced skill, not a personality trait.",
+          "plain_line": "Workshop facilitator — genomics and biology for Grades 8–12, GenomeBC and Let's Talk Science.",
+          "kind": "volunteer",
+          "employer": "GenomeBC · Let's Talk Science, Vancouver",
+          "start": "2014-01",
+          "end": "2016-12",
+          "question_types": [
+            "stakeholders"
+          ],
+          "keywords": [
+            "technical communication"
+          ],
           "pos": [
             295,
             152
@@ -138,7 +199,7 @@
       "id": "bio-adjacent",
       "name": "Bio-Adjacent Circuit",
       "trigger": "Post-MSc: tried three directions. Then tried a PhD. The pivot story runs through all of this.",
-      "color": "#22d3ee",
+      "color": "cab-3",
       "pos": [
         102,
         388
@@ -148,19 +209,48 @@
           "id": "stemshock",
           "name": "StemShock Startup",
           "years": "2016",
+          "years_full": "Mar–Nov 2016",
           "trigger": "Formulated an mRNA herbicide. Got a raise in 3 months. Company was acquired.",
           "detail": "Biological Technician, StemShock Inc. (acq. by Terramera). Formulated RNAi mRNA herbicide. Supported investor fundraising. Multi-hat startup context: first time bridging science to business communication.",
+          "plain_line": "Biological Technician — an early-stage biotech startup; formulated an RNAi herbicide, supported investor fundraising.",
+          "kind": "role",
+          "employer": "StemShock Inc., Vancouver (acquired by Terramera)",
+          "start": "2016-03",
+          "end": "2016-11",
+          "question_types": [
+            "stakeholders",
+            "ambiguity",
+            "learning fast"
+          ],
+          "keywords": [
+            "investor communication",
+            "startup"
+          ],
           "pos": [
             35,
             298
           ]
         },
         {
-          "id": "freelance-research",
-          "name": "Freelance Research",
+          "id": "research-contracts",
+          "name": "Research contracts",
           "years": "2017–18",
-          "trigger": "Literature review for a psychiatrist. Federal forestry lab contract.",
+          "years_full": "2017–2018",
+          "trigger": "Literature review for a physician. A federal forestry-lab contract.",
           "detail": "Core Medical Centre (mental health lit review) + Natural Resources Canada contract. Domain-transfer proof: the research methodology is portable across fields.",
+          "plain_line": "Research contracts — a physician's literature review and publication editing; a federal forestry-lab field contract.",
+          "kind": "contract",
+          "employer": "Core Medical Centre · Natural Resources Canada",
+          "start": "2017-01",
+          "end": "2018-08",
+          "question_types": [
+            "ambiguity",
+            "learning fast"
+          ],
+          "keywords": [
+            "literature review",
+            "research synthesis"
+          ],
           "pos": [
             35,
             428
@@ -170,8 +260,24 @@
           "id": "uoft-phd",
           "name": "UofT PhD",
           "years": "2018–19",
-          "trigger": "Started a PhD. Left. That decision led to Lantern — and eventually Snowflake.",
-          "detail": "PhD student, U of Toronto. Conifer cold tolerance (dehydrin proteins). A+ in Computational Biology & Bioinformatics — Python SNP analysis in microbial genomes. The pivot wasn't drift.",
+          "years_full": "2018–2019",
+          "trigger": "Started a PhD, completed the second semester, left. The computational-biology course there — an A+ — gave me the confidence to pivot to data.",
+          "detail": "PhD student, U of Toronto, Cell & Systems Biology: conifer cold tolerance (dehydrin proteins). A+ in Computational Biology & Bioinformatics — a Python project aligning and quantifying SNPs in a microbial genome. Completed the second semester, then left to pivot to data. The pivot wasn't drift.",
+          "plain_line": "PhD student, Cell & Systems Biology — completed the second semester, A+ in Computational Biology, then left to pivot to data.",
+          "kind": "education",
+          "employer": "University of Toronto",
+          "start": "2018-09",
+          "end": "2019-04",
+          "question_types": [
+            "judgement call",
+            "failure and recovery",
+            "why this field"
+          ],
+          "keywords": [
+            "Python",
+            "bioinformatics",
+            "SNP analysis"
+          ],
           "pos": [
             108,
             510
@@ -183,7 +289,7 @@
       "id": "deliberate-pivot",
       "name": "The Deliberate Pivot",
       "trigger": "Left a PhD, went back to school for data, then shipped four projects in three months.",
-      "color": "#818cf8",
+      "color": "cab-4",
       "pos": [
         315,
         572
@@ -192,31 +298,80 @@
         {
           "id": "lantern",
           "name": "Lantern Data Cert.",
-          "years": "Sept 2019 – early 2020",
+          "years": "2019–20",
+          "years_full": "Sept 2019 – Mar 2020 (6 months)",
           "trigger": "91st percentile on DataCamp. Four months that COVID stretched to six.",
-          "detail": "Data Analytics & Data Science Certificate, Lantern Institute, Toronto — six months, in person. SQL, Tableau, R, Python (pandas, numpy, scikit-learn, keras). Advertised as four months; COVID extended it to six, and the extra time went into project work. A structured full-time commitment, not a drift.",
+          "detail": "Data Analytics & Data Science Certificate, Lantern Institute, Toronto — six months, in person. SQL, Tableau, R, Python (pandas, numpy, scikit-learn, keras). Advertised as four months; COVID extended it to six, with classes and the project running concurrently. A structured full-time commitment, not a drift.",
+          "plain_line": "Data Analytics & Data Science Certificate — six months in person; 91st percentile on DataCamp assessments.",
+          "kind": "education",
+          "employer": "Lantern Institute, Toronto",
+          "start": "2019-09",
+          "end": "2020-03",
+          "question_types": [
+            "learning fast",
+            "why this field"
+          ],
+          "keywords": [
+            "SQL",
+            "Tableau",
+            "R",
+            "pandas",
+            "scikit-learn"
+          ],
           "pos": [
             188,
             642
           ]
         },
         {
-          "id": "freelance-ds",
-          "name": "4 Projects in 3 Months",
+          "id": "portfolio-2020",
+          "name": "Portfolio quarter",
           "years": "Jan–Mar 2020",
-          "trigger": "A fintech dashboard, health viz, two Kaggles. Three months.",
-          "detail": "Interac KPI dashboard (Tableau). Samsung Health viz app (Dash/Plotly, GCP App Engine). Kaggle: Credit Card Fraud (Autoencoder + XGBoost, +12%). Kaggle: NLP Tweets (87% accuracy). Breadth-first entry.",
+          "years_full": "Jan–Mar 2020",
+          "trigger": "A fintech dashboard, a health viz app, two Kaggles. Three months, unpaid, on purpose.",
+          "detail": "Self-directed portfolio, no clients: an Interac KPI dashboard (Tableau) · a Samsung Health viz app (Dash/Plotly on GCP App Engine) · Kaggle credit-card fraud (autoencoder + XGBoost, +12%) · Kaggle disaster-tweets NLP (87% accuracy). Breadth-first entry into a new field — and the quarter that confirmed the pivot.",
+          "plain_line": "Portfolio quarter — four self-directed data projects (Tableau, Dash on GCP, two Kaggle competitions). Unpaid, no clients.",
+          "kind": "project",
+          "employer": "Self-directed, Toronto",
+          "start": "2020-01",
+          "end": "2020-03",
+          "question_types": [
+            "learning fast",
+            "technical depth"
+          ],
+          "keywords": [
+            "Tableau",
+            "Plotly Dash",
+            "GCP App Engine",
+            "XGBoost",
+            "NLP"
+          ],
           "pos": [
-            318,
-            654
+            340,
+            690
           ]
         },
         {
           "id": "bugseq",
           "name": "BugSeq Taxonomy DB",
           "years": "Apr 2020",
+          "years_full": "Apr 2020",
           "trigger": "SQLite from NCBI FTP to validate a microbial taxonomy ML model. Biology met DE.",
           "detail": "Data Scientist Intern, Next Gen Microbiology. NCBI Taxonomy FTP → SQLite. Schema design to validate BugSeq ML model. First explicit DE work — and first time biology knowledge directly accelerated it.",
+          "plain_line": "Data Scientist Intern — NCBI Taxonomy into SQLite to validate a microbial-taxonomy ML model.",
+          "kind": "role",
+          "employer": "Next Generation Microbiology (BugSeq), Vancouver",
+          "start": "2020-04",
+          "end": "2020-04",
+          "question_types": [
+            "technical depth",
+            "why this field"
+          ],
+          "keywords": [
+            "SQLite",
+            "schema design",
+            "data ingestion"
+          ],
           "pos": [
             432,
             636
@@ -226,8 +381,23 @@
           "id": "waterloo",
           "name": "Protein ML (Waterloo)",
           "years": "Apr–Jul 2020",
+          "years_full": "Apr–Jul 2020",
           "trigger": "Bayesian hyperparameter search through combinatorial protein sequence space.",
           "detail": "ML Intern, U of Waterloo. Feature extraction from protein databases. Ensemble ML + Bayesian tuning (Hyperopt) + Dask parallelism. QSAR prediction. Research-grade ML fluency, not just applied tooling.",
+          "plain_line": "Machine Learning Intern — ensemble QSAR model over protein features, Bayesian tuning, Dask. Also a TA.",
+          "kind": "role",
+          "employer": "University of Waterloo",
+          "start": "2020-04",
+          "end": "2020-07",
+          "question_types": [
+            "technical depth"
+          ],
+          "keywords": [
+            "ensemble ML",
+            "Bayesian optimisation",
+            "Dask",
+            "cheminformatics"
+          ],
           "pos": [
             492,
             560
@@ -239,7 +409,7 @@
       "id": "production-engineering",
       "name": "Production Data Engineering",
       "trigger": "2.5 years shipping real pipelines and compliance automation at Snowflake itself.",
-      "color": "#c084fc",
+      "color": "cab-1",
       "pos": [
         600,
         588
@@ -249,30 +419,85 @@
           "id": "pipelines",
           "name": "Ingestion & Governance",
           "years": "2020–23",
+          "years_full": "Oct 2020–Mar 2023",
           "trigger": "GitHub GraphQL, ServiceNow, Salesforce, Okta — 20+ APIs, one central intake.",
           "detail": "Data Engineer, Snowflake, Pune. Among earliest Pune office employees. ELT via Lambda, API Gateway, External Functions, Fivetran, Airflow. SnowPro Core certified 2023. The real edge sat above the tools: given a vague request, read the app’s API docs, get the admins on a call, and work out which columns are load-bearing, what’s sensitive, who should see it. One central intake, reused across legal, finance, HR, sales and security — not per-dashboard pipelines.",
+          "plain_line": "Data Engineer — source onboarding and governance for 20+ SaaS systems into one central intake; among the Pune office's first hires.",
+          "kind": "role",
+          "employer": "Snowflake, Pune",
+          "start": "2020-10",
+          "end": "2023-03",
+          "question_types": [
+            "ambiguity",
+            "stakeholders",
+            "technical depth",
+            "judgement call"
+          ],
+          "keywords": [
+            "Snowflake",
+            "ELT",
+            "API ingestion",
+            "AWS Lambda",
+            "API Gateway",
+            "Fivetran",
+            "Airflow",
+            "data governance",
+            "source-system analysis"
+          ],
           "pos": [
-            498,
-            658
+            540,
+            712
           ]
         },
         {
           "id": "sox",
-          "name": "SOX Compliance Automation",
+          "name": "SOX Automation",
           "years": "2020–23",
+          "years_full": "Oct 2020–Mar 2023",
           "trigger": "SQL that replaced 100+ manual audit hours per quarter. Audit became a partner team.",
           "detail": "Real-time SQL monitoring: Access Management exceptions, SSO/SCIM gaps, Password Control violations. 100+ audit hours saved per quarter. Changed business processes. Not just pipelines — systems that change behaviour.",
+          "plain_line": "Data Engineer — real-time SOX-compliance monitoring built with Internal Audit; 100+ manual audit hours saved a quarter.",
+          "kind": "role",
+          "employer": "Snowflake, Pune",
+          "start": "2020-10",
+          "end": "2023-03",
+          "question_types": [
+            "ownership",
+            "stakeholders",
+            "judgement call",
+            "technical depth"
+          ],
+          "keywords": [
+            "SOX",
+            "data quality",
+            "controls monitoring",
+            "SQL",
+            "alerting",
+            "observability"
+          ],
           "pos": [
-            638,
-            660
+            690,
+            706
           ]
         },
         {
           "id": "presenter",
           "name": "7 Audiences + IIA",
           "years": "2022–23",
+          "years_full": "2022–2023",
           "trigger": "Presented SOX architecture to the Institute of Internal Auditors, San Jose.",
           "detail": "7 external customer presentations. IIA San Jose chapter. Represented Snowflake at US industry events. A Data Engineer who presents to external auditors is unusual. Connects directly to Banff 2014.",
+          "plain_line": "Speaker — seven external customer presentations on the SOX work, including the IIA San Jose chapter.",
+          "kind": "role",
+          "employer": "Snowflake, Pune",
+          "start": "2022-01",
+          "end": "2023-03",
+          "question_types": [
+            "stakeholders"
+          ],
+          "keywords": [
+            "stakeholder presentation"
+          ],
           "pos": [
             742,
             572
@@ -284,7 +509,7 @@
       "id": "genomics-cloud-bridge",
       "name": "Genomics–Cloud Bridge",
       "trigger": "The one role where biology and production cloud engineering happened simultaneously.",
-      "color": "#38bdf8",
+      "color": "cab-3",
       "pos": [
         832,
         452
@@ -293,9 +518,28 @@
         {
           "id": "algo-bio",
           "name": "Algorithmic Biologics",
-          "years": "Jul–Dec 2023",
+          "years": "2023",
+          "years_full": "Jul–Dec 2023",
           "trigger": "Gene expression app to AWS. Batch → GKE. Biology + cloud + production. All three at once.",
           "detail": "Cloud Engineer, Algorithmic Biologics, Bengaluru. Deployed Tapestry gene expression app to AWS. AWS Batch → GKE migration. Collaborated with bioinformaticians on variant calling. For bio roles: this is already the work.",
+          "plain_line": "Cloud Engineer — a genomics startup: gene-expression app to AWS, Batch → GKE, EBS → S3 (~50% storage cost cut).",
+          "kind": "role",
+          "employer": "Algorithmic Biologics, Bengaluru",
+          "start": "2023-07",
+          "end": "2023-12",
+          "question_types": [
+            "technical depth",
+            "failure and recovery",
+            "judgement call"
+          ],
+          "keywords": [
+            "AWS",
+            "GCP",
+            "Kubernetes (GKE)",
+            "Docker",
+            "genomics pipelines",
+            "cost optimisation"
+          ],
           "pos": [
             912,
             528
@@ -307,7 +551,7 @@
       "id": "ai-tools-era",
       "name": "AI Tools Era",
       "trigger": "Built independently. Got clear on what I want.",
-      "color": "#f59e0b",
+      "color": "cab-2",
       "pos": [
         958,
         132
@@ -316,9 +560,31 @@
         {
           "id": "noetone",
           "name": "Noëtone — Kanz GOLD",
-          "years": "2026–present",
+          "years": "2026–",
+          "years_full": "June 2026–present",
           "trigger": "Rated GOLD from 3,500 submissions. 388 pages survived three power cuts.",
           "detail": "Independent build. A document-to-audio pipeline (Flask + SQLite): PDFs, scans and handwriting become audio files you own. Rated GOLD in the 2026 Kanz “Build with AI” Portfolio, from 3,500 submissions, judged on originality, technical depth, impact and presentation (KANZ-ADV-1601). Free-tier limits and power cuts became the design, not the obstacle: per-page commits so jobs resume, error classification, a quota-aware circuit breaker. Instructable OCR — the prompt is a config parameter, so a figure gets described rather than read as broken axis labels.",
+          "plain_line": "Independent build — a document-to-audio pipeline on a free API tier; GOLD in the 2026 Kanz Build-with-AI portfolio, from 3,500.",
+          "kind": "project",
+          "employer": "Independent, Pune",
+          "start": "2026-06",
+          "end": null,
+          "question_types": [
+            "failure and recovery",
+            "technical depth",
+            "ownership",
+            "judgement call"
+          ],
+          "keywords": [
+            "resilient pipelines",
+            "circuit breaker",
+            "error classification",
+            "Gemini API",
+            "Flask",
+            "SQLite",
+            "prompt engineering",
+            "verification"
+          ],
           "pos": [
             868,
             190
@@ -327,9 +593,26 @@
         {
           "id": "ai-portfolio",
           "name": "AI App Portfolio",
-          "years": "2023–present",
-          "trigger": "Seven friction-killers in a chat window. No pipeline, no team.",
-          "detail": "ReceiptIQ (Gemini Vision), Daily dashboard (Skyfield + Sheets), FOLIO (mutual funds), Gamified interview prep (SQLite + XP), Write-like-me, sky-kobo dashboard, NCBI Taxonomy Explorer, AI quiz. Each from a real friction point. ‘The syntax got cheap. The judgment didn’t.’ (Noëtone grew out of this pile into its own node.)",
+          "years": "2026–",
+          "years_full": "May 2026–present",
+          "trigger": "Friction-killers built in a chat window. No pipeline, no team. Each one from a real annoyance.",
+          "detail": "mindful-spend (Gemini Vision receipts to a ledger), Skill Refresh (interview prep that keeps score, live on Render), Kobo Sky (a night-sky dashboard for an e-reader on a wall), a task dashboard, a mutual-fund screener, a handwriting-to-text tool. Each from a real friction point. 'The syntax got cheap. The judgment didn't.' Noëtone grew out of this pile into its own node.",
+          "plain_line": "Independent builds — a portfolio of small AI tools, each from a real friction point (mindful-spend, Skill Refresh, Kobo Sky).",
+          "kind": "project",
+          "employer": "Independent, Pune",
+          "start": "2026-05",
+          "end": null,
+          "question_types": [
+            "learning fast",
+            "ownership"
+          ],
+          "keywords": [
+            "Claude Code",
+            "Gemini API",
+            "Flask",
+            "Streamlit",
+            "GitHub Actions"
+          ],
           "pos": [
             878,
             50
@@ -338,9 +621,30 @@
         {
           "id": "catadoption",
           "name": "catadoption_pune",
-          "years": "May 2024–present",
+          "years": "2024–",
+          "years_full": "May 2024–present",
           "trigger": "~120 street cats rehomed. Data-driven animal welfare.",
           "detail": "Founder. ~120 Indie and street cats rehomed. Near-total placement for kittens, near-daily posts, high daily inbound. Built the stack behind it — FOLIO extraction pipeline, a locked design system, a content engine. The AI tooling isn’t padding — it’s applied to a real problem.",
+          "plain_line": "Founder — a data-driven cat-adoption initiative on Instagram; ~120 street cats rehomed; a public board fed by a DM pipeline.",
+          "kind": "founder",
+          "employer": "catadoption_pune, Pune",
+          "start": "2024-05",
+          "end": null,
+          "question_types": [
+            "ownership",
+            "judgement call",
+            "ambiguity",
+            "failure and recovery",
+            "stakeholders"
+          ],
+          "keywords": [
+            "DuckDB",
+            "JSONL",
+            "human-in-the-loop",
+            "evaluation",
+            "data governance",
+            "context engineering"
+          ],
           "pos": [
             998,
             50
@@ -350,22 +654,24 @@
           "id": "upwork",
           "name": "Upwork Freelancer",
           "years": "2026",
+          "years_full": "2026",
           "trigger": "A short freelance run in 2026: a quiz-and-training app built in three days and listed. A branch, not the trunk.",
           "detail": "Built and listed a custom quiz-and-training app for small teams (Python, Streamlit, Gemini). Low volume by design; the full-time data-engineering track is the trunk.",
+          "plain_line": "Freelance listing — a quiz-and-training app for small teams, built in three days. A branch, not the trunk.",
+          "kind": "freelance",
+          "employer": "Upwork",
+          "start": "2026",
+          "end": null,
+          "question_types": [
+            "ownership"
+          ],
+          "keywords": [
+            "Streamlit",
+            "Gemini"
+          ],
           "pos": [
             1058,
             148
-          ]
-        },
-        {
-          "id": "snowflake-genai",
-          "name": "Snowflake GenAI Cert",
-          "years": "2025–present",
-          "trigger": "Labs-first. Snowflake domain meets GenAI — intentional positioning.",
-          "detail": "Snowflake GenAI Professional Certificate (Coursera). Labs-first approach. Positioning at the intersection of deep Snowflake expertise and the GenAI wave.",
-          "pos": [
-            1042,
-            240
           ]
         }
       ]
@@ -373,64 +679,285 @@
   ],
   "throughlines": [
     {
-      "id": "tl-present",
-      "name": "The Presentation Thread",
-      "trigger": "This has been true since 2014. Not a skill listed — a habit built.",
-      "nodeIds": [
-        "sci-comm",
-        "presenter",
-        "algo-bio"
-      ],
-      "color": "#fbbf24"
-    },
-    {
-      "id": "tl-bio",
-      "name": "Biology as Domain Accelerator",
-      "trigger": "The biology is not background — it keeps paying dividends.",
-      "nodeIds": [
-        "ubc",
-        "uoft-phd",
-        "bugseq",
-        "waterloo",
-        "algo-bio"
-      ],
-      "color": "#34d399"
-    },
-    {
-      "id": "tl-merit",
-      "name": "Funded by Competitive Selection",
-      "trigger": "I moved countries fully funded, on merit. More than once — and it isn’t only history.",
-      "nodeIds": [
-        "nitw",
-        "ubc",
-        "uoft-phd",
-        "noetone"
-      ],
-      "color": "#a78bfa"
-    },
-    {
-      "id": "tl-systems",
-      "name": "I Think in Systems",
-      "trigger": "'A data engineer who thinks in systems and loves taking friction out of them.'",
-      "nodeIds": [
-        "sox",
-        "catadoption",
-        "ai-portfolio"
-      ],
-      "color": "#fb923c"
-    },
-    {
       "id": "tl-engine",
       "name": "Big-Picture Synthesis + Motivated Depth",
-      "trigger": "I want to understand the whole thing — and when I’m interested I’ll churn through the detail nobody else will.",
+      "trigger": "I want to understand the whole thing — and when I'm interested I'll churn through the detail nobody else will.",
+      "color": "cab-1",
       "nodeIds": [
         "ubc",
         "pipelines",
         "algo-bio",
         "catadoption",
         "noetone"
-      ],
-      "color": "#38bdf8"
+      ]
+    },
+    {
+      "id": "tl-present",
+      "name": "The Presentation Thread",
+      "trigger": "This has been true since 2014. Not a skill listed — a habit built.",
+      "color": "cab-2",
+      "nodeIds": [
+        "ubc",
+        "sci-comm",
+        "stemshock",
+        "pipelines",
+        "presenter"
+      ]
+    },
+    {
+      "id": "tl-bio",
+      "name": "Biology as Domain Accelerator",
+      "trigger": "The biology is not background — it keeps paying dividends.",
+      "color": "cab-3",
+      "nodeIds": [
+        "ubc",
+        "uoft-phd",
+        "bugseq",
+        "waterloo",
+        "algo-bio",
+        "pipelines"
+      ]
+    },
+    {
+      "id": "tl-merit",
+      "name": "Funded by Competitive Selection",
+      "trigger": "I moved countries fully funded, on merit. More than once — and it isn't only history.",
+      "color": "cab-4",
+      "nodeIds": [
+        "nitw",
+        "ubc",
+        "noetone"
+      ]
+    },
+    {
+      "id": "tl-systems",
+      "name": "I Think in Systems",
+      "trigger": "'A data engineer who thinks in systems and loves taking friction out of them.'",
+      "color": "ink",
+      "nodeIds": [
+        "sox",
+        "catadoption",
+        "ai-portfolio",
+        "noetone"
+      ]
     }
-  ]
+  ],
+  "claims": [
+    {
+      "id": "c01-resilient-pipelines",
+      "sentence": "Resilient pipelines",
+      "evidence_text": "Noëtone turned a 388-page scanned book into audio through three power cuts without losing a page, on a free API tier of three calls a minute. Before that: 20+ ingestion sources at Snowflake, and SOX-compliance monitoring that replaced 100+ manual audit hours a quarter.",
+      "evidence": [
+        {
+          "node_id": "noetone"
+        },
+        {
+          "node_id": "pipelines"
+        },
+        {
+          "node_id": "sox"
+        }
+      ],
+      "link": {
+        "label": "Repo",
+        "href": "https://github.com/odas/noetone-batch"
+      }
+    },
+    {
+      "id": "c02-initiative",
+      "sentence": "Initiative, in an unusual place",
+      "evidence_text": "Founded catadoption_pune in 2024. Around 120 street cats rehomed, a public site and adoption board built and live, near-daily posting sustained for two years. Taught a general-purpose AI the realities of grassroots Indian animal welfare — and kept a human deciding.",
+      "evidence": [
+        {
+          "node_id": "catadoption"
+        }
+      ],
+      "link": {
+        "label": "The board",
+        "href": "https://catadoption.in/adoptable.html?utm_source=odas&utm_medium=map&utm_campaign=catadoption"
+      }
+    },
+    {
+      "id": "c03-range",
+      "sentence": "Range",
+      "evidence_text": "Snowflake in Pune, a genomics startup in Bengaluru, a machine-learning internship at Waterloo, research at UBC and UofT, a biotech startup in Vancouver. Two countries, industry and academia, wet lab to warehouse.",
+      "evidence": [
+        {
+          "node_id": "pipelines"
+        },
+        {
+          "node_id": "algo-bio"
+        },
+        {
+          "node_id": "waterloo"
+        },
+        {
+          "node_id": "ubc"
+        },
+        {
+          "node_id": "uoft-phd"
+        },
+        {
+          "node_id": "stemshock"
+        }
+      ],
+      "link": {
+        "label": "Timeline",
+        "href": "?view=plain"
+      }
+    },
+    {
+      "id": "c04-stack-now",
+      "sentence": "The stack now",
+      "evidence_text": "Claude Code, Gemini API, OpenRouter, DuckDB, Flask, GitHub Actions — on top of the proven set: Snowflake, AWS Lambda and API Gateway, SQL, Python, Airflow, Fivetran.",
+      "evidence": [
+        {
+          "node_id": "noetone"
+        },
+        {
+          "node_id": "ai-portfolio"
+        },
+        {
+          "node_id": "catadoption"
+        },
+        {
+          "node_id": "pipelines"
+        }
+      ],
+      "link": {
+        "label": "Repos",
+        "href": "https://github.com/odas"
+      }
+    },
+    {
+      "id": "c05-context-engineering",
+      "sentence": "Context engineering",
+      "evidence_text": "A document system that keeps a dozen parallel AI sessions consistent across folders; a shelf map with a script that checks every document's tags against it; reusable procedure files the model executes.",
+      "evidence": [
+        {
+          "node_id": "catadoption"
+        }
+      ],
+      "link": {
+        "label": "Article",
+        "href": "https://www.linkedin.com/pulse/you-already-have-what-takes-build-ai-orpita-das-rf4nc/"
+      }
+    }
+  ],
+  "decisions": [],
+  "chronology": [
+    {
+      "id": "noetone",
+      "start": "2026-06",
+      "end": null
+    },
+    {
+      "id": "ai-portfolio",
+      "start": "2026-05",
+      "end": null
+    },
+    {
+      "id": "upwork",
+      "start": "2026",
+      "end": null
+    },
+    {
+      "id": "catadoption",
+      "start": "2024-05",
+      "end": null
+    },
+    {
+      "id": "algo-bio",
+      "start": "2023-07",
+      "end": "2023-12"
+    },
+    {
+      "id": "presenter",
+      "start": "2022-01",
+      "end": "2023-03"
+    },
+    {
+      "id": "pipelines",
+      "start": "2020-10",
+      "end": "2023-03"
+    },
+    {
+      "id": "sox",
+      "start": "2020-10",
+      "end": "2023-03"
+    },
+    {
+      "id": "waterloo",
+      "start": "2020-04",
+      "end": "2020-07"
+    },
+    {
+      "id": "bugseq",
+      "start": "2020-04",
+      "end": "2020-04"
+    },
+    {
+      "id": "portfolio-2020",
+      "start": "2020-01",
+      "end": "2020-03"
+    },
+    {
+      "id": "lantern",
+      "start": "2019-09",
+      "end": "2020-03"
+    },
+    {
+      "id": "uoft-phd",
+      "start": "2018-09",
+      "end": "2019-04"
+    },
+    {
+      "id": "research-contracts",
+      "start": "2017-01",
+      "end": "2018-08"
+    },
+    {
+      "id": "stemshock",
+      "start": "2016-03",
+      "end": "2016-11"
+    },
+    {
+      "id": "sci-comm",
+      "start": "2014-01",
+      "end": "2016-12"
+    },
+    {
+      "id": "ubc",
+      "start": "2012-09",
+      "end": "2015-08"
+    },
+    {
+      "id": "nitw",
+      "start": "2008-07",
+      "end": "2012-05"
+    }
+  ],
+  "identity": {
+    "name": "Orpita Das",
+    "title": "Data Engineer, ex-Snowflake",
+    "line": "Data Engineer, ex-Snowflake · M.Sc., Plant Molecular Biology (UBC) · B.Tech, NIT Warangal · Pune",
+    "links": [
+      {
+        "label": "Proof page",
+        "href": "../"
+      },
+      {
+        "label": "Résumé (PDF)",
+        "href": "../Orpita_Das_Resume.pdf"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/in/orpitadas"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/odas"
+      }
+    ]
+  }
 }

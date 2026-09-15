@@ -1,125 +1,50 @@
 # Career Map
 
-A static, JSON-driven SVG career map. The app has no framework, build step, transpiler, or package dependencies.
+A static, JSON-driven SVG career map with a plain chronological view beside it. No framework, no
+build step on this side, no package dependencies. Live at https://odas.github.io/career_map/.
 
-## Project Structure
+## Files
 
-- `index.html`: renders the SVG map, side panel, legend, and interactions.
-- `career.json`: contains the career data and career-specific UI/map configuration.
-- `README.md`: editing guide.
-- `CHANGES.md`: notes for the maintainability refactor.
+- `index.html` — markup and CSS (the J-visual-reference palette, light and dark).
+- `map.js` — the renderer: canvas, plain view, side panel, question index, keyboard.
+- `career.json` — **GENERATED. Do not hand-edit.** It is emitted from a private source file by a
+  small generator that runs an allowlist projection and refuses to build on any problem. Edits made
+  here are overwritten on the next build.
+- `bg.jpg` — the substrate photo, used in the dark scheme only.
+- `scratch/` — earlier prototypes; nothing deployed reads them.
 
-## JSON Structure
+## Views
 
-`career.json` has five top-level sections:
+- `?view=plain` — identity, the five proof claims, the six patterns with a one-sentence reading each,
+  and the timeline newest-first. Default in portrait.
+- `?view=map` — the mycelium canvas. Default in landscape. Chips at the bottom light a pattern or a
+  claim's evidence on the canvas. Keys: `1–9` trunks · `←/→` nodes · `Enter` open · `P` toggle view ·
+  `Q` question index · `Esc` close.
+- `?scheme=light|dark` overrides the OS preference. `?debug=1` prints layout-overflow diagnostics in
+  the badge (for headless checks).
 
-- `meta`: browser/page metadata.
-- `map`: map title, origin point, and ambient background points.
-- `ui`: labels and small pieces of interface text.
-- `trunks`: the main career branches.
-- `throughlines`: cross-cutting paths that connect nodes across trunks.
+## The public schema (`career.json`, `schema_version: 2`)
 
-The existing `trunks` and `throughlines` formats are intentionally preserved.
+- `meta` — `documentTitle`, `schema_version`, `generated{on, source_sha256, generator_version}`,
+  `question_taxonomy[]`.
+- `identity` — `name`, `title`, `line`, `links[]`.
+- `map` — `title`, `origin`, `ambientSpores[]`, `backgroundImageDark`.
+- `ui` — small interface strings.
+- `trunks[]` — `id`, `name`, `trigger`, `color` (a palette **token**: `cab-1`…`cab-4`, `ink`), `pos`,
+  `threads[]` with `id`, `name`, `years` (short, for the canvas), `years_full`, `trigger`, `detail`,
+  `plain_line`, `kind`, `employer`, `start`, `end`, `question_types[]`, `keywords[]`, `pos`.
+- `throughlines[]` — `id`, `name`, `trigger`, `color` (token; `-dashed` suffix changes the dash),
+  `nodeIds[]` (must all exist), optional `plain_reading`.
+- `claims[]` — `id`, `sentence`, `evidence_text`, `evidence[{node_id}]`, optional `link`.
+- `decisions[]` — empty until any are published.
+- `chronology[]` — `id`, `start`, `end`, newest first.
 
-## How To Edit The Career
+The renderer accepts schema 2 only. An unknown `nodeIds` entry, a duplicate id or a missing file is
+shown in the badge and nothing fictional renders.
 
-Edit `career.json`, then reload the page through a local server or static host.
-
-Use this local command from the repository root:
+## Local preview
 
 ```sh
-python3 -m http.server 8000
+python3 -m http.server 8899      # from the repository root; fetch() fails on file://
+open http://127.0.0.1:8899/career_map/
 ```
-
-Then open:
-
-```text
-http://127.0.0.1:8000/career_map/
-```
-
-Check the browser console after edits. The app warns about duplicate ids, missing required fields, and throughlines that reference missing nodes.
-
-## How To Replace The Career
-
-To reuse the renderer for another career:
-
-1. Update `meta.documentTitle`.
-2. Update `map.title`.
-3. Adjust `map.origin` if the central point should move.
-4. Replace the `trunks` array.
-5. Replace the `throughlines` array.
-6. Update `ui` labels only if the interface language should change.
-
-Keep ids short, unique, and stable. Throughlines depend on node ids.
-
-## How To Add Trunks
-
-Add an object to `trunks`:
-
-```json
-{
-  "id": "example-trunk",
-  "name": "Example Trunk",
-  "trigger": "Short panel prompt for this trunk.",
-  "color": "#4ade80",
-  "pos": [300, 200],
-  "threads": []
-}
-```
-
-Required trunk properties:
-
-- `id`: unique id.
-- `name`: label shown on the map and panel.
-- `trigger`: panel text for the trunk.
-- `color`: hex color used for lines, nodes, labels, and panel accents.
-- `pos`: `[x, y]` coordinate in the SVG viewBox.
-- `threads`: array of nodes in the trunk.
-
-## How To Add Nodes
-
-Add a node object inside a trunk's `threads` array:
-
-```json
-{
-  "id": "example-node",
-  "name": "Example Node",
-  "years": "2026",
-  "trigger": "Short recall trigger.",
-  "detail": "Longer detail shown in the side panel.",
-  "pos": [360, 260]
-}
-```
-
-Required node properties:
-
-- `id`: unique id used by throughlines.
-- `name`: map and panel label.
-- `years`: small date label.
-- `trigger`: highlighted panel text.
-- `detail`: body copy in the panel.
-- `pos`: `[x, y]` coordinate in the SVG viewBox.
-
-## How To Add Throughlines
-
-Add an object to `throughlines`:
-
-```json
-{
-  "id": "tl-example",
-  "name": "Example Throughline",
-  "trigger": "Short explanation of the pattern.",
-  "nodeIds": ["example-node", "another-node"],
-  "color": "#fbbf24"
-}
-```
-
-Required throughline properties:
-
-- `id`: unique id.
-- `name`: legend and panel label.
-- `trigger`: highlighted panel text.
-- `nodeIds`: ordered list of existing node ids.
-- `color`: hex color used for the throughline and panel accents.
-
-The map draws throughline segments in the order listed in `nodeIds`. If a node id is missing, the app warns in the console and skips that missing point.
