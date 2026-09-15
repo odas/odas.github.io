@@ -83,9 +83,19 @@ let VB={w:1600,h:1000,pad:110}, SCALE=1, ANCHORS=null, isPortrait=false;
 const LANDSCAPE_ANCHORS=[[0.24,0.30],[0.22,0.70],[0.52,0.80],[0.80,0.64],[0.76,0.24],[0.50,0.18],[0.50,0.50],[0.05,0.5],[0.95,0.5]];
 const PORTRAIT_ANCHORS=[[0.30,0.16],[0.72,0.14],[0.78,0.44],[0.68,0.76],[0.26,0.80],[0.22,0.48],[0.50,0.50],[0.50,0.05],[0.50,0.95]];
 function updateMode(){
-  isPortrait = window.innerHeight > window.innerWidth*1.15;
-  if(isPortrait){ VB={w:1000,h:1600,pad:95}; SCALE=1.35; ANCHORS=PORTRAIT_ANCHORS; }
-  else          { VB={w:1600,h:1000,pad:110}; SCALE=1;  ANCHORS=LANDSCAPE_ANCHORS; }
+  // the viewBox follows the viewport's aspect so a short laptop window is not letterboxed into a
+  // small canvas; SCALE keeps caps and labels a constant ON-SCREEN size (k = viewBox→px factor)
+  const iw=Math.max(320,window.innerWidth);
+  let ih=Math.max(320,window.innerHeight);
+  isPortrait = ih > iw*1.15;
+  // a short landscape window gets a canvas taller than the viewport and the map view scrolls (CSS body.short)
+  if(!isPortrait && ih<720) ih=760;
+  if(isPortrait){ VB={w:1000,h:Math.round(1000*Math.min(2.4,Math.max(1.2,ih/iw))),pad:80}; ANCHORS=PORTRAIT_ANCHORS; }
+  else          { VB={w:Math.round(1000*Math.min(2.6,Math.max(1.2,iw/ih))),h:1000,pad:100}; ANCHORS=LANDSCAPE_ANCHORS; }
+  const k=Math.min(iw/VB.w, ih/VB.h);
+  const short=!isPortrait && window.innerHeight<720;   // a laptop with browser chrome: less height than the layout wants
+  document.body.classList.toggle("short",short);
+  SCALE=(isPortrait?0.75:(short?0.8:0.9))/k;
   return isPortrait;
 }
 updateMode();
@@ -104,10 +114,17 @@ function computePositions(data){
     let minx=1/0,miny=1/0,maxx=-1/0,maxy=-1/0;
     pts.forEach(([x,y])=>{minx=Math.min(minx,x);miny=Math.min(miny,y);maxx=Math.max(maxx,x);maxy=Math.max(maxy,y);});
     const bw=Math.max(1,maxx-minx), bh=Math.max(1,maxy-miny);
-    // room at the top for the header bar and at the bottom for the legend chips
-    const availW=VB.w-2*VB.pad, availH=VB.h-2*VB.pad-(isPortrait?420:150);
+    // room for the fixed bars, MEASURED: the top bar and the legend cover the canvas, and the
+    // viewBox is fitted "meet" into the viewport, so convert their pixel heights to viewBox units
+    const stageH=document.getElementById("stage").getBoundingClientRect().height||window.innerHeight;
+    const k=Math.min(window.innerWidth/VB.w, stageH/VB.h)||1;
+    const topPx=(document.getElementById("top")||{getBoundingClientRect:()=>({height:56})}).getBoundingClientRect().height;
+    const legPx=(document.getElementById("legend")||{getBoundingClientRect:()=>({height:110})}).getBoundingClientRect().height||110;
+    const slack=(stageH-VB.h*k)/2;          // letterboxed space above/below the viewBox
+    const topVB=Math.max(0,(topPx-slack)/k)+30*SCALE, botVB=Math.max(0,(legPx-slack)/k)+34*SCALE;   // + label height
+    const availW=VB.w-2*VB.pad, availH=Math.max(200, VB.h-topVB-botVB-2*VB.pad);
     const s=Math.min(availW/bw, availH/bh);
-    const ox=(VB.w-bw*s)/2 - minx*s, oy=(VB.h-bh*s)/2 - miny*s + (isPortrait?-40:0);
+    const ox=(VB.w-bw*s)/2 - minx*s, oy=topVB+VB.pad+(availH-bh*s)/2 - miny*s;
     T=(p)=>{ const q=isPortrait?[p[1],p[0]]:p; return {x:q[0]*s+ox, y:q[1]*s+oy}; };
   }
   const place=(p)=>{ if(!p)return null; if(isFrac(p)) return {x:p[0]*VB.w,y:p[1]*VB.h}; return T?T(p):null; };
@@ -141,7 +158,7 @@ const panel=$("panel"), pinner=$("panelinner"), qindex=$("qindex"), qwrap=$("qwr
 /* ---------- views ---------- */
 function defaultView(){
   const q=PARAMS.get("view"); if(q==="plain"||q==="map") return q;
-  try{ const s=localStorage.getItem("careermap.view"); if(s==="plain"||s==="map") return s; }catch(e){}
+  try{ const s=localStorage.getItem("careermap.view."+(isPortrait?"portrait":"landscape")); if(s==="plain"||s==="map") return s; }catch(e){}
   return isPortrait ? "plain" : "map";
 }
 function setView(v, remember){
@@ -149,7 +166,7 @@ function setView(v, remember){
   document.body.classList.toggle("view-plain", VIEW==="plain");
   document.body.classList.toggle("view-map", VIEW==="map");
   document.querySelectorAll('#top .seg button').forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.view===VIEW)));
-  if(remember){ try{ localStorage.setItem("careermap.view", VIEW); }catch(e){} }
+  if(remember){ try{ localStorage.setItem("careermap.view."+(isPortrait?"portrait":"landscape"), VIEW); }catch(e){} }
   if(VIEW==="plain"){ clearLight(); }
   else if(DATA){ render(DATA); }   // canvas may have been hidden at a different size
 }
@@ -343,6 +360,7 @@ function buildLegend(){
   const cb=$("claimbar"); cb.innerHTML="";
   if(DATA.claims.length){ txt("span","lbl","proof",cb);
     DATA.claims.forEach((c,i)=>{ const b=txt("button","chip claimchip",`${String(i+1).padStart(2,"0")} ${c.sentence}`,cb); b.dataset.i=i; b.setAttribute("aria-pressed","false"); b.addEventListener("click",()=>toggleClaim(i,b)); }); }
+  const qc=txt("button","chip","? questions",cb); qc.style.setProperty("--chip","var(--ink-soft)"); qc.addEventListener("click",openQ);
   const bar=$("tlbar"); bar.innerHTML="";
   txt("span","lbl",ui.legendLabel||"patterns",bar);
   DATA.throughlines.forEach((tl,i)=>{ const b=txt("button","chip",(ui.legendPrefix||"⟿ ")+tl.name,bar); b.dataset.i=i; b.style.setProperty("--chip",cssColor(tl.color)); b.setAttribute("aria-pressed","false"); b.addEventListener("click",()=>toggleTL(i,b)); });
@@ -456,8 +474,8 @@ window.addEventListener("resize",()=>{
   if(!desktopPanel.matches) resetPanelInlinePosition();
   else if(panel.style.left&&panel.style.top) placePanel(parseFloat(panel.style.left),parseFloat(panel.style.top));
   clearTimeout(resizeTimer);
-  resizeTimer=setTimeout(()=>{ if(!DATA)return; const was=isPortrait; updateMode();
-    if(isPortrait!==was && VIEW==="map"){ panel.classList.remove("open"); clearLight(); render(DATA); } },200);
+  resizeTimer=setTimeout(()=>{ if(!DATA)return; updateMode();
+    if(VIEW==="map"){ const keep=active; clearLight(); render(DATA); if(keep.kind==="tl") toggleTL(keep.i); else if(keep.kind==="claim") toggleClaim(keep.i); } },200);
 });
 
 /* ---------- debug probe (headless checks): ?debug=1 ---------- */
@@ -465,7 +483,9 @@ function debugOverflow(){
   if(PARAMS.get("debug")!=="1") return;
   const w=window.innerWidth, bad=[];
   document.querySelectorAll("body *").forEach(e=>{ const r=e.getBoundingClientRect(); if(r.width>0 && r.right>w+1 && getComputedStyle(e).position!=="fixed") bad.push(e.tagName.toLowerCase()+(e.id?"#"+e.id:"")+(e.className&&typeof e.className==="string"?"."+e.className.split(" ")[0]:"")+"="+Math.round(r.right)); });
-  badge(`scrollWidth=${document.documentElement.scrollWidth} innerWidth=${w} :: ${bad.slice(0,12).join(" ")}`);
+  const L=[...document.querySelectorAll(".nlabel")].map(t=>({n:t.textContent,b:t.getBoundingClientRect()})), ov=[];
+  for(let i=0;i<L.length;i++)for(let j=i+1;j<L.length;j++){const a=L[i].b,c=L[j].b;if(a.left<c.right&&c.left<a.right&&a.top<c.bottom&&c.top<a.bottom)ov.push(L[i].n+"/"+L[j].n);}
+  badge(`scrollWidth=${document.documentElement.scrollWidth} innerWidth=${w} overlaps=${ov.length} [${ov.join(" | ")}] :: ${bad.slice(0,12).join(" ")}`);
 }
 
 /* ---------- boot ---------- */

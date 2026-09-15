@@ -81,6 +81,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 body.view-map { height: 100%; overflow: hidden; }
+body.view-map.short { overflow-y: auto; overflow-x: hidden; }   /* short landscape window: the canvas is 760px tall and the page scrolls */
 body.view-plain { overflow-x: hidden; }
 a { color: var(--cab-1); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: .15em; }
@@ -126,6 +127,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
     var(--paper);
 }
 body.view-map #stage { display: block; }
+body.short #stage { position: absolute; top: 0; left: 0; right: 0; height: 760px; }
 #stage.photo { background-size: cover; background-position: center; }
 svg#map { width: 100%; height: 100%; display: block; touch-action: manipulation; }
 
@@ -155,9 +157,12 @@ body.view-map #legend { display: flex; }
   .chiprow { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; padding-bottom: 2px; }
   .chiprow::-webkit-scrollbar { display: none; }
   .chip { white-space: nowrap; flex: 0 0 auto; }
-  #top { padding: .55rem .8rem; }
+  #top { padding: .5rem .8rem; flex-wrap: nowrap; }
+  #top .who { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: .85rem; }
   #top nav { display: none; }
+  #top #qbtn { display: none; }            /* the plain footer and the map legend both carry Questions */
   #hints { display: none; }
+  .nyears { display: none; }               /* dates live in the panel and the timeline on a phone */
 }
 
 /* node visuals — colour rides on currentColor so light/dark is free */
@@ -176,6 +181,7 @@ body.view-map #legend { display: flex; }
   font-family: var(--f-plate); font-weight: 500; fill: var(--ink);
   paint-order: stroke; stroke: var(--halo); stroke-width: 3px; text-anchor: middle; pointer-events: none;
 }
+body.short .nyears { display: none; }   /* short landscape windows: dates move to the panel */
 .nyears { font-family: var(--f-mono); fill: var(--ink-soft); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--halo); stroke-width: 3px; }
 .tlmode .node { opacity: .14; transition: opacity .25s; }
 .tlmode .node.lit { opacity: 1; }
