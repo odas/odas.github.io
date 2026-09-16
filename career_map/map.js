@@ -167,14 +167,27 @@ function setView(v, remember){
   document.body.classList.toggle("view-map", VIEW==="map");
   document.querySelectorAll('#top .seg button').forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.view===VIEW)));
   if(remember){ try{ localStorage.setItem("careermap.view."+(isPortrait?"portrait":"landscape"), VIEW); }catch(e){} }
+  counterZoom();
   if(VIEW==="plain"){ clearLight(); }
   else if(DATA){ render(DATA); }   // canvas may have been hidden at a different size
 }
 document.querySelectorAll('#top .seg button').forEach(b=>b.addEventListener("click",()=>{ panel.classList.remove("open"); setView(b.dataset.view, true); }));
 
+/* ---------- counter-zoom the chrome in map view ----------
+   OD zooms the browser (cmd +) to show someone the mushrooms; the fixed panel, bars and index
+   would grow with them and swallow the screen. Browser zoom ≈ outerWidth/innerWidth, so the
+   chrome is scaled back by that factor in MAP view only (plain view is ordinary reading, zoom
+   applies). ?zoom=N simulates it for headless checks. */
+function counterZoom(){
+  const detected=(window.outerWidth/window.innerWidth)||1;
+  const z=PARAMS.get("zoom")?Number(PARAMS.get("zoom")):detected;
+  const f=(VIEW==="map" && z>1.05) ? (1/Math.min(z,4)) : 1;
+  ["top","legend","panel","qindex","databadge"].forEach(id=>{ const e=$(id); if(e) e.style.zoom=String(f); });
+}
+
 /* ---------- render: the canvas ---------- */
 function render(data){
-  DATA=data; updateMode(); computePositions(data);
+  DATA=data; counterZoom(); updateMode(); computePositions(data);
   const svg=$("map"); svg.innerHTML="";
   svg.setAttribute("viewBox",`0 0 ${VB.w} ${VB.h}`); svg.setAttribute("preserveAspectRatio","xMidYMid meet");
   const defs=el("defs",{},svg);
@@ -473,6 +486,7 @@ let resizeTimer=null;
 window.addEventListener("resize",()=>{
   if(!desktopPanel.matches) resetPanelInlinePosition();
   else if(panel.style.left&&panel.style.top) placePanel(parseFloat(panel.style.left),parseFloat(panel.style.top));
+  counterZoom();
   clearTimeout(resizeTimer);
   resizeTimer=setTimeout(()=>{ if(!DATA)return; updateMode();
     if(VIEW==="map"){ const keep=active; clearLight(); render(DATA); if(keep.kind==="tl") toggleTL(keep.i); else if(keep.kind==="claim") toggleClaim(keep.i); } },200);
