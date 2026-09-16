@@ -5,7 +5,7 @@
     "generated": {
       "on": "2026-09-16",
       "source": "P-resume/career_map.json",
-      "source_sha256": "ed199520c6b1544ca23c591bbc64accc05f1cd29ce908a53f0b20ad10db041e6",
+      "source_sha256": "f2295ab34f5348723ecc6a05c0bf0e3558a08eae4d59e3dd245ade9843982274",
       "generator_version": "2.0.0",
       "note": "GENERATED — do not hand-edit. Edit the source, run tools/career-map-gen/gen.py build."
     },
@@ -623,9 +623,9 @@
           "name": "catadoption_pune",
           "years": "2024–",
           "years_full": "May 2024–present",
-          "trigger": "~120 street cats rehomed. Data-driven animal welfare.",
-          "detail": "Founder. ~120 Indie and street cats rehomed. Near-total placement for kittens, near-daily posts, high daily inbound. Built the stack behind it — FOLIO extraction pipeline, a locked design system, a content engine. The AI tooling isn’t padding — it’s applied to a real problem.",
-          "plain_line": "Founder — a data-driven cat-adoption initiative on Instagram; ~120 street cats rehomed; a public board fed by a DM pipeline.",
+          "trigger": "AI infrastructure for grassroots animal welfare — with a human firmly in the loop for judgement.",
+          "detail": "Founded 2024. Near-daily posting and judgment-free support for individual rescuers on Instagram; around 120 street and Indie cats rehomed. Behind it, infrastructure: two years of DMs turned into a clean, queryable dataset; a public adoption board that a model drafts and a human approves; a website whose articles and short videos pay for the tools. The stated engineering goal: the work of a five-person volunteer team brought down to one hour of human judgement every Sunday, so the service survives her return to full-time work. Ethical guardrails are non-negotiable — what the system must never do on its own was decided by harm, before any code. On a résumé it reads as: product and content strategy for a ~1,000-follower channel, intake triage and community management, writing for non-experts, and an LLM-judgement pipeline on a messy non-code dataset in an Indian context.",
+          "plain_line": "Founder — AI infrastructure for grassroots animal welfare in India: an Instagram-first adoption operation, around 120 street cats rehomed, being automated down to one hour of human judgement a week.",
           "kind": "founder",
           "employer": "catadoption_pune, Pune",
           "start": "2024-05",
@@ -638,6 +638,9 @@
             "stakeholders"
           ],
           "keywords": [
+            "AI infrastructure",
+            "content strategy",
+            "community management",
             "DuckDB",
             "JSONL",
             "human-in-the-loop",
@@ -673,6 +676,37 @@
             1088,
             200
           ]
+        },
+        {
+          "id": "working-system",
+          "name": "Second brain",
+          "years": "2026–",
+          "years_full": "2026–present",
+          "trigger": "AI is good at code. I make prose work for me.",
+          "detail": "One orchestration folder — internally, the mother chat — holds the whole picture: task boards across every area of life, a dated worklog, and a handoff channel that carries decisions between sessions with a deliberate delay, so urgency is filtered before it becomes a plan. Each project folder has its own router and state document. A shelf map with a script checks every document's tags against it; findability is measured with probes rather than assumed; a provenance convention records who decided what, human or model. Reusable procedure files are what the model executes. In use it prioritises, plans timelines with buffers, holds parked threads, and catches its own drift. Months in production, one person, a single subscription. The fleet conventions were proposed by the model; she adopted, adapted and corrected them through daily use — which is the part that is hers.",
+          "plain_line": "Independent — a second brain for one person and a dozen AI sessions: whole-life state, per-project routers, dated records and procedures the model runs. It plans, prioritises and keeps months of context found when needed.",
+          "kind": "project",
+          "employer": "Independent, Pune",
+          "start": "2026-04",
+          "end": null,
+          "question_types": [
+            "ownership",
+            "judgement call",
+            "ambiguity",
+            "learning fast"
+          ],
+          "keywords": [
+            "second brain",
+            "context engineering",
+            "Claude Code",
+            "knowledge management",
+            "documentation systems",
+            "retrieval-aware authoring"
+          ],
+          "pos": [
+            1118,
+            96
+          ]
         }
       ]
     }
@@ -689,7 +723,8 @@
         "algo-bio",
         "catadoption",
         "noetone"
-      ]
+      ],
+      "plain_reading": "Give her a vague ask and she reads the whole system first, then goes deeper into the data than anyone else will. Snowflake used it to decide which columns were load-bearing; Noëtone used it to build against a free API tier and power cuts."
     },
     {
       "id": "tl-present",
@@ -702,7 +737,8 @@
         "stemshock",
         "pipelines",
         "presenter"
-      ]
+      ],
+      "plain_reading": "She has explained technical work to people outside it since 2014 — school classes, investors, seven customer audiences, an auditors' chapter. Put her in front of a stakeholder."
     },
     {
       "id": "tl-bio",
@@ -716,7 +752,8 @@
         "waterloo",
         "algo-bio",
         "pipelines"
-      ]
+      ],
+      "plain_reading": "The biology is not a former life. It shows up as domain knowledge whenever the data is scientific, and as the same habit of finding structure in messy data when it isn't."
     },
     {
       "id": "tl-merit",
@@ -727,7 +764,8 @@
         "nitw",
         "ubc",
         "noetone"
-      ]
+      ],
+      "plain_reading": "Every move between countries or fields was funded by winning a selection: a national top-1% rank, a fully funded master's, a best-talk award, and in 2026 a gold rating from 3,500 entries."
     },
     {
       "id": "tl-systems",
@@ -739,7 +777,21 @@
         "catadoption",
         "ai-portfolio",
         "noetone"
-      ]
+      ],
+      "plain_reading": "She builds things that change what people do, not dashboards that report on them: SOX monitoring that changed how audits ran, a pipeline that runs a public adoption board behind one human gate."
+    },
+    {
+      "id": "tl-boundary",
+      "name": "Judgement at the Boundary",
+      "trigger": "I decide in advance what a system must never do on its own — by the harm, not by how good the tool is.",
+      "color": "cab-2-dashed",
+      "nodeIds": [
+        "pipelines",
+        "sox",
+        "catadoption",
+        "noetone"
+      ],
+      "plain_reading": "She decides in advance what a system must never do on its own, by the harm a mistake would cause, and puts her own sign-off at exactly that point — the accounts nobody owns in a SOX audit, the board a model prepares but never publishes."
     }
   ],
   "claims": [
@@ -765,8 +817,8 @@
     },
     {
       "id": "c02-initiative",
-      "sentence": "Initiative, in an unusual place",
-      "evidence_text": "Founded catadoption_pune in 2024. Around 120 street cats rehomed, a public site and adoption board built and live, near-daily posting sustained for two years. Taught a general-purpose AI the realities of grassroots Indian animal welfare — and kept a human deciding.",
+      "sentence": "AI infrastructure for grassroots welfare",
+      "evidence_text": "Founded catadoption_pune in 2024. Around 120 street cats rehomed, a public site and adoption board built and live, near-daily posting sustained for two years. Taught a general-purpose AI the realities of grassroots Indian animal welfare — and kept a human deciding. Goal: a five-person volunteer effort brought down to one hour of judgement a week.",
       "evidence": [
         {
           "node_id": "catadoption"
@@ -835,6 +887,9 @@
       "evidence_text": "A document system that keeps a dozen parallel AI sessions consistent across folders; a shelf map with a script that checks every document's tags against it; reusable procedure files the model executes.",
       "evidence": [
         {
+          "node_id": "working-system"
+        },
+        {
           "node_id": "catadoption"
         }
       ],
@@ -854,6 +909,11 @@
     {
       "id": "ai-portfolio",
       "start": "2026-05",
+      "end": null
+    },
+    {
+      "id": "working-system",
+      "start": "2026-04",
       "end": null
     },
     {
