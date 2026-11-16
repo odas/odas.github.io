@@ -184,6 +184,13 @@ p, ul { margin: 0; }
 .ask .btn { margin-top: 1rem; }
 .ask-share { margin-left: 1rem; font-family: var(--f-plate); font-size: 1rem; background: none; border: 0; padding: 0;
   color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; }
+.ask-copy { margin-top: 1.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.close .ask-label { margin-top: 0; font-size: 0.98rem; color: var(--ink-soft); }
+.ask textarea { width: 100%; margin-top: 0.6rem; font-family: var(--f-body); font-size: 1rem; line-height: 1.45;
+  color: var(--ink); background: var(--paper); border: 1.5px solid var(--ink); padding: 0.7rem; resize: vertical; }
+.close .ask-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; margin-top: 0.6rem; }
+.ask-row .ask-share { margin-left: 0; }
+.ask-mail { font-family: var(--f-plate); font-size: 1.05rem; user-select: all; }
 .close .ask-thanks { margin-top: 1rem; font-size: 0.98rem; }
 .foot { color: var(--ink-soft); font-size: 0.9rem; padding-top: 1rem; padding-bottom: 3rem; }
 
@@ -458,6 +465,12 @@ p, ul { margin: 0; }
     </fieldset>
     <a class="btn" id="ask-send" href="mailto:orpita.d@gmail.com?subject=From%20your%20page">Write to me</a>
     <button type="button" class="ask-share" id="ask-share">Share this page</button>
+    <div class="ask-copy" id="ask-copy">
+      <p class="ask-label">No email app? Copy the message, change anything you like, and send it to me from anywhere.</p>
+      <textarea id="ask-msg" rows="8" aria-label="Your message to Orpita"></textarea>
+      <p class="ask-row"><button type="button" class="ask-share" id="copy-msg">Copy message</button>
+        <span class="ask-mail">orpita.d@gmail.com</span> <button type="button" class="ask-share" id="copy-mail">Copy email</button></p>
+    </div>
     <p class="ask-thanks" id="ask-thanks" hidden>Thank you, that helps me see what people come here for.</p>
   </div>
   <p class="reach">
@@ -514,18 +527,35 @@ p, ul { margin: 0; }
       window.goatcounter.count({ path: 'ask-' + q + '-' + v.toLowerCase().replace(/[^a-z]+/g, '-'), title: 'Ask: ' + q + ' = ' + v, event: true });
     } catch (e) {}
   }
+  var stopLine = { 'Not sure what AI can do for me': 'I am not sure what AI can do for me.',
+    'Worried about the cost': 'I have been worried about the cost.',
+    'Hard to find someone I trust': 'It has been hard to find someone I trust.',
+    'Nothing, I am ready': 'I am ready to start.' };
+  function lower(t) { return t.charAt(0).toLowerCase() + t.slice(1); }
   function mail() {
-    var subj = 'From your page', body = 'Hi Orpita,\n\n';
+    var subj = 'From your page', body = 'Hello Orpita,\n\nI came across your page and would like to get in touch.\n\n';
     if (picked.who === 'business') {
       subj = 'One task in my business';
-      body += 'I run a business.' + (picked.time ? ' What eats my time: ' + picked.time + '.' : '') +
-        (picked.stop ? ' What has stopped me getting help: ' + picked.stop + '.' : '') + '\n\nMy business, in a line: \n';
+      body = 'Hello Orpita,\n\nI came across your page. I run a small business' +
+        (picked.time && picked.time !== 'Something else' ? ', and the task that takes most of my time is ' + lower(picked.time) + '.' : '.') +
+        (picked.stop ? ' ' + stopLine[picked.stop] : '') +
+        '\n\nCould we have a short conversation about whether AI automation could help?\n\nAbout my business: \n\nThank you,\n';
     } else if (picked.who === 'hiring') {
       subj = 'A role';
-      body += 'I am hiring' + (picked.role ? ' for ' + (picked.role === 'AI tooling' ? picked.role : picked.role.toLowerCase()) : '') + '.\n\nThe role, in a line: \n';
+      var r = picked.role && picked.role !== 'Something else' ? (picked.role === 'AI tooling' ? 'an AI tooling' : 'a data engineering') + ' role' : 'a role';
+      body = 'Hello Orpita,\n\nI came across your page. I am hiring for ' + r + ' and would like to talk to you about it.\n\nAbout the role: \n\nThank you,\n';
     }
     send.href = 'mailto:orpita.d@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+    msg.value = body;
   }
+  var msg = document.getElementById('ask-msg'), copyBox = document.getElementById('ask-copy');
+  function copy(text, btn, done) {
+    function ok() { var t = btn.textContent; btn.textContent = done; setTimeout(function () { btn.textContent = t; }, 2000); }
+    try { navigator.clipboard.writeText(text).then(ok, function () { msg.select(); }); } catch (e) { msg.select(); }
+  }
+  document.getElementById('copy-msg').addEventListener('click', function () { count('copy', 'message'); copy(msg.value, this, 'Copied'); });
+  document.getElementById('copy-mail').addEventListener('click', function () { count('copy', 'email'); copy('orpita.d@gmail.com', this, 'Copied'); });
+  mail();
   box.addEventListener('click', function (e) {
     var b = e.target.closest('fieldset button'); if (!b) return;
     var fs = b.parentNode, q = fs.getAttribute('data-q'), v = b.getAttribute('data-v');
@@ -537,7 +567,7 @@ p, ul { margin: 0; }
         f.hidden = f.getAttribute('data-for') !== v;
         f.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
       });
-      send.hidden = v === 'looking';
+      send.hidden = v === 'looking'; copyBox.hidden = v === 'looking';
       thanks.hidden = true;
     }
     if (q === 'want') thanks.hidden = false;
