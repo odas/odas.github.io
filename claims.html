@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orpita Das — five claims, with evidence</title>
+<meta name="description" content="Data Engineer, ex-Snowflake, Pune. Resilient data pipelines at Snowflake and in genomics; lately AI-built tools — Noëtone (Kanz GOLD 2026) and the catadoption_pune adoption pipeline.">
+<link rel="canonical" href="https://odas.github.io/claims.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://odas.github.io/claims.html">
+<meta property="og:title" content="Orpita Das — Data Engineer">
+<meta property="og:description" content="Data Engineer, ex-Snowflake, Pune. Resilient data pipelines, and lately AI-built tools: Noëtone (Kanz GOLD 2026), catadoption_pune.">
+<meta property="og:image" content="https://odas.github.io/photo.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+/* ── REBUILT 2026-09-15 ─────────────────────────────────────────────────────
+   The page was a freelance storefront ("Freelance AI Tooler", "tell me what's
+   broken", a $300 tile). OD, 2026-09-11: "as I start applying for jobs next
+   month I need something different." This is that page: a candidate proof page
+   whose spine is five claims, each with its evidence and a link to check it.
+   Judged by NAME SEARCH, not traffic — a recruiter types her name ~5 times a
+   year and lands here. Palette and type are OD's own J-visual-reference set
+   (mother-chat/continue-working-od.md §3); the previous paper/terracotta set was
+   retired by her on 2026-08-14. System fonts only — no webfont request.
+   The catadoption block is the one deliberate exception, see its own note. */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  color-scheme: light;
+  --paper:    #FBFAF7;
+  --paper-2:  #F2F0EA;
+  --ink:      #1E2024;
+  --ink-soft: #5E6167;
+  --rule:     #D8D4CA;
+  --cab-1:    #2D5B8E;   /* blue — links, primary accent */
+  --cab-2:    #B4472E;   /* red — one emphasis, used sparingly */
+  --cab-3:    #5B7A3A;   /* green */
+  --cab-4:    #7A4A72;   /* plum */
+  --f-body:  "Iowan Old Style", Charter, Palatino, "Palatino Linotype", Georgia, serif;
+  --f-plate: Futura, "Avenir Next Condensed", "Century Gothic", "Trebuchet MS", sans-serif;
+  --f-mono:  "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-body);
+  font-size: 1.02rem; line-height: 1.55;
+  color: var(--ink); background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--cab-1); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
+strong { font-weight: 600; }
+
+.page { max-width: 740px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+/* plates: the small uppercase labels that structure the page */
+.plate {
+  font-family: var(--f-plate); font-size: 0.72rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--ink-soft); font-weight: 500;
+}
+.section { padding: 2.6rem 0 0; }
+.section > .plate { margin-bottom: 0.5rem; }
+
+/* ── TOP BAR ── */
+.topbar {
+  display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;
+  gap: 0.5rem 1rem; padding: 1.1rem 0 0.9rem; border-bottom: 1px solid var(--rule);
+}
+.topbar-name { font-family: var(--f-plate); font-size: 0.95rem; letter-spacing: 0.03em; }
+.topbar-name span { color: var(--ink-soft); font-weight: 400; }
+.topbar-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+.topbar-links a { font-family: var(--f-plate); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+.topbar-links a:hover { color: var(--cab-1); text-decoration: none; }
+
+/* ── HERO ── */
+.hero { display: flex; gap: 1.6rem; align-items: flex-start; padding: 2.4rem 0 0; }
+.hero-photo img {
+  width: 132px; height: 132px; border-radius: 50%; object-fit: cover;
+  border: 1px solid var(--rule); display: block;
+}
+.hero h1 { font-family: var(--f-plate); font-weight: 500; font-size: 2rem; letter-spacing: 0.02em; line-height: 1.1; }
+.hero-line { font-size: 1.12rem; margin: 0.55rem 0 0.9rem; max-width: 34em; }
+.creds { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 1rem; }
+.cred {
+  font-family: var(--f-plate); font-size: 0.7rem; letter-spacing: 0.06em;
+  color: var(--ink-soft); background: var(--paper-2); border: 1px solid var(--rule);
+  border-radius: 3px; padding: 0.22rem 0.5rem;
+}
+.cred--strong { color: var(--ink); border-color: var(--cab-1); background: #fff; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.btn {
+  font-family: var(--f-plate); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 0.55rem 0.95rem; border-radius: 3px; border: 1px solid var(--cab-1); color: var(--cab-1);
+}
+.btn--primary { background: var(--cab-1); color: #fff; }
+.btn:hover { text-decoration: none; opacity: 0.9; }
+.hero-email { font-family: var(--f-mono); font-size: 0.8rem; color: var(--ink-soft); }
+
+/* ── PROOF TABLE — the spine of the page ──
+   Five claims OD named on 2026-09-15 as what the page must show: resilient
+   pipelines · AI infrastructure for grassroots welfare (was "initiative in an unusual place"
+   until OD, 2026-09-16: "even initiative alone doesn't sound right") · range · the stack now · context
+   engineering. Each row is claim → evidence → where to check. Anything that
+   cannot be checked by a stranger does not go in the middle column. */
+.proof { border-top: 1px solid var(--rule); }
+.proof-row {
+  display: grid; grid-template-columns: 10.5rem 1fr 8.5rem; gap: 1.2rem;
+  padding: 1.05rem 0; border-bottom: 1px solid var(--rule);
+}
+.proof-claim { font-family: var(--f-plate); font-size: 0.86rem; letter-spacing: 0.04em; line-height: 1.35; padding-top: 0.15rem; }
+.proof-claim small { display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.2rem; }
+.proof-evidence { font-size: 0.95rem; color: var(--ink); }
+.proof-links { display: flex; flex-direction: column; gap: 0.3rem; font-family: var(--f-plate); font-size: 0.74rem; letter-spacing: 0.05em; padding-top: 0.2rem; }
+.proof-links a::after { content: " ↗"; color: var(--ink-soft); }
+.proof-links a[href^="#"]::after { content: " ↓"; }
+
+/* ── NOËTONE ── */
+.video-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.4rem 1rem; margin-bottom: 0.7rem; }
+.video-badge { font-family: var(--f-plate); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-soft); }
+.video-wrap { aspect-ratio: 16 / 9; width: 100%; background: var(--ink); border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
+.video-cred { margin-top: 0.8rem; font-size: 0.92rem; color: var(--ink-soft); }
+.gold { font-family: var(--f-plate); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5c12; background: #F5E4B0; padding: 0.15rem 0.45rem; border-radius: 3px; margin-right: 0.35rem; }
+.video-what { margin-top: 0.5rem; font-size: 0.92rem; color: var(--ink-soft); }
+.video-what .em { color: var(--cab-2); }
+.video-story { display: flex; flex-wrap: wrap; gap: 0 1.6rem; margin-top: 1rem; padding: 0.8rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.stat { display: flex; flex-direction: column; min-width: 8rem; flex: 1 1 8rem; padding: 0.2rem 0; }
+.stat b { font-family: var(--f-plate); font-weight: 500; font-size: 0.95rem; letter-spacing: 0.04em; }
+.stat span { font-size: 0.82rem; color: var(--ink-soft); }
+.video-caption { margin-top: 0.9rem; font-size: 0.95rem; color: var(--ink-soft); font-style: italic; }
+
+/* ── CATADOPTION PIPELINE BLOCK (built 2026-08-22; kept at this level of detail at
+   OD's word, 2026-09-15: "i like the level of detail for the catadoption pipeline
+   as it is now") ──────────────────────────────────────────────────────────────
+   ⚠ HOUSE RULE IS "two brands, never mixed": catadoption uses the brunch palette,
+   OD's own work uses hers. This block is a DELIBERATE, SCOPED exception she asked
+   for — a visitor arriving off the catadoption banner should recognise the colours
+   instantly. The brunch tokens are namespaced to `.cad` and used NOWHERE else on
+   this page, so the block reads as a quotation of that brand rather than a blend.
+   Hexes are the LOCKED July-4 set (P-website/site/assets/style.css); don't re-pick
+   them by eye. Inside .cad the block keeps its own serif so it still reads as the
+   quotation it was designed as. */
+.cad {
+  --peri:#8c78f4; --yellow:#f0c840; --sage:#74ac84;
+  --sky:#94d0e4;  --butter:#f8f8a8; --cad-ink:#141118;
+  --cad-muted:#6b6670;
+  margin: 0.6rem 0 0;
+  border: 1px solid rgba(140,120,244,0.3);
+  border-radius: 6px; overflow: hidden; background: #FFFFFF;
+}
+.cad-head { background: var(--peri); color: #fff; padding: 1.15rem 1.35rem; }
+.cad-eyebrow { font-family: var(--f-plate); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; opacity: 0.9; margin-bottom: 0.4rem; }
+.cad-head h2 { font-family: Georgia, "Times New Roman", serif; font-size: 1.45rem; font-weight: 600; line-height: 1.22; color: #fff; }
+.cad-body { padding: 1.3rem 1.35rem 1.4rem; }
+.cad-lede { font-size: 0.93rem; color: var(--ink-soft); margin-bottom: 1.2rem; }
+/* the idea graph — HTML/CSS, not SVG, on purpose: it stays legible and selectable
+   at 360px, which an SVG of this width would not. */
+.cad-graph { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.4rem; margin-bottom: 0.5rem; }
+.cad-node { flex: 1 1 128px; min-width: 118px; border: 1px solid var(--rule); border-top: 3px solid var(--sky); border-radius: 5px; padding: 0.6rem 0.65rem; background: #FCFBF9; }
+.cad-node b { display: block; font-size: 0.78rem; font-weight: 600; color: var(--cad-ink); line-height: 1.3; margin-bottom: 0.2rem; }
+.cad-node span { display: block; font-size: 0.68rem; color: var(--cad-muted); line-height: 1.45; }
+.cad-node--store { border-top-color: var(--sage); }
+.cad-node--ai    { border-top-color: var(--peri); }
+.cad-node--out   { border-top-color: var(--sage); }
+/* The human gate is the point of the whole diagram, so it is the one node that
+   carries a fill rather than just an edge. */
+.cad-node--gate { border-top-color: var(--yellow); background: var(--butter); border-color: rgba(240,200,64,0.55); }
+.cad-arrow { align-self: center; color: var(--peri); font-size: 0.85rem; flex: 0 0 auto; padding: 0 0.05rem; }
+.cad-gatenote { font-size: 0.8rem; color: var(--ink-soft); background: #FCFBF9; border-left: 3px solid var(--yellow); padding: 0.6rem 0.8rem; border-radius: 0 4px 4px 0; margin: 0.9rem 0 1.1rem; }
+.cad-nums { display: flex; flex-wrap: wrap; gap: 1.3rem; padding: 0.85rem 0; margin-bottom: 1rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.cad-num { display: flex; flex-direction: column; }
+.cad-num b { font-family: Georgia, "Times New Roman", serif; font-size: 1.3rem; font-weight: 600; color: var(--cad-ink); line-height: 1.1; }
+.cad-num span { font-size: 0.68rem; color: var(--cad-muted); }
+.cad-link { font-size: 0.88rem; color: var(--peri); font-weight: 500; border-bottom: 1px solid rgba(140,120,244,0.35); padding-bottom: 1px; }
+.cad-link:hover { text-decoration: none; border-color: var(--peri); }
+.cad-built { font-size: 0.72rem; color: var(--cad-muted); margin-top: 0.9rem; }
+.cad-built b { color: var(--ink-soft); font-weight: 500; }
+
+/* ── THINGS I'VE BUILT ── */
+.tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.9rem; }
+.tool { border: 1px solid var(--rule); border-radius: 4px; padding: 0.95rem 1rem 1rem; background: #fff; display: flex; flex-direction: column; }
+.tool-tag { font-family: var(--f-plate); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.3rem; }
+.tool-name { font-family: var(--f-plate); font-size: 0.98rem; letter-spacing: 0.02em; margin-bottom: 0.35rem; }
+.tool-desc { font-size: 0.88rem; color: var(--ink-soft); flex: 1; }
+.tool-stack { font-family: var(--f-mono); font-size: 0.68rem; color: var(--ink-soft); margin: 0.55rem 0 0.5rem; }
+.tool-link { font-family: var(--f-plate); font-size: 0.74rem; letter-spacing: 0.05em; }
+.building-next { margin-top: 0.9rem; font-size: 0.9rem; color: var(--ink-soft); }
+.building-next .plate { margin-right: 0.4rem; }
+
+/* ── BACKGROUND ── */
+.timeline { border-top: 1px solid var(--rule); }
+.tl { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
+.tl-year { font-family: var(--f-mono); font-size: 0.74rem; color: var(--ink-soft); padding-top: 0.25rem; }
+.tl-role { font-family: var(--f-plate); font-size: 0.9rem; letter-spacing: 0.02em; }
+.tl-org { font-size: 0.86rem; color: var(--ink-soft); }
+.tl-note { font-size: 0.88rem; margin-top: 0.15rem; }
+.elsewhere { margin-top: 1.3rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.9rem; }
+.elsewhere .plate { margin-bottom: 0.2rem; }
+
+/* ── CONTACT + FOOTER ── */
+.contact { margin-top: 3rem; padding: 1.5rem 0 0; border-top: 2px solid var(--ink); }
+.contact h2 { font-family: var(--f-plate); font-weight: 500; font-size: 1.15rem; letter-spacing: 0.03em; margin-bottom: 0.4rem; }
+.contact p { color: var(--ink-soft); max-width: 36em; }
+.contact .hero-actions { margin-top: 0.9rem; }
+footer { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; font-family: var(--f-plate); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-soft); }
+footer .links { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+@media (max-width: 620px) {
+  .hero { flex-direction: column; gap: 1rem; }
+  .hero-photo img { width: 104px; height: 104px; }
+  .proof-row { grid-template-columns: 1fr; gap: 0.35rem; }
+  .proof-links { flex-direction: row; flex-wrap: wrap; gap: 0.3rem 0.9rem; }
+  .tl { grid-template-columns: 1fr; gap: 0.1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- TOP BAR. Career Map stays in the nav: OD 2026-09-15, "i like it, dont want it
+       hidden at bottom" — even though scan-readers get little from it in one glance. -->
+  <div class="topbar">
+    <span class="topbar-name">Orpita Das <span>· Data Engineer</span></span>
+    <nav class="topbar-links">
+      <a href="./">Home</a>
+      <a href="#proof">Proof</a>
+      <a href="#work">Work</a>
+      <a href="career_map/">Career Map</a>
+      <a href="#background">Background</a>
+    </nav>
+  </div>
+
+  <!-- HERO. Identity line matches the LinkedIn headline and the résumé: Data Engineer,
+       ex-Snowflake, NITW, UBC. Don't re-open Data vs Analytics Engineer here (her call,
+       07-31). The SnowPro pill carries its dates on purpose — the cert lapsed in 2025
+       and the dated form is the agreed written one (story/disclosure-dial-od.md). -->
+  <section class="hero">
+    <div class="hero-photo"><img src="photo.jpg" alt="Orpita Das"></div>
+    <div>
+      <h1>Orpita Das</h1>
+      <p class="hero-line">Data Engineer, ex-Snowflake. I build data pipelines that keep working when the world doesn't — and lately I build them with AI.</p>
+      <div class="creds">
+        <span class="cred cred--strong">Ex-Snowflake Data Engineer</span>
+        <span class="cred">SnowPro Core 2023–2025</span>
+        <span class="cred">M.Sc. UBC</span>
+        <span class="cred">B.Tech NIT Warangal</span>
+        <span class="cred">Canadian citizen · Indian OCI</span>
+        <span class="cred">Pune</span>
+      </div>
+      <div class="hero-actions">
+        <!-- Orpita_Das_Resume.pdf is linked here and in the footer. The filename is
+             load-bearing: overwrite in place, never rename. -->
+        <a href="Orpita_Das_Resume.pdf" target="_blank" class="btn btn--primary">Download résumé</a>
+        <a href="https://github.com/odas" target="_blank" rel="noopener" class="btn">GitHub</a>
+        <a href="https://linkedin.com/in/orpitadas" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+        <a href="mailto:orpita.d@gmail.com" class="hero-email">orpita.d@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF TABLE -->
+  <section class="section" id="proof">
+    <p class="plate">What I'm good at, and where to check</p>
+    <div class="proof">
+
+      <div class="proof-row">
+        <div class="proof-claim"><small>01</small>Resilient pipelines</div>
+        <div class="proof-evidence">Noëtone turned a 388-page scanned book into audio through three power cuts without losing a page, on a free API tier of three calls a minute. Before that: 20+ ingestion sources at Snowflake, and SOX-compliance monitoring that replaced 100+ manual audit hours a quarter.</div>
+        <div class="proof-links">
+          <a href="#noetone">Demo video</a>
+          <a href="https://github.com/odas/noetone-batch" target="_blank" rel="noopener">Repo</a>
+          <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz GOLD</a>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div class="proof-claim"><small>02</small>AI infrastructure for grassroots welfare</div>
+        <div class="proof-evidence">Founded catadoption_pune in 2024. Around 120 street cats rehomed, a public site and adoption board built and live, near-daily posting sustained for two years, a six-week intern curriculum designed. Taught a general-purpose AI the realities of grassroots Indian animal welfare — and kept a human deciding.</div>
+        <div class="proof-links">
+          <a href="#catadoption">The pipeline</a>
+          <a href="https://catadoption.in/adoptable.html?utm_source=odas&amp;utm_medium=proof&amp;utm_campaign=catadoption" target="_blank" rel="noopener">The board</a>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div class="proof-claim"><small>03</small>Range</div>
+        <div class="proof-evidence">Snowflake in Pune, a genomics startup in Bengaluru, a machine-learning internship at Waterloo, research at UBC and UofT, a biotech startup in Vancouver. Two countries, industry and academia, wet lab to warehouse.</div>
+        <div class="proof-links">
+          <a href="#background">Timeline</a>
+          <a href="career_map/?view=plain">Career map, plain</a>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div class="proof-claim"><small>04</small>The stack now</div>
+        <div class="proof-evidence">Claude Code, Gemini API, OpenRouter, DuckDB, Flask, GitHub Actions — on top of the proven set: Snowflake, AWS Lambda and API Gateway, SQL, Python, Airflow, Fivetran.</div>
+        <div class="proof-links">
+          <a href="#work">Things I've built</a>
+          <a href="https://github.com/odas" target="_blank" rel="noopener">Repos</a>
+        </div>
+      </div>
+
+      <div class="proof-row">
+        <div class="proof-claim"><small>05</small>Context engineering</div>
+        <div class="proof-evidence"><em>AI is good at code. I make prose work for me.</em> A document system that keeps a dozen parallel AI sessions consistent across folders; a shelf map with a script that checks every document's tags against it; a six-week curriculum written as prompts a non-developer can run; reusable procedure files the model executes.</div>
+        <div class="proof-links">
+          <a href="https://www.linkedin.com/pulse/you-already-have-what-takes-build-ai-orpita-das-rf4nc/" target="_blank" rel="noopener">Article</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NOËTONE -->
+  <section class="section" id="noetone">
+    <div class="video-header">
+      <p class="plate">Noëtone — see it working</p>
+      <span class="video-badge">Built in 3 days · hardened over months of daily use</span>
+    </div>
+    <!-- The real Noëtone demo, wired 2026-08-22. The file is the one on OD's Kanz
+         portfolio page; Kanz serves it with access-control-allow-origin:*.
+         ⚠ ~50MB, hence preload="metadata" — nothing but the header downloads until
+         someone presses play, which matters on Indian mobile data.
+         ✅ HOSTING SETTLED, OD 2026-08-29 — LEAVE IT ON KANZ, do not re-propose a local
+         copy. Kanz is an AI recruiting startup and her profile is an asset to THEM, so
+         they have a commercial reason to keep it up. "Let them pay for video storage."
+         The Kanz link below is the fallback. -->
+    <div class="video-wrap">
+      <video src="https://oclvdlvvdrtebkapjdek.supabase.co/functions/v1/media-proxy/orpita-das-1784607161771/demo-video-1784607161775.mp4"
+             controls playsinline preload="metadata"
+             style="width:100%;height:100%;object-fit:cover;background:#1E2024;"></video>
+    </div>
+    <p class="video-cred">
+      <span class="gold">Gold</span>
+      Independently assessed on the <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz AI Portfolio</a>
+      — certificate KANZ-ADV-1601. <em>“Resilient AI Pipeline: turning scans and handwriting into audiobooks.”</em>
+    </p>
+    <!-- "Gold" on its own is just a colour — a reader has no denominator and no rubric.
+         The numbers are the whole claim. -->
+    <p class="video-what"><strong>What that means:</strong> awarded from
+    <strong>3,500 submissions</strong> to the July 2026 Kanz hackathon, judged on
+    originality (20%), technical depth (30%), impact (30%) and presentation (20%) —
+    <span class="em">60% of the score on depth and impact</span>.</p>
+    <div class="video-story">
+      <div class="stat"><b>Day 1</b><span>Working prototype</span></div>
+      <div class="stat"><b>Days 2–3</b><span>Edge cases, testing, making it shippable</span></div>
+      <div class="stat"><b>Since</b><span>Per-page commits so a job resumes instead of restarting; error classification that tells a quota from a rate limit; a circuit breaker; every audio file checked before it is stored</span></div>
+    </div>
+    <p class="video-caption">Built solo. Architecture and priorities mine, implementation AI-accelerated. The OCR prompt is a config parameter: other readers narrate a chart's broken axis labels; this one says “the chart shows a declining trend”, because the prompt told it to.</p>
+  </section>
+
+  <!-- CATADOPTION PIPELINE BLOCK — content unchanged from 2026-08-22 except the eyebrow,
+       which assumed every visitor had come off the catadoption banner. -->
+  <section class="section" id="catadoption">
+    <p class="plate">catadoption_pune — the pipeline behind the board</p>
+    <div class="cad">
+      <div class="cad-head">
+        <p class="cad-eyebrow">Founded 2024 · Pune · Instagram-first</p>
+        <h2>Three years of Instagram DMs, turned into a live adoption board.</h2>
+      </div>
+      <div class="cad-body">
+        <p class="cad-lede">Rescuers send me kittens by DM — photos, an age, a phone number,
+        buried in a thread among thousands. That pile is now a pipeline. Here is the whole
+        of it:</p>
+
+        <div class="cad-graph">
+          <div class="cad-node"><b>Instagram DMs</b><span>3 years of rescuer messages</span></div>
+          <span class="cad-arrow">&rarr;</span>
+          <div class="cad-node"><b>Export &rarr; Drive</b><span>Meta's scheduled export, landing on its own</span></div>
+          <span class="cad-arrow">&rarr;</span>
+          <div class="cad-node cad-node--store"><b>JSONL + DuckDB</b><span>Parsed, deduped, queryable in seconds</span></div>
+          <span class="cad-arrow">&rarr;</span>
+          <div class="cad-node cad-node--ai"><b>LLM judgement</b><span>Claude reads each candidate and its photos</span></div>
+          <span class="cad-arrow">&rarr;</span>
+          <div class="cad-node cad-node--gate"><b>A human says go</b><span>Every listing. No exceptions.</span></div>
+          <span class="cad-arrow">&rarr;</span>
+          <div class="cad-node cad-node--out"><b>Live board</b><span>Published to the public site</span></div>
+        </div>
+
+        <p class="cad-gatenote"><strong>The yellow box is the design decision.</strong>
+        The model never publishes — it prepares a case and a human approves it. Automation
+        that can act on its own is automation you have to supervise forever, which is not
+        a saving. I built it to run once, without me, and it published something it
+        shouldn't have; the gate is what came out of that.</p>
+
+        <div class="cad-nums">
+          <div class="cad-num"><b>~24,000</b><span>messages ingested</span></div>
+          <div class="cad-num"><b>~2,450</b><span>conversations</span></div>
+          <div class="cad-num"><b>3 years</b><span>rebuilt from scratch in seconds</span></div>
+        </div>
+
+        <a class="cad-link" href="https://catadoption.in/adoptable.html?utm_source=odas&amp;utm_medium=recall&amp;utm_campaign=catadoption" target="_blank" rel="noopener">See the board it produces &rarr;</a>
+        <p class="cad-built">Built with <b>Claude</b> — the pipeline, the judgement stage and
+        this page. I decide what it should do and check what it did.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THINGS I'VE BUILT. Noëtone is not repeated here (OD 08-28: "Noetone is repeated,
+       that bothers me"). No emoji placeholders: a tile is text plus a real link, or it
+       isn't a tile. NCBI is the "building next" line below — demoted from a tile with a
+       dead link at OD's word, 2026-09-15; the 🧬 stays because the molecular-biology
+       strand is part of who she is ("I feel incomplete with the DNA strands off the page"). -->
+  <section class="section" id="work">
+    <p class="plate">Things I've built</p>
+    <div class="tools">
+
+      <div class="tool">
+        <p class="tool-tag">Receipts to a ledger</p>
+        <p class="tool-name">mindful-spend</p>
+        <p class="tool-desc">Turn a payment screenshot into a categorised expense, with a dashboard over the result. Your spending data never leaves your machine.</p>
+        <p class="tool-stack">Flask · Gemini Vision · Plotly · CSV</p>
+        <a href="https://github.com/odas/mindful-spend" class="tool-link" target="_blank" rel="noopener">github.com/odas/mindful-spend ↗</a>
+      </div>
+
+      <div class="tool">
+        <p class="tool-tag">Interview prep that keeps score</p>
+        <p class="tool-name">Skill Refresh</p>
+        <p class="tool-desc">A quiz and spaced-repetition app for technical-interview prep. Questions adapt as you improve; progress is tracked. Built in three days, live on Render.</p>
+        <p class="tool-stack">Python · Streamlit · Gemini</p>
+        <a href="https://learning-hfw4.onrender.com" class="tool-link" target="_blank" rel="noopener">Open the app ↗</a>
+      </div>
+
+      <div class="tool">
+        <p class="tool-tag">Wall art that's actually useful</p>
+        <p class="tool-name">Kobo Sky Dashboard</p>
+        <p class="tool-desc">A live night-sky map — stars, planets, moon phase, weather and AQI for Pune — rendered as one page for an old Kobo e-reader mounted on a wall. Runs on the home network, no API keys.</p>
+        <p class="tool-stack">Flask · PyEphem · SVG</p>
+        <a href="https://github.com/odas/sky-kobo-dashboard" class="tool-link" target="_blank" rel="noopener">github.com/odas/sky-kobo-dashboard ↗</a>
+      </div>
+
+    </div>
+    <p class="building-next"><span class="plate">Building next</span> 🧬 NCBI Taxonomy Explorer — ask “which genus has the most species named after people?” in plain English, over the public taxonomy database.</p>
+  </section>
+
+  <!-- BACKGROUND. Facts here match LinkedIn and the résumé as of 2026-09-15.
+       "~120", not "120+" and never "200+" — OD's own rule, 12 Aug 2026, binding every
+       public surface. The degree line is the agreed written form: molecular biology
+       leads, Botany present and secondary (story/disclosure-dial-od.md). -->
+  <section class="section" id="background">
+    <p class="plate">Background</p>
+    <div class="timeline">
+
+      <div class="tl">
+        <span class="tl-year">2026–now</span>
+        <div>
+          <p class="tl-role">Independent developer — Noëtone</p>
+          <p class="tl-org">Pune</p>
+          <p class="tl-note">A document-to-audio pipeline on a free API tier, rated GOLD out of 3,500 in the 2026 Kanz Build-with-AI hackathon.</p>
+        </div>
+      </div>
+
+      <div class="tl">
+        <span class="tl-year">2024–now</span>
+        <div>
+          <p class="tl-role">Founder — catadoption_pune</p>
+          <p class="tl-org">Pune</p>
+          <p class="tl-note">A data-driven cat-adoption initiative on Instagram: ~120 street and Indie cats rehomed; the DM pipeline and public board above.</p>
+        </div>
+      </div>
+
+      <div class="tl">
+        <span class="tl-year">Jul–Dec 2023</span>
+        <div>
+          <p class="tl-role">Cloud Engineer</p>
+          <p class="tl-org">Algorithmic Biologics, Bengaluru</p>
+          <p class="tl-note">Cut storage cost ~50% (EBS→S3); a reusable EC2 toolkit for the team's genomics jobs; deployed a gene-expression app to AWS. AWS, GCP, Julia, Python, Docker.</p>
+        </div>
+      </div>
+
+      <div class="tl">
+        <span class="tl-year">2020–2023</span>
+        <div>
+          <p class="tl-role">Data Engineer</p>
+          <p class="tl-org">Snowflake, Pune</p>
+          <p class="tl-note">Real-time SOX-compliance monitoring built with Internal Audit, saving 100+ manual audit hours a quarter; 20+ ELT pipelines (GitHub GraphQL, ServiceNow, Salesforce, Okta and more); seven external talks including IIA San Jose. Among the Pune office's first hires.</p>
+        </div>
+      </div>
+
+      <div class="tl">
+        <span class="tl-year">2020</span>
+        <div>
+          <p class="tl-role">Machine Learning Intern</p>
+          <p class="tl-org">University of Waterloo</p>
+          <p class="tl-note">Ensemble QSAR model over protein features, Bayesian tuning, Dask.</p>
+        </div>
+      </div>
+
+      <div class="tl">
+        <span class="tl-year">2016–2019</span>
+        <div>
+          <p class="tl-role">Research, teaching and lab roles</p>
+          <p class="tl-org">UBC · UofT · Natural Resources Canada · Stem Shock (Vancouver biotech startup)</p>
+          <p class="tl-note">Conifer cold-tolerance proteins; a programmable RNAi herbicide at an early-stage startup; a computational-biology project on microbial SNPs.</p>
+        </div>
+      </div>
+
+      <div class="tl">
+        <span class="tl-year">education</span>
+        <div>
+          <p class="tl-role">M.Sc., Plant Molecular Biology — UBC (degree conferred in Botany) · B.Tech, Biotechnology — NIT Warangal</p>
+          <p class="tl-org">SnowPro Core, Snowflake, 2023–2025</p>
+          <!-- "Snowflake GenAI Professional, in progress" removed 2026-09-16: OD shelved the cert on 09-03; a shelved course is not a credential in progress (career-map-marks-2026-09-16.md Q1). -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Elsewhere. ✅ The IIA San Jose webinar URL was SUPPLIED BY OD 2026-08-29, read off
+         her own address bar — a LinkedIn permalink must never be invented. -->
+    <div class="elsewhere">
+      <p class="plate">Elsewhere</p>
+      <a href="https://www.linkedin.com/feed/update/urn:li:activity:6950686148881002496/" target="_blank" rel="noopener">Speaker, <em>Automate SOX, Internal Controls Monitoring &amp; Audits with Snowflake</em> — IIA San Jose Chapter webinar &rarr;</a>
+      <a href="https://www.linkedin.com/pulse/you-already-have-what-takes-build-ai-orpita-das-rf4nc/" target="_blank" rel="noopener">Article: “You already have what it takes to build AI” &rarr;</a>
+      <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz AI Portfolio — Noëtone, rated Gold &rarr;</a>
+      <a href="https://linkedin.com/in/orpitadas" target="_blank" rel="noopener">LinkedIn &rarr;</a>
+    </div>
+  </section>
+
+  <!-- CONTACT — a recruiter-facing close. Not a pitch, not a form (mailto-vs-form was
+       settled as "build neither"). -->
+  <div class="contact">
+    <h2>Hiring for a data or AI-tooling role?</h2>
+    <p>The résumé is the short version and the repos are the long one. I'm in Pune, open to Bengaluru, and I answer email.</p>
+    <div class="hero-actions">
+      <a href="Orpita_Das_Resume.pdf" target="_blank" class="btn btn--primary">Download résumé</a>
+      <a href="mailto:orpita.d@gmail.com" class="hero-email">orpita.d@gmail.com</a>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Orpita Das · Pune, India</span>
+    <div class="links">
+      <a href="career_map/">Career Map</a>
+      <a href="https://github.com/odas" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/orpitadas" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="Orpita_Das_Resume.pdf" target="_blank">Résumé</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- The "what brought you here?" panel was REMOVED 2026-09-15 at OD's word — it was a
+     trial feature for a catadoption inquiry flow, not a candidate-page feature.
+     analytics.js now carries the visitor count only. -->
+<script defer src="analytics.js"></script>
+</body>
+</html>

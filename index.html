@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orpita Das — Data Engineer</title>
 <meta name="description" content="Data Engineer, ex-Snowflake, Pune. Resilient data pipelines at Snowflake and in genomics; lately AI-built tools — Noëtone (Kanz GOLD 2026) and the catadoption_pune adoption pipeline.">
 <link rel="canonical" href="https://odas.github.io/">
@@ -12,537 +12,428 @@
 <meta property="og:description" content="Data Engineer, ex-Snowflake, Pune. Resilient data pipelines, and lately AI-built tools: Noëtone (Kanz GOLD 2026), catadoption_pune.">
 <meta property="og:image" content="https://odas.github.io/photo.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E2024'/%3E%3Ctext x='10' y='44' fill='%23FBFAF7' font-family='Futura,Avenir Next,sans-serif' font-size='34'%3Eod%3C/text%3E%3C/svg%3E">
 <style>
-/* ── REBUILT 2026-09-15 ─────────────────────────────────────────────────────
-   The page was a freelance storefront ("Freelance AI Tooler", "tell me what's
-   broken", a $300 tile). OD, 2026-09-11: "as I start applying for jobs next
-   month I need something different." This is that page: a candidate proof page
-   whose spine is five claims, each with its evidence and a link to check it.
-   Judged by NAME SEARCH, not traffic — a recruiter types her name ~5 times a
-   year and lands here. Palette and type are OD's own J-visual-reference set
-   (mother-chat/continue-working-od.md §3); the previous paper/terracotta set was
-   retired by her on 2026-08-14. System fonts only — no webfont request.
-   The catadoption block is the one deliberate exception, see its own note. */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
-  color-scheme: light;
-  --paper:    #FBFAF7;
-  --paper-2:  #F2F0EA;
-  --ink:      #1E2024;
-  --ink-soft: #5E6167;
-  --rule:     #D8D4CA;
-  --cab-1:    #2D5B8E;   /* blue — links, primary accent */
-  --cab-2:    #B4472E;   /* red — one emphasis, used sparingly */
-  --cab-3:    #5B7A3A;   /* green */
-  --cab-4:    #7A4A72;   /* plum */
-  --f-body:  "Iowan Old Style", Charter, Palatino, "Palatino Linotype", Georgia, serif;
-  --f-plate: Futura, "Avenir Next Condensed", "Century Gothic", "Trebuchet MS", sans-serif;
-  --f-mono:  "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  --paper: #FBFAF7; --paper-2: #F2F0EA; --card: #FFFFFF;
+  --ink: #1E2024; --ink-soft: #5E6167; --rule: #D8D4CA;
+  --cab-1: #2D5B8E; --cab-2: #B4472E; --cab-3: #5B7A3A; --cab-4: #7A4A72;
+  --f-body: "Iowan Old Style", Charter, Palatino, "Palatino Linotype", Georgia, serif;
+  --f-plate: Futura, "Avenir Next", "Century Gothic", "Trebuchet MS", sans-serif;
+  --gutter: clamp(1.1rem, 4vw, 3rem);
 }
-
-html { scroll-behavior: smooth; }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #16181B; --paper-2: #1E2126; --card: #23272D;
+    --ink: #E8E6E0; --ink-soft: #9B9EA5; --rule: #33373D;
+    --cab-1: #6FA3DA; --cab-2: #E0805F; --cab-3: #96BC67; --cab-4: #BE8CB6;
+  }
+}
+* { box-sizing: border-box; }
 body {
-  font-family: var(--f-body);
-  font-size: 1.02rem; line-height: 1.55;
-  color: var(--ink); background: var(--paper);
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--f-body); font-size: 1.125rem; line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
-a { color: var(--cab-1); text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 0.15em; }
-strong { font-weight: 600; }
+img, video { max-width: 100%; display: block; }
+a { color: var(--cab-1); text-underline-offset: 0.18em; }
+a:focus-visible { outline: 3px solid var(--cab-1); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--f-plate); font-weight: 500; line-height: 1.12; margin: 0; }
+p, ul { margin: 0; }
+.wrap { max-width: 72rem; margin-left: auto; margin-right: auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 
-.page { max-width: 740px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+/* top bar */
+.bar { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: baseline;
+  justify-content: space-between; padding-top: 1.25rem; padding-bottom: 1.25rem; }
+.bar-name { font-family: var(--f-plate); font-size: 1rem; letter-spacing: 0.02em; }
+.bar-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; font-family: var(--f-plate); font-size: 0.95rem; }
+.bar-links a { color: var(--ink); }
 
-/* plates: the small uppercase labels that structure the page */
-.plate {
-  font-family: var(--f-plate); font-size: 0.72rem; letter-spacing: 0.16em;
-  text-transform: uppercase; color: var(--ink-soft); font-weight: 500;
+/* opening */
+.open { display: grid; gap: 2.25rem; align-items: center; padding-top: clamp(1rem, 4vw, 3rem); padding-bottom: clamp(2rem, 5vw, 3.5rem); }
+.open h1 { font-size: clamp(2.9rem, 8vw, 5.4rem); letter-spacing: -0.01em; }
+.open-role { font-family: var(--f-plate); font-size: clamp(1.15rem, 2.2vw, 1.4rem); margin-top: 0.9rem; }
+.open-line { font-size: clamp(1.15rem, 2.1vw, 1.4rem); line-height: 1.45; margin-top: 1rem; max-width: 26em; }
+@media (min-width: 56rem) { .open { grid-template-columns: 1.25fr 1fr; gap: 4rem; } }
+
+/* the card */
+.card {
+  background: var(--card); color: var(--ink);
+  border: 1.5px solid var(--ink); border-left: 14px solid var(--cab-4);
+  box-shadow: 9px 9px 0 var(--ink);
+  padding: 1.4rem 1.5rem 1.3rem; max-width: 25rem; width: 100%;
+  transform: rotate(-2.2deg); justify-self: center;
 }
-.section { padding: 2.6rem 0 0; }
-.section > .plate { margin-bottom: 0.5rem; }
+.card-name { font-family: var(--f-plate); font-size: 1.45rem; margin-bottom: 0.8rem; }
+.card ul { list-style: none; padding: 0; }
+.card li { padding: 0.42rem 0; border-top: 1px solid var(--rule); font-size: 1rem; line-height: 1.35; }
+.card li b { font-family: var(--f-plate); font-weight: 500; font-size: 1.08rem; }
+.card-foot { margin-top: 0.8rem; font-size: 0.92rem; color: var(--ink-soft); }
 
-/* ── TOP BAR ── */
-.topbar {
-  display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;
-  gap: 0.5rem 1rem; padding: 1.1rem 0 0.9rem; border-bottom: 1px solid var(--rule);
+/* two doors */
+.doors { display: grid; gap: 1.5rem; padding-bottom: clamp(2.5rem, 6vw, 4rem); }
+.door { border-top: 1.5px solid var(--ink); padding-top: 1rem; }
+.door h2 { font-size: 1.35rem; }
+.door p { margin-top: 0.45rem; max-width: 28em; }
+.door .go { margin-top: 0.6rem; font-family: var(--f-plate); font-size: 1.05rem; }
+@media (min-width: 44rem) { .doors { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+
+/* the walk */
+.walk-head { background: var(--paper-2); padding-top: 2.5rem; padding-bottom: 2rem; }
+.walk-head h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); max-width: 16em; }
+.walk-head p { margin-top: 0.9rem; max-width: 34em; }
+.swipe-hint { font-family: var(--f-plate); font-size: 0.95rem; color: var(--ink-soft); }
+.stop h3 { font-size: clamp(1.45rem, 3.2vw, 2.2rem); }
+.stop p { margin-top: 0.7rem; max-width: 30em; }
+.stop .fact { font-family: var(--f-plate); font-size: 1rem; color: var(--ink-soft); }
+.stop .go { font-family: var(--f-plate); font-size: 1.02rem; }
+
+/* phone */
+.phone {
+  aspect-ratio: 1 / 2; border: 9px solid var(--ink); border-radius: 2.4rem;
+  background: var(--paper-2); overflow: hidden; position: relative;
 }
-.topbar-name { font-family: var(--f-plate); font-size: 0.95rem; letter-spacing: 0.03em; }
-.topbar-name span { color: var(--ink-soft); font-weight: 400; }
-.topbar-links { display: flex; gap: 1.1rem; flex-wrap: wrap; }
-.topbar-links a { font-family: var(--f-plate); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
-.topbar-links a:hover { color: var(--cab-1); text-decoration: none; }
+.shot { position: absolute; inset: 0; background: #fff; color: #1E2024; }
+.shot > img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 
-/* ── HERO ── */
-.hero { display: flex; gap: 1.6rem; align-items: flex-start; padding: 2.4rem 0 0; }
-.hero-photo img {
-  width: 132px; height: 132px; border-radius: 50%; object-fit: cover;
-  border: 1px solid var(--rule); display: block;
+/* instagram and youtube screens, drawn from real pictures */
+.app { display: flex; flex-direction: column; height: 100%; font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; line-height: 1.3; }
+.app-top { display: flex; align-items: center; gap: 0.7rem; padding: 0.9rem 0.8rem 0.8rem; }
+.app-top img { width: 2.9rem; height: 2.9rem; border-radius: 50%; object-fit: cover; }
+.app-top b { display: block; font-size: 0.92rem; }
+.app-top span { display: block; font-size: 0.76rem; color: #5E6167; }
+.ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.ig-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.yt-list { display: grid; gap: 0.55rem; padding: 0 0.7rem; }
+.yt-row { display: grid; grid-template-columns: 46% 1fr; gap: 0.6rem; align-items: start; font-size: 0.74rem; }
+.yt-row img { width: 100%; border-radius: 0.4rem; }
+
+@media (max-width: 55.99rem) {
+  .walk { padding-top: 1.25rem; padding-bottom: 2.5rem; }
+  .stops { display: flex; gap: 1.1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin: 0 calc(-1 * var(--gutter)); padding: 0.5rem var(--gutter) 1rem; scroll-padding-left: var(--gutter); }
+  .stop { flex: 0 0 76%; max-width: 20rem; scroll-snap-align: start; display: flex; flex-direction: column; }
+  .stop .phone { order: -1; width: 100%; margin-bottom: 1.1rem; }
+  .stage { display: none; }
 }
-.hero h1 { font-family: var(--f-plate); font-weight: 500; font-size: 2rem; letter-spacing: 0.02em; line-height: 1.1; }
-.hero-line { font-size: 1.12rem; margin: 0.55rem 0 0.9rem; max-width: 34em; }
-.creds { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0 0 1rem; }
-.cred {
-  font-family: var(--f-plate); font-size: 0.7rem; letter-spacing: 0.06em;
-  color: var(--ink-soft); background: var(--paper-2); border: 1px solid var(--rule);
-  border-radius: 3px; padding: 0.22rem 0.5rem;
+@media (min-width: 56rem) {
+  .swipe-hint { display: none; }
+  .walk { display: grid; grid-template-columns: 1fr minmax(18rem, 24rem); column-gap: 5rem; }
+  .stops { grid-column: 1; }
+  .stop { min-height: 62vh; display: flex; flex-direction: column; justify-content: center; padding: 2.5rem 0; border-top: 1px solid var(--rule); }
+  .stop:first-child { border-top: 0; }
+  .stop .phone { width: 16rem; margin-top: 1.5rem; }
+  .stage { grid-column: 2; grid-row: 1; }
+  .stage-pin { position: sticky; top: max(1.5rem, calc(50vh - 22.5rem)); padding: 2rem 0; }
+  .stage .phone { width: 100%; max-width: min(24rem, 43vh); margin: 0 auto; box-shadow: 16px 16px 0 var(--paper-2); }
+  .has-stage .stop .phone { display: none; }
+  .stage .shot { opacity: 0; transition: opacity 0.35s ease; }
+  .stage .shot.on { opacity: 1; }
 }
-.cred--strong { color: var(--ink); border-color: var(--cab-1); background: #fff; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
-.btn {
-  font-family: var(--f-plate); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase;
-  padding: 0.55rem 0.95rem; border-radius: 3px; border: 1px solid var(--cab-1); color: var(--cab-1);
-}
-.btn--primary { background: var(--cab-1); color: #fff; }
-.btn:hover { text-decoration: none; opacity: 0.9; }
-.hero-email { font-family: var(--f-mono); font-size: 0.8rem; color: var(--ink-soft); }
+@media (prefers-reduced-motion: reduce) { .stage .shot { transition: none; } }
 
-/* ── PROOF TABLE — the spine of the page ──
-   Five claims OD named on 2026-09-15 as what the page must show: resilient
-   pipelines · AI infrastructure for grassroots welfare (was "initiative in an unusual place"
-   until OD, 2026-09-16: "even initiative alone doesn't sound right") · range · the stack now · context
-   engineering. Each row is claim → evidence → where to check. Anything that
-   cannot be checked by a stranger does not go in the middle column. */
-.proof { border-top: 1px solid var(--rule); }
-.proof-row {
-  display: grid; grid-template-columns: 10.5rem 1fr 8.5rem; gap: 1.2rem;
-  padding: 1.05rem 0; border-bottom: 1px solid var(--rule);
-}
-.proof-claim { font-family: var(--f-plate); font-size: 0.86rem; letter-spacing: 0.04em; line-height: 1.35; padding-top: 0.15rem; }
-.proof-claim small { display: block; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.2rem; }
-.proof-evidence { font-size: 0.95rem; color: var(--ink); }
-.proof-links { display: flex; flex-direction: column; gap: 0.3rem; font-family: var(--f-plate); font-size: 0.74rem; letter-spacing: 0.05em; padding-top: 0.2rem; }
-.proof-links a::after { content: " ↗"; color: var(--ink-soft); }
-.proof-links a[href^="#"]::after { content: " ↓"; }
+/* behind the pages */
+.behind { border-top: 1.5px solid var(--ink); padding-top: clamp(2.5rem, 6vw, 4rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); display: grid; gap: 2.5rem; align-items: center; }
+.behind h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); }
+.behind p { margin-top: 0.9rem; max-width: 31em; }
+.mine { border-left: 4px solid var(--cab-2); padding-left: 1rem; }
+.flow { font-family: var(--f-plate); font-size: 1.02rem; line-height: 1.25; max-width: 23rem; width: 100%; justify-self: center; }
+.flow-box { border: 1.5px solid var(--ink); padding: 0.65rem 0.85rem; background: var(--card); }
+.flow-box small { display: block; font-family: var(--f-body); font-size: 0.86rem; color: var(--ink-soft); margin-top: 0.15rem; }
+.flow-box.me { background: #B4472E; color: #fff; border-color: #B4472E; }
+.flow-box.me small { color: #fbe6df; }
+.flow-arrow { text-align: center; line-height: 1.5; color: var(--ink-soft); }
+.score { margin-top: 1.6rem; }
+.dots { display: grid; grid-template-columns: repeat(13, 1fr); gap: 5px; }
+.dots i { aspect-ratio: 1; border-radius: 50%; border: 1.5px solid var(--cab-1); }
+.dots i.hit { background: var(--cab-1); }
+.score p { font-family: var(--f-body); font-size: 0.92rem; margin-top: 0.6rem; color: var(--ink-soft); }
+@media (min-width: 56rem) { .behind { grid-template-columns: 1.2fr 1fr; gap: 4rem; } }
 
-/* ── NOËTONE ── */
-.video-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.4rem 1rem; margin-bottom: 0.7rem; }
-.video-badge { font-family: var(--f-plate); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-soft); }
-.video-wrap { aspect-ratio: 16 / 9; width: 100%; background: var(--ink); border-radius: 4px; overflow: hidden; border: 1px solid var(--rule); }
-.video-cred { margin-top: 0.8rem; font-size: 0.92rem; color: var(--ink-soft); }
-.gold { font-family: var(--f-plate); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5c12; background: #F5E4B0; padding: 0.15rem 0.45rem; border-radius: 3px; margin-right: 0.35rem; }
-.video-what { margin-top: 0.5rem; font-size: 0.92rem; color: var(--ink-soft); }
-.video-what .em { color: var(--cab-2); }
-.video-story { display: flex; flex-wrap: wrap; gap: 0 1.6rem; margin-top: 1rem; padding: 0.8rem 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-.stat { display: flex; flex-direction: column; min-width: 8rem; flex: 1 1 8rem; padding: 0.2rem 0; }
-.stat b { font-family: var(--f-plate); font-weight: 500; font-size: 0.95rem; letter-spacing: 0.04em; }
-.stat span { font-size: 0.82rem; color: var(--ink-soft); }
-.video-caption { margin-top: 0.9rem; font-size: 0.95rem; color: var(--ink-soft); font-style: italic; }
+/* noetone */
+.also { background: var(--paper-2); padding-top: clamp(2.5rem, 6vw, 4rem); padding-bottom: clamp(2.5rem, 6vw, 4rem); }
+.also-grid { display: grid; gap: 2rem; align-items: center; }
+.also h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); }
+.also p { margin-top: 0.9rem; max-width: 30em; }
+.also video { width: 100%; aspect-ratio: 16 / 9; background: #1E2024; border: 1.5px solid var(--ink); }
+.also .go { font-family: var(--f-plate); display: flex; flex-wrap: wrap; gap: 0.3rem 1.25rem; }
+@media (min-width: 56rem) { .also-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
 
-/* ── CATADOPTION PIPELINE BLOCK (built 2026-08-22; kept at this level of detail at
-   OD's word, 2026-09-15: "i like the level of detail for the catadoption pipeline
-   as it is now") ──────────────────────────────────────────────────────────────
-   ⚠ HOUSE RULE IS "two brands, never mixed": catadoption uses the brunch palette,
-   OD's own work uses hers. This block is a DELIBERATE, SCOPED exception she asked
-   for — a visitor arriving off the catadoption banner should recognise the colours
-   instantly. The brunch tokens are namespaced to `.cad` and used NOWHERE else on
-   this page, so the block reads as a quotation of that brand rather than a blend.
-   Hexes are the LOCKED July-4 set (P-website/site/assets/style.css); don't re-pick
-   them by eye. Inside .cad the block keeps its own serif so it still reads as the
-   quotation it was designed as. */
-.cad {
-  --peri:#8c78f4; --yellow:#f0c840; --sage:#74ac84;
-  --sky:#94d0e4;  --butter:#f8f8a8; --cad-ink:#141118;
-  --cad-muted:#6b6670;
-  margin: 0.6rem 0 0;
-  border: 1px solid rgba(140,120,244,0.3);
-  border-radius: 6px; overflow: hidden; background: #FFFFFF;
-}
-.cad-head { background: var(--peri); color: #fff; padding: 1.15rem 1.35rem; }
-.cad-eyebrow { font-family: var(--f-plate); font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; opacity: 0.9; margin-bottom: 0.4rem; }
-.cad-head h2 { font-family: Georgia, "Times New Roman", serif; font-size: 1.45rem; font-weight: 600; line-height: 1.22; color: #fff; }
-.cad-body { padding: 1.3rem 1.35rem 1.4rem; }
-.cad-lede { font-size: 0.93rem; color: var(--ink-soft); margin-bottom: 1.2rem; }
-/* the idea graph — HTML/CSS, not SVG, on purpose: it stays legible and selectable
-   at 360px, which an SVG of this width would not. */
-.cad-graph { display: flex; flex-wrap: wrap; align-items: stretch; gap: 0.4rem; margin-bottom: 0.5rem; }
-.cad-node { flex: 1 1 128px; min-width: 118px; border: 1px solid var(--rule); border-top: 3px solid var(--sky); border-radius: 5px; padding: 0.6rem 0.65rem; background: #FCFBF9; }
-.cad-node b { display: block; font-size: 0.78rem; font-weight: 600; color: var(--cad-ink); line-height: 1.3; margin-bottom: 0.2rem; }
-.cad-node span { display: block; font-size: 0.68rem; color: var(--cad-muted); line-height: 1.45; }
-.cad-node--store { border-top-color: var(--sage); }
-.cad-node--ai    { border-top-color: var(--peri); }
-.cad-node--out   { border-top-color: var(--sage); }
-/* The human gate is the point of the whole diagram, so it is the one node that
-   carries a fill rather than just an edge. */
-.cad-node--gate { border-top-color: var(--yellow); background: var(--butter); border-color: rgba(240,200,64,0.55); }
-.cad-arrow { align-self: center; color: var(--peri); font-size: 0.85rem; flex: 0 0 auto; padding: 0 0.05rem; }
-.cad-gatenote { font-size: 0.8rem; color: var(--ink-soft); background: #FCFBF9; border-left: 3px solid var(--yellow); padding: 0.6rem 0.8rem; border-radius: 0 4px 4px 0; margin: 0.9rem 0 1.1rem; }
-.cad-nums { display: flex; flex-wrap: wrap; gap: 1.3rem; padding: 0.85rem 0; margin-bottom: 1rem; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
-.cad-num { display: flex; flex-direction: column; }
-.cad-num b { font-family: Georgia, "Times New Roman", serif; font-size: 1.3rem; font-weight: 600; color: var(--cad-ink); line-height: 1.1; }
-.cad-num span { font-size: 0.68rem; color: var(--cad-muted); }
-.cad-link { font-size: 0.88rem; color: var(--peri); font-weight: 500; border-bottom: 1px solid rgba(140,120,244,0.35); padding-bottom: 1px; }
-.cad-link:hover { text-decoration: none; border-color: var(--peri); }
-.cad-built { font-size: 0.72rem; color: var(--cad-muted); margin-top: 0.9rem; }
-.cad-built b { color: var(--ink-soft); font-weight: 500; }
+/* closing */
+.close { padding-top: clamp(3rem, 7vw, 5rem); padding-bottom: 2.5rem; }
+.close h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); }
+.close p { margin-top: 0.9rem; max-width: 32em; }
+.close ul { margin-top: 0.9rem; padding-left: 1.2rem; max-width: 32em; }
+.close li { margin-top: 0.35rem; }
+.btn { display: inline-block; margin-top: 1.4rem; font-family: var(--f-plate); font-size: 1.1rem;
+  color: var(--paper); background: var(--ink); padding: 0.75rem 1.2rem; text-decoration: none; border: 1.5px solid var(--ink); }
+.btn:hover { background: var(--cab-1); border-color: var(--cab-1); color: #fff; }
+.reach { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); font-family: var(--f-plate);
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; }
+.foot { color: var(--ink-soft); font-size: 0.9rem; padding-top: 1rem; padding-bottom: 3rem; }
 
-/* ── THINGS I'VE BUILT ── */
-.tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0.9rem; }
-.tool { border: 1px solid var(--rule); border-radius: 4px; padding: 0.95rem 1rem 1rem; background: #fff; display: flex; flex-direction: column; }
-.tool-tag { font-family: var(--f-plate); font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); margin-bottom: 0.3rem; }
-.tool-name { font-family: var(--f-plate); font-size: 0.98rem; letter-spacing: 0.02em; margin-bottom: 0.35rem; }
-.tool-desc { font-size: 0.88rem; color: var(--ink-soft); flex: 1; }
-.tool-stack { font-family: var(--f-mono); font-size: 0.68rem; color: var(--ink-soft); margin: 0.55rem 0 0.5rem; }
-.tool-link { font-family: var(--f-plate); font-size: 0.74rem; letter-spacing: 0.05em; }
-.building-next { margin-top: 0.9rem; font-size: 0.9rem; color: var(--ink-soft); }
-.building-next .plate { margin-right: 0.4rem; }
+/* the od mark and the tagline (from Astra's version, in this palette) */
+.bar-name { display: inline-flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+.od-mark { display: inline-block; font-family: var(--f-plate); font-size: 0.95rem; line-height: 1; padding: 0.32rem 0.42rem 0.28rem;
+  background: var(--ink); color: var(--paper); border-radius: 0.3rem; letter-spacing: -0.02em; align-self: center; }
+.bar-tag { font-size: 0.78rem; letter-spacing: 0.14em; color: var(--ink-soft); }
 
-/* ── BACKGROUND ── */
-.timeline { border-top: 1px solid var(--rule); }
-.tl { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
-.tl-year { font-family: var(--f-mono); font-size: 0.74rem; color: var(--ink-soft); padding-top: 0.25rem; }
-.tl-role { font-family: var(--f-plate); font-size: 0.9rem; letter-spacing: 0.02em; }
-.tl-org { font-size: 0.86rem; color: var(--ink-soft); }
-.tl-note { font-size: 0.88rem; margin-top: 0.15rem; }
-.elsewhere { margin-top: 1.3rem; display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.9rem; }
-.elsewhere .plate { margin-bottom: 0.2rem; }
+/* card I, front line: code in monospace, the prose line in italic */
+.card-line { margin-top: 1rem; font-size: clamp(1.15rem, 2.1vw, 1.4rem); line-height: 1.45; }
+.card-line code { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.86em; }
+.card-line em { display: block; }
 
-/* ── CONTACT + FOOTER ── */
-.contact { margin-top: 3rem; padding: 1.5rem 0 0; border-top: 2px solid var(--ink); }
-.contact h2 { font-family: var(--f-plate); font-weight: 500; font-size: 1.15rem; letter-spacing: 0.03em; margin-bottom: 0.4rem; }
-.contact p { color: var(--ink-soft); max-width: 36em; }
-.contact .hero-actions { margin-top: 0.9rem; }
-footer { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; font-family: var(--f-plate); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-soft); }
-footer .links { display: flex; gap: 1rem; flex-wrap: wrap; }
+/* card I, back: the four drawers */
+.drawers { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: 0.5rem; max-width: 30rem; }
+.drawers li { display: grid; grid-template-columns: 6.2rem 1fr; gap: 0.8rem; align-items: baseline;
+  border-left: 10px solid var(--d); padding: 0.2rem 0 0.2rem 0.75rem; font-size: 1rem; line-height: 1.35; }
+.drawers b { font-family: var(--f-plate); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.14em; color: var(--d); }
 
-@media (max-width: 620px) {
-  .hero { flex-direction: column; gap: 1rem; }
-  .hero-photo img { width: 104px; height: 104px; }
-  .proof-row { grid-template-columns: 1fr; gap: 0.35rem; }
-  .proof-links { flex-direction: row; flex-wrap: wrap; gap: 0.3rem 0.9rem; }
-  .tl { grid-template-columns: 1fr; gap: 0.1rem; }
-}
+/* the path so far */
+.path { padding-top: clamp(2.5rem, 6vw, 4rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
+.path h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); max-width: 16em; }
+.path > p { margin-top: 0.9rem; max-width: 32em; }
+.path ol { list-style: none; padding: 0; margin-top: 1.6rem; display: grid; gap: 1.25rem; }
+.path li { border-top: 1.5px solid var(--ink); padding-top: 0.7rem; }
+.path li b { display: block; font-family: var(--f-plate); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.14em; color: var(--ink-soft); }
+.path li strong { display: block; font-family: var(--f-plate); font-weight: 500; font-size: 1.25rem; margin-top: 0.2rem; }
+.path li span { display: block; margin-top: 0.3rem; font-size: 1rem; }
+.path .go { margin-top: 1.4rem; font-family: var(--f-plate); }
+@media (min-width: 56rem) { .path ol { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
 </style>
 </head>
 <body>
 
-<div class="page">
+<header class="wrap bar">
+  <span class="bar-name"><span class="od-mark" aria-hidden="true">od</span>Orpita Das <span class="bar-tag">RESEARCH · SYSTEMS · AI</span></span>
+  <nav class="bar-links" aria-label="Résumé and profiles">
+    <a href="https://odas.github.io/Orpita_Das_Resume.pdf">Résumé</a>
+    <a href="https://www.linkedin.com/in/orpitadas/">LinkedIn</a>
+    <a href="https://github.com/odas">GitHub</a>
+    <a href="career_map/">Career map</a>
+    <a href="mailto:orpita.d@gmail.com">Email</a>
+  </nav>
+</header>
 
-  <!-- TOP BAR. Career Map stays in the nav: OD 2026-09-15, "i like it, dont want it
-       hidden at bottom" — even though scan-readers get little from it in one glance. -->
-  <div class="topbar">
-    <span class="topbar-name">Orpita Das <span>· Data Engineer</span></span>
-    <nav class="topbar-links">
-      <a href="#proof">Proof</a>
-      <a href="#work">Work</a>
-      <a href="career_map/">Career Map</a>
-      <a href="#background">Background</a>
-    </nav>
+<main>
+
+<section class="wrap open">
+  <div>
+    <h1>Orpita Das</h1>
+    <p class="open-role">Data engineer, ex-Snowflake. I now build working tools with AI.</p>
+    <p class="card-line"><code>AI is good at code.</code> <em>I make prose work for me.</em></p>
+    <ul class="drawers" aria-label="What I do">
+      <li style="--d: var(--cab-1)"><b>CLOUD</b>Pipelines and automations on AWS and GCP</li>
+      <li style="--d: var(--cab-2)"><b>AI</b>Teaching AI a job nobody wrote down</li>
+      <li style="--d: var(--cab-3)"><b>CATS</b>A cat-adoption page that runs on a data pipeline</li>
+      <li style="--d: var(--cab-4)"><b>CONTEXT</b>Context management for long LLM work</li>
+    </ul>
+  </div>
+  <aside class="card" aria-label="Credentials">
+    <p class="card-name">Orpita Das</p>
+    <ul>
+      <li><b>NIT Warangal</b>, B.Tech</li>
+      <li><b>UBC Vancouver</b>, M.Sc.</li>
+      <li><b>Snowflake</b>, data engineer, 2020 to 2023</li>
+      <li><b>Gold</b>, Kanz AI hackathon 2026, 3,500 entries</li>
+    </ul>
+    <p class="card-foot">Pune, India</p>
+  </aside>
+</section>
+
+<section class="wrap doors">
+  <div class="door">
+    <h2>Hiring?</h2>
+    <p>Data engineer at Snowflake, 2020 to 2023. SQL, Python, AWS, Airflow. The résumé has the rest.</p>
+    <p class="go"><a href="Orpita_Das_Resume.pdf">Open my résumé</a> · <a href="claims.html">Five claims, with evidence</a> · <a href="career_map/">Career map</a></p>
+  </div>
+  <div class="door">
+    <h2>Run a business?</h2>
+    <p>You don't need to know which AI tool you need. Tell me one task that eats your time or keeps going wrong.</p>
+    <p class="go"><a href="mailto:orpita.d@gmail.com?subject=One%20task%20in%20my%20business">Email me about one task</a></p>
+  </div>
+</section>
+
+<section class="walk-head">
+  <div class="wrap">
+    <h2>What I built: a cat adoption service for Pune</h2>
+    <p>Rescuers across Pune message me about street cats that need homes. About 120 have found one since May 2024. I do this in my free time, so I built what keeps it going.</p>
+    <p class="swipe-hint">Swipe sideways through it.</p>
+  </div>
+</section>
+
+<section class="wrap walk" id="walk">
+  <div class="stops">
+
+    <article class="stop">
+      <h3>The website</h3>
+      <p>I am not a web developer. I told the AI what I wanted and pushed back when it was wrong. Before anything goes live, it goes through the checks a professional web developer would run.</p>
+      <p class="fact">21 pages. 3,385 visitors in the 30 days to 13 November 2026.</p>
+      <p class="go"><a href="https://catadoption.in/">Open catadoption.in</a></p>
+      <div class="phone"><div class="shot"><img src="assets/site-home.jpg" alt="The catadoption.in home page on a phone: two kittens in a cat tree under the words Pune's indie cats, one person away from home."></div></div>
+    </article>
+
+    <article class="stop">
+      <h3>The cats looking for homes</h3>
+      <p>Every cat here is real. Rescuers send me photos and details on Instagram, and this page is made from what they send, fresh every week.</p>
+      <p class="fact">On 12 November 2026: 34 cats looking for a home, 34 gone home.</p>
+      <p class="go"><a href="https://catadoption.in/adoptable.html">Open the page</a></p>
+      <div class="phone"><div class="shot"><img src="assets/site-board.jpg" alt="The cats looking for homes page on a phone, with photos of kittens." loading="lazy"></div></div>
+    </article>
+
+    <article class="stop">
+      <h3>Guides people can use</h3>
+      <p>Written from my own cats and my own flat. This one draws ten real scratching posts at the same scale as my cats, so you can see what fits your corner before you buy.</p>
+      <p class="go"><a href="https://catadoption.in/cats-house.html">Open the guide</a></p>
+      <div class="phone"><div class="shot"><img src="assets/site-house.jpg" alt="A guide page on a phone: a drawn room with a cat beside a small cardboard scratching post shaped like a cafe." loading="lazy"></div></div>
+    </article>
+
+    <article class="stop">
+      <h3>Instagram</h3>
+      <p>Each post is made from the same facts as the website, so a post and the site always say the same thing about a cat.</p>
+      <p class="fact">1,260 followers on 13 November 2026.</p>
+      <p class="go"><a href="https://www.instagram.com/catadoption_pune/">Open Instagram</a></p>
+      <div class="phone"><div class="shot">
+        <div class="app">
+          <div class="app-top"><img src="assets/ig-13.jpg" alt=""><div><b>catadoption_pune</b><span>Adoptable cats and kittens in Pune</span></div></div>
+          <div class="ig-grid" role="img" aria-label="Fifteen photos of cats and kittens from catadoption_pune posts.">
+            <img src="assets/ig-02.jpg" alt="" loading="lazy"><img src="assets/ig-05.jpg" alt="" loading="lazy"><img src="assets/ig-07.jpg" alt="" loading="lazy">
+            <img src="assets/ig-10.jpg" alt="" loading="lazy"><img src="assets/ig-14.jpg" alt="" loading="lazy"><img src="assets/ig-13.jpg" alt="" loading="lazy">
+            <img src="assets/ig-15.jpg" alt="" loading="lazy"><img src="assets/ig-22.jpg" alt="" loading="lazy"><img src="assets/ig-26.jpg" alt="" loading="lazy">
+            <img src="assets/ig-06.jpg" alt="" loading="lazy"><img src="assets/ig-18.jpg" alt="" loading="lazy"><img src="assets/ig-11.jpg" alt="" loading="lazy">
+            <img src="assets/ig-17.jpg" alt="" loading="lazy"><img src="assets/ig-03.jpg" alt="" loading="lazy"><img src="assets/ig-01.jpg" alt="" loading="lazy">
+          </div>
+        </div>
+      </div></div>
+    </article>
+
+    <article class="stop">
+      <h3>YouTube</h3>
+      <p>The cats and the footage are mine. The drawings, titles and edits are made with AI, and I approve every cut before it goes up.</p>
+      <p class="fact">28 videos so far.</p>
+      <p class="go"><a href="https://www.youtube.com/channel/UCrW1o8IspYhWa-rP7UBQ2bQ">Open the channel</a></p>
+      <div class="phone"><div class="shot">
+        <div class="app">
+          <div class="app-top"><img src="assets/ig-13.jpg" alt=""><div><b>catadoption_pune</b><span>Videos</span></div></div>
+          <div class="yt-list">
+            <div class="yt-row"><img src="assets/yt-1.jpg" alt="" loading="lazy"><span>Which cat litter to buy in India?</span></div>
+            <div class="yt-row"><img src="assets/yt-2.jpg" alt="" loading="lazy"><span>How to cut your cat's nails at home, no fuss</span></div>
+            <div class="yt-row"><img src="assets/yt-3.jpg" alt="" loading="lazy"><span>Found a kitten alone on an Indian street? Leave it be (usually)</span></div>
+            <div class="yt-row"><img src="assets/yt-4.jpg" alt="" loading="lazy"><span>A new cat's first day home in India: 5 things to have ready</span></div>
+            <div class="yt-row"><img src="assets/yt-5.jpg" alt="" loading="lazy"><span>Adopting an Indie cat in Pune: how catadoption_pune works</span></div>
+          </div>
+        </div>
+      </div></div>
+    </article>
+
+    <article class="stop">
+      <h3>The shop</h3>
+      <p>Things I use for my own cats. The links earn me a small commission, and the page says so. Adoption itself never earns money.</p>
+      <p class="go"><a href="https://catadoption.in/shop.html">Open the shop</a></p>
+      <div class="phone"><div class="shot"><img src="assets/site-shop.jpg" alt="The shop page on a phone: two bags of cat litter with short notes on each." loading="lazy"></div></div>
+    </article>
+
   </div>
 
-  <!-- HERO. Identity line matches the LinkedIn headline and the résumé: Data Engineer,
-       ex-Snowflake, NITW, UBC. Don't re-open Data vs Analytics Engineer here (her call,
-       07-31). The SnowPro pill carries its dates on purpose — the cert lapsed in 2025
-       and the dated form is the agreed written one (story/disclosure-dial-od.md). -->
-  <section class="hero">
-    <div class="hero-photo"><img src="photo.jpg" alt="Orpita Das"></div>
+  <div class="stage" aria-hidden="true"><div class="stage-pin"><div class="phone" id="stage-phone"></div></div></div>
+</section>
+
+<section class="wrap behind">
+  <div>
+    <h2>The part you can't see</h2>
+    <p>Keeping this running every week is the harder half, and it is the part I am proudest of.</p>
+    <p>The AI reads each new message and sorts it. Before I decide on a cat, it writes down its guess of my decision. Then I decide, and we count how often it guessed right. Its guess is never the decision.</p>
+    <p class="mine">I decide what gets built, I check it, and I say what goes public. AI writes most of the code and the first drafts.</p>
+  </div>
+  <div class="flow" role="img" aria-label="How a message becomes a page: messages arrive, the AI reads and sorts them, I decide, and the page goes public. Below, 30 of 37 dots are filled, for the guesses that matched my decision on 5 October 2026.">
+    <div class="flow-box">Messages arrive<small>from rescuers, on Instagram</small></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">AI reads and sorts<small>and writes its guess of my decision</small></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box me">I decide<small>every cat, every week</small></div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-box">The page goes public<small>only after I say so</small></div>
+    <div class="score">
+      <div class="dots" id="dots"></div>
+      <p>A filled dot is a guess that matched my decision: about 30 of 37 on 5 October 2026.</p>
+    </div>
+  </div>
+</section>
+
+<section class="also">
+  <div class="wrap also-grid">
     <div>
-      <h1>Orpita Das</h1>
-      <p class="hero-line">Data Engineer, ex-Snowflake. I build data pipelines that keep working when the world doesn't — and lately I build them with AI.</p>
-      <div class="creds">
-        <span class="cred cred--strong">Ex-Snowflake Data Engineer</span>
-        <span class="cred">SnowPro Core 2023–2025</span>
-        <span class="cred">M.Sc. UBC</span>
-        <span class="cred">B.Tech NIT Warangal</span>
-        <span class="cred">Canadian citizen · Indian OCI</span>
-        <span class="cred">Pune</span>
-      </div>
-      <div class="hero-actions">
-        <!-- Orpita_Das_Resume.pdf is linked here and in the footer. The filename is
-             load-bearing: overwrite in place, never rename. -->
-        <a href="Orpita_Das_Resume.pdf" target="_blank" class="btn btn--primary">Download résumé</a>
-        <a href="https://github.com/odas" target="_blank" rel="noopener" class="btn">GitHub</a>
-        <a href="https://linkedin.com/in/orpitadas" target="_blank" rel="noopener" class="btn">LinkedIn</a>
-        <a href="mailto:orpita.d@gmail.com" class="hero-email">orpita.d@gmail.com</a>
-      </div>
+      <h2>Also built: Noëtone</h2>
+      <p>Noëtone reads dense documents out loud, from PDFs to scanned pages and handwriting, and saves the audio as files I own.</p>
+      <p>It won Gold out of 3,500 submissions at the July 2026 Kanz hackathon. Built solo.</p>
+      <p class="go"><a href="https://ka.nz/ai/orpitadas">Open the Kanz page</a><a href="https://github.com/odas/noetone-batch">Open the code</a></p>
     </div>
-  </section>
-
-  <!-- PROOF TABLE -->
-  <section class="section" id="proof">
-    <p class="plate">What I'm good at, and where to check</p>
-    <div class="proof">
-
-      <div class="proof-row">
-        <div class="proof-claim"><small>01</small>Resilient pipelines</div>
-        <div class="proof-evidence">Noëtone turned a 388-page scanned book into audio through three power cuts without losing a page, on a free API tier of three calls a minute. Before that: 20+ ingestion sources at Snowflake, and SOX-compliance monitoring that replaced 100+ manual audit hours a quarter.</div>
-        <div class="proof-links">
-          <a href="#noetone">Demo video</a>
-          <a href="https://github.com/odas/noetone-batch" target="_blank" rel="noopener">Repo</a>
-          <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz GOLD</a>
-        </div>
-      </div>
-
-      <div class="proof-row">
-        <div class="proof-claim"><small>02</small>AI infrastructure for grassroots welfare</div>
-        <div class="proof-evidence">Founded catadoption_pune in 2024. Around 120 street cats rehomed, a public site and adoption board built and live, near-daily posting sustained for two years, a six-week intern curriculum designed. Taught a general-purpose AI the realities of grassroots Indian animal welfare — and kept a human deciding.</div>
-        <div class="proof-links">
-          <a href="#catadoption">The pipeline</a>
-          <a href="https://catadoption.in/adoptable.html?utm_source=odas&amp;utm_medium=proof&amp;utm_campaign=catadoption" target="_blank" rel="noopener">The board</a>
-        </div>
-      </div>
-
-      <div class="proof-row">
-        <div class="proof-claim"><small>03</small>Range</div>
-        <div class="proof-evidence">Snowflake in Pune, a genomics startup in Bengaluru, a machine-learning internship at Waterloo, research at UBC and UofT, a biotech startup in Vancouver. Two countries, industry and academia, wet lab to warehouse.</div>
-        <div class="proof-links">
-          <a href="#background">Timeline</a>
-          <a href="career_map/?view=plain">Career map, plain</a>
-        </div>
-      </div>
-
-      <div class="proof-row">
-        <div class="proof-claim"><small>04</small>The stack now</div>
-        <div class="proof-evidence">Claude Code, Gemini API, OpenRouter, DuckDB, Flask, GitHub Actions — on top of the proven set: Snowflake, AWS Lambda and API Gateway, SQL, Python, Airflow, Fivetran.</div>
-        <div class="proof-links">
-          <a href="#work">Things I've built</a>
-          <a href="https://github.com/odas" target="_blank" rel="noopener">Repos</a>
-        </div>
-      </div>
-
-      <div class="proof-row">
-        <div class="proof-claim"><small>05</small>Context engineering</div>
-        <div class="proof-evidence"><em>AI is good at code. I make prose work for me.</em> A document system that keeps a dozen parallel AI sessions consistent across folders; a shelf map with a script that checks every document's tags against it; a six-week curriculum written as prompts a non-developer can run; reusable procedure files the model executes.</div>
-        <div class="proof-links">
-          <a href="https://www.linkedin.com/pulse/you-already-have-what-takes-build-ai-orpita-das-rf4nc/" target="_blank" rel="noopener">Article</a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- NOËTONE -->
-  <section class="section" id="noetone">
-    <div class="video-header">
-      <p class="plate">Noëtone — see it working</p>
-      <span class="video-badge">Built in 3 days · hardened over months of daily use</span>
-    </div>
-    <!-- The real Noëtone demo, wired 2026-08-22. The file is the one on OD's Kanz
-         portfolio page; Kanz serves it with access-control-allow-origin:*.
-         ⚠ ~50MB, hence preload="metadata" — nothing but the header downloads until
-         someone presses play, which matters on Indian mobile data.
-         ✅ HOSTING SETTLED, OD 2026-08-29 — LEAVE IT ON KANZ, do not re-propose a local
-         copy. Kanz is an AI recruiting startup and her profile is an asset to THEM, so
-         they have a commercial reason to keep it up. "Let them pay for video storage."
-         The Kanz link below is the fallback. -->
-    <div class="video-wrap">
-      <video src="https://oclvdlvvdrtebkapjdek.supabase.co/functions/v1/media-proxy/orpita-das-1784607161771/demo-video-1784607161775.mp4"
-             controls playsinline preload="metadata"
-             style="width:100%;height:100%;object-fit:cover;background:#1E2024;"></video>
-    </div>
-    <p class="video-cred">
-      <span class="gold">Gold</span>
-      Independently assessed on the <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz AI Portfolio</a>
-      — certificate KANZ-ADV-1601. <em>“Resilient AI Pipeline: turning scans and handwriting into audiobooks.”</em>
-    </p>
-    <!-- "Gold" on its own is just a colour — a reader has no denominator and no rubric.
-         The numbers are the whole claim. -->
-    <p class="video-what"><strong>What that means:</strong> awarded from
-    <strong>3,500 submissions</strong> to the July 2026 Kanz hackathon, judged on
-    originality (20%), technical depth (30%), impact (30%) and presentation (20%) —
-    <span class="em">60% of the score on depth and impact</span>.</p>
-    <div class="video-story">
-      <div class="stat"><b>Day 1</b><span>Working prototype</span></div>
-      <div class="stat"><b>Days 2–3</b><span>Edge cases, testing, making it shippable</span></div>
-      <div class="stat"><b>Since</b><span>Per-page commits so a job resumes instead of restarting; error classification that tells a quota from a rate limit; a circuit breaker; every audio file checked before it is stored</span></div>
-    </div>
-    <p class="video-caption">Built solo. Architecture and priorities mine, implementation AI-accelerated. The OCR prompt is a config parameter: other readers narrate a chart's broken axis labels; this one says “the chart shows a declining trend”, because the prompt told it to.</p>
-  </section>
-
-  <!-- CATADOPTION PIPELINE BLOCK — content unchanged from 2026-08-22 except the eyebrow,
-       which assumed every visitor had come off the catadoption banner. -->
-  <section class="section" id="catadoption">
-    <p class="plate">catadoption_pune — the pipeline behind the board</p>
-    <div class="cad">
-      <div class="cad-head">
-        <p class="cad-eyebrow">Founded 2024 · Pune · Instagram-first</p>
-        <h2>Three years of Instagram DMs, turned into a live adoption board.</h2>
-      </div>
-      <div class="cad-body">
-        <p class="cad-lede">Rescuers send me kittens by DM — photos, an age, a phone number,
-        buried in a thread among thousands. That pile is now a pipeline. Here is the whole
-        of it:</p>
-
-        <div class="cad-graph">
-          <div class="cad-node"><b>Instagram DMs</b><span>3 years of rescuer messages</span></div>
-          <span class="cad-arrow">&rarr;</span>
-          <div class="cad-node"><b>Export &rarr; Drive</b><span>Meta's scheduled export, landing on its own</span></div>
-          <span class="cad-arrow">&rarr;</span>
-          <div class="cad-node cad-node--store"><b>JSONL + DuckDB</b><span>Parsed, deduped, queryable in seconds</span></div>
-          <span class="cad-arrow">&rarr;</span>
-          <div class="cad-node cad-node--ai"><b>LLM judgement</b><span>Claude reads each candidate and its photos</span></div>
-          <span class="cad-arrow">&rarr;</span>
-          <div class="cad-node cad-node--gate"><b>A human says go</b><span>Every listing. No exceptions.</span></div>
-          <span class="cad-arrow">&rarr;</span>
-          <div class="cad-node cad-node--out"><b>Live board</b><span>Published to the public site</span></div>
-        </div>
-
-        <p class="cad-gatenote"><strong>The yellow box is the design decision.</strong>
-        The model never publishes — it prepares a case and a human approves it. Automation
-        that can act on its own is automation you have to supervise forever, which is not
-        a saving. I built it to run once, without me, and it published something it
-        shouldn't have; the gate is what came out of that.</p>
-
-        <div class="cad-nums">
-          <div class="cad-num"><b>~24,000</b><span>messages ingested</span></div>
-          <div class="cad-num"><b>~2,450</b><span>conversations</span></div>
-          <div class="cad-num"><b>3 years</b><span>rebuilt from scratch in seconds</span></div>
-        </div>
-
-        <a class="cad-link" href="https://catadoption.in/adoptable.html?utm_source=odas&amp;utm_medium=recall&amp;utm_campaign=catadoption" target="_blank" rel="noopener">See the board it produces &rarr;</a>
-        <p class="cad-built">Built with <b>Claude</b> — the pipeline, the judgement stage and
-        this page. I decide what it should do and check what it did.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- THINGS I'VE BUILT. Noëtone is not repeated here (OD 08-28: "Noetone is repeated,
-       that bothers me"). No emoji placeholders: a tile is text plus a real link, or it
-       isn't a tile. NCBI is the "building next" line below — demoted from a tile with a
-       dead link at OD's word, 2026-09-15; the 🧬 stays because the molecular-biology
-       strand is part of who she is ("I feel incomplete with the DNA strands off the page"). -->
-  <section class="section" id="work">
-    <p class="plate">Things I've built</p>
-    <div class="tools">
-
-      <div class="tool">
-        <p class="tool-tag">Receipts to a ledger</p>
-        <p class="tool-name">mindful-spend</p>
-        <p class="tool-desc">Turn a payment screenshot into a categorised expense, with a dashboard over the result. Your spending data never leaves your machine.</p>
-        <p class="tool-stack">Flask · Gemini Vision · Plotly · CSV</p>
-        <a href="https://github.com/odas/mindful-spend" class="tool-link" target="_blank" rel="noopener">github.com/odas/mindful-spend ↗</a>
-      </div>
-
-      <div class="tool">
-        <p class="tool-tag">Interview prep that keeps score</p>
-        <p class="tool-name">Skill Refresh</p>
-        <p class="tool-desc">A quiz and spaced-repetition app for technical-interview prep. Questions adapt as you improve; progress is tracked. Built in three days, live on Render.</p>
-        <p class="tool-stack">Python · Streamlit · Gemini</p>
-        <a href="https://learning-hfw4.onrender.com" class="tool-link" target="_blank" rel="noopener">Open the app ↗</a>
-      </div>
-
-      <div class="tool">
-        <p class="tool-tag">Wall art that's actually useful</p>
-        <p class="tool-name">Kobo Sky Dashboard</p>
-        <p class="tool-desc">A live night-sky map — stars, planets, moon phase, weather and AQI for Pune — rendered as one page for an old Kobo e-reader mounted on a wall. Runs on the home network, no API keys.</p>
-        <p class="tool-stack">Flask · PyEphem · SVG</p>
-        <a href="https://github.com/odas/sky-kobo-dashboard" class="tool-link" target="_blank" rel="noopener">github.com/odas/sky-kobo-dashboard ↗</a>
-      </div>
-
-    </div>
-    <p class="building-next"><span class="plate">Building next</span> 🧬 NCBI Taxonomy Explorer — ask “which genus has the most species named after people?” in plain English, over the public taxonomy database.</p>
-  </section>
-
-  <!-- BACKGROUND. Facts here match LinkedIn and the résumé as of 2026-09-15.
-       "~120", not "120+" and never "200+" — OD's own rule, 12 Aug 2026, binding every
-       public surface. The degree line is the agreed written form: molecular biology
-       leads, Botany present and secondary (story/disclosure-dial-od.md). -->
-  <section class="section" id="background">
-    <p class="plate">Background</p>
-    <div class="timeline">
-
-      <div class="tl">
-        <span class="tl-year">2026–now</span>
-        <div>
-          <p class="tl-role">Independent developer — Noëtone</p>
-          <p class="tl-org">Pune</p>
-          <p class="tl-note">A document-to-audio pipeline on a free API tier, rated GOLD out of 3,500 in the 2026 Kanz Build-with-AI hackathon.</p>
-        </div>
-      </div>
-
-      <div class="tl">
-        <span class="tl-year">2024–now</span>
-        <div>
-          <p class="tl-role">Founder — catadoption_pune</p>
-          <p class="tl-org">Pune</p>
-          <p class="tl-note">A data-driven cat-adoption initiative on Instagram: ~120 street and Indie cats rehomed; the DM pipeline and public board above.</p>
-        </div>
-      </div>
-
-      <div class="tl">
-        <span class="tl-year">Jul–Dec 2023</span>
-        <div>
-          <p class="tl-role">Cloud Engineer</p>
-          <p class="tl-org">Algorithmic Biologics, Bengaluru</p>
-          <p class="tl-note">Cut storage cost ~50% (EBS→S3); a reusable EC2 toolkit for the team's genomics jobs; deployed a gene-expression app to AWS. AWS, GCP, Julia, Python, Docker.</p>
-        </div>
-      </div>
-
-      <div class="tl">
-        <span class="tl-year">2020–2023</span>
-        <div>
-          <p class="tl-role">Data Engineer</p>
-          <p class="tl-org">Snowflake, Pune</p>
-          <p class="tl-note">Real-time SOX-compliance monitoring built with Internal Audit, saving 100+ manual audit hours a quarter; 20+ ELT pipelines (GitHub GraphQL, ServiceNow, Salesforce, Okta and more); seven external talks including IIA San Jose. Among the Pune office's first hires.</p>
-        </div>
-      </div>
-
-      <div class="tl">
-        <span class="tl-year">2020</span>
-        <div>
-          <p class="tl-role">Machine Learning Intern</p>
-          <p class="tl-org">University of Waterloo</p>
-          <p class="tl-note">Ensemble QSAR model over protein features, Bayesian tuning, Dask.</p>
-        </div>
-      </div>
-
-      <div class="tl">
-        <span class="tl-year">2016–2019</span>
-        <div>
-          <p class="tl-role">Research, teaching and lab roles</p>
-          <p class="tl-org">UBC · UofT · Natural Resources Canada · Stem Shock (Vancouver biotech startup)</p>
-          <p class="tl-note">Conifer cold-tolerance proteins; a programmable RNAi herbicide at an early-stage startup; a computational-biology project on microbial SNPs.</p>
-        </div>
-      </div>
-
-      <div class="tl">
-        <span class="tl-year">education</span>
-        <div>
-          <p class="tl-role">M.Sc., Plant Molecular Biology — UBC (degree conferred in Botany) · B.Tech, Biotechnology — NIT Warangal</p>
-          <p class="tl-org">SnowPro Core, Snowflake, 2023–2025</p>
-          <!-- "Snowflake GenAI Professional, in progress" removed 2026-09-16: OD shelved the cert on 09-03; a shelved course is not a credential in progress (career-map-marks-2026-09-16.md Q1). -->
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Elsewhere. ✅ The IIA San Jose webinar URL was SUPPLIED BY OD 2026-08-29, read off
-         her own address bar — a LinkedIn permalink must never be invented. -->
-    <div class="elsewhere">
-      <p class="plate">Elsewhere</p>
-      <a href="https://www.linkedin.com/feed/update/urn:li:activity:6950686148881002496/" target="_blank" rel="noopener">Speaker, <em>Automate SOX, Internal Controls Monitoring &amp; Audits with Snowflake</em> — IIA San Jose Chapter webinar &rarr;</a>
-      <a href="https://www.linkedin.com/pulse/you-already-have-what-takes-build-ai-orpita-das-rf4nc/" target="_blank" rel="noopener">Article: “You already have what it takes to build AI” &rarr;</a>
-      <a href="https://try.ka.nz/ai/orpitadas" target="_blank" rel="noopener">Kanz AI Portfolio — Noëtone, rated Gold &rarr;</a>
-      <a href="https://linkedin.com/in/orpitadas" target="_blank" rel="noopener">LinkedIn &rarr;</a>
-    </div>
-  </section>
-
-  <!-- CONTACT — a recruiter-facing close. Not a pitch, not a form (mailto-vs-form was
-       settled as "build neither"). -->
-  <div class="contact">
-    <h2>Hiring for a data or AI-tooling role?</h2>
-    <p>The résumé is the short version and the repos are the long one. I'm in Pune, open to Bengaluru, and I answer email.</p>
-    <div class="hero-actions">
-      <a href="Orpita_Das_Resume.pdf" target="_blank" class="btn btn--primary">Download résumé</a>
-      <a href="mailto:orpita.d@gmail.com" class="hero-email">orpita.d@gmail.com</a>
-    </div>
+    <video controls playsinline preload="metadata" src="https://oclvdlvvdrtebkapjdek.supabase.co/functions/v1/media-proxy/orpita-das-1784607161771/demo-video-1784607161775.mp4" aria-label="A two-minute demo of Noëtone turning a scanned page into audio."></video>
   </div>
+</section>
 
-  <footer>
-    <span>© 2026 Orpita Das · Pune, India</span>
-    <div class="links">
-      <a href="career_map/">Career Map</a>
-      <a href="https://github.com/odas" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com/in/orpitadas" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="Orpita_Das_Resume.pdf" target="_blank">Résumé</a>
-    </div>
-  </footer>
+<section class="wrap path" id="path">
+  <h2>Research, data engineering, and the work I do now</h2>
+  <p>Molecular biology, then cloud data engineering, then the daily needs of an adoption network. The questions stay the same: what is the evidence, what are we missing, what would make this work better?</p>
+  <ol>
+    <li><b>RESEARCH</b><strong>NIT Warangal · UBC</strong><span>B.Tech in biotechnology, then molecular biology research and an M.Sc. in Vancouver.</span></li>
+    <li><b>DATA ENGINEERING</b><strong>Snowflake, 2020 to 2023</strong><span>Data pipelines and compliance monitoring.</span></li>
+    <li><b>CLOUD AND SCIENCE</b><strong>Algorithmic Biologics, 2023</strong><span>Cloud workflows for genomics work.</span></li>
+    <li><b>BUILDING WITH AI</b><strong>My own work, since 2024</strong><span>catadoption_pune, Noëtone, and the systems behind them.</span></li>
+  </ol>
+  <p class="go"><a href="career_map/">The whole path, on the career map</a> · <a href="Orpita_Das_Resume.pdf">Résumé</a></p>
+</section>
 
-</div>
+<section class="wrap close">
+  <h2>If you run a business</h2>
+  <p>You don't need to know which AI tool you need. Tell me one task that eats your time or keeps going wrong, and we start there. Three I have already solved for the cat work:</p>
+  <ul>
+    <li>Enquiries that arrive on Instagram, sorted so I only read the ones that need me.</li>
+    <li>The questions people keep asking, answered once on a page.</li>
+    <li>Posts and videos made from one set of facts, so nothing is typed twice.</li>
+  </ul>
+  <a class="btn" href="mailto:orpita.d@gmail.com?subject=One%20task%20in%20my%20business">Email me about one task</a>
+  <p class="reach">
+    <a href="https://odas.github.io/Orpita_Das_Resume.pdf">Résumé</a>
+    <a href="https://www.linkedin.com/in/orpitadas/">LinkedIn</a>
+    <a href="https://github.com/odas">GitHub</a>
+    <a href="career_map/">Career map</a>
+    <a href="mailto:orpita.d@gmail.com">orpita.d@gmail.com</a>
+  </p>
+</section>
 
-<!-- The "what brought you here?" panel was REMOVED 2026-09-15 at OD's word — it was a
-     trial feature for a catadoption inquiry flow, not a candidate-page feature.
-     analytics.js now carries the visitor count only. -->
+<footer class="wrap foot">
+  <p>Numbers are as of the dates shown beside them.</p>
+</footer>
+
+</main>
+
+<script>
+(function () {
+  var dots = document.getElementById('dots');
+  if (dots) { for (var i = 0; i < 37; i++) { var d = document.createElement('i'); if (i < 30) d.className = 'hit'; dots.appendChild(d); } }
+
+  var stage = document.getElementById('stage-phone');
+  var stops = Array.prototype.slice.call(document.querySelectorAll('.stop'));
+  if (!stage || !stops.length || !('IntersectionObserver' in window)) return;
+  var shots = stops.map(function (s) {
+    var copy = s.querySelector('.shot').cloneNode(true);
+    Array.prototype.forEach.call(copy.querySelectorAll('img'), function (im) { im.removeAttribute('loading'); });
+    stage.appendChild(copy);
+    return copy;
+  });
+  shots[0].classList.add('on');
+  document.getElementById('walk').classList.add('has-stage');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var n = stops.indexOf(e.target);
+      shots.forEach(function (sh, k) { sh.classList.toggle('on', k === n); });
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+  stops.forEach(function (s) { io.observe(s); });
+})();
+</script>
 <script defer src="analytics.js"></script>
 </body>
 </html>
