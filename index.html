@@ -171,6 +171,20 @@ p, ul { margin: 0; }
 .btn:hover { background: var(--cab-1); border-color: var(--cab-1); color: #fff; }
 .reach { margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); font-family: var(--f-plate);
   display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; }
+/* write to me: tap answers that become an email (no phone number, no form endpoint) */
+.ask { margin-top: 2.25rem; padding: 1.4rem 1.4rem 1.6rem; background: var(--card); border: 1.5px solid var(--ink); border-left: 14px solid var(--cab-1); max-width: 40rem; }
+.ask h3 { font-size: clamp(1.35rem, 2.6vw, 1.7rem); }
+.close .ask-sub { margin-top: 0.4rem; font-size: 0.98rem; color: var(--ink-soft); }
+.ask fieldset { border: 0; padding: 0; margin: 1.1rem 0 0; }
+.ask [hidden] { display: none !important; }
+.ask legend { font-family: var(--f-plate); font-size: 1.02rem; padding: 0; margin-bottom: 0.5rem; }
+.ask fieldset button { font-family: var(--f-plate); font-size: 0.98rem; color: var(--ink); background: var(--paper);
+  border: 1.5px solid var(--ink); border-radius: 999px; padding: 0.4rem 0.9rem; margin: 0 0.45rem 0.5rem 0; cursor: pointer; }
+.ask fieldset button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.ask .btn { margin-top: 1rem; }
+.ask-share { margin-left: 1rem; font-family: var(--f-plate); font-size: 1rem; background: none; border: 0; padding: 0;
+  color: var(--ink); text-decoration: underline; text-underline-offset: 0.2em; cursor: pointer; }
+.close .ask-thanks { margin-top: 1rem; font-size: 0.98rem; }
 .foot { color: var(--ink-soft); font-size: 0.9rem; padding-top: 1rem; padding-bottom: 3rem; }
 
 /* the od* mark: brand/od-mark.svg, drawn as shapes so it looks the same on every device */
@@ -257,14 +271,15 @@ p, ul { margin: 0; }
 <section class="wrap doors">
   <div class="door">
     <h2>Hiring?</h2>
-    <p>I am looking for a full-time data or AI-tooling role, in Pune or Bengaluru. SQL, Python, AWS, GCP, Snowflake, Airflow.</p>
+    <p>I am open to a new full-time role in data or AI tooling, in Pune or Bengaluru. SQL, Python, AWS, GCP, Snowflake, Airflow.</p>
     <p><a class="btn" href="https://odas.github.io/Orpita_Das_Resume.pdf">Open my résumé</a></p>
     <p class="go"><a href="https://odas.github.io/claims.html">Five claims, with evidence</a> · <a href="https://odas.github.io/career_map/">Career map</a></p>
   </div>
   <div class="door">
     <h2>Run a business?</h2>
     <p>I build AI automation for small businesses, and I have time for a few in December 2026.</p>
-    <p class="go"><a href="#business">How we would start ↓</a></p>
+    <p><a class="btn" href="#ask">Tell me about your business</a></p>
+    <p class="go"><a href="#business">What I have already solved ↓</a></p>
   </div>
 </section>
 
@@ -423,7 +438,28 @@ p, ul { margin: 0; }
     <li>The questions people keep asking, answered once on a page.</li>
     <li>Posts and videos made from one set of facts, so nothing is typed twice.</li>
   </ul>
-  <a class="btn" href="mailto:orpita.d@gmail.com?subject=One%20task%20in%20my%20business">Email me about one task</a>
+  <div class="ask" id="ask">
+    <h3>Write to me in three taps</h3>
+    <p class="ask-sub">Tap what fits. Your answers become an email you can edit before it goes. Nothing is sent from this page.</p>
+    <fieldset data-q="who"><legend>What brings you here?</legend>
+      <button type="button" data-v="business">I run a business</button><button type="button" data-v="hiring">I am hiring</button><button type="button" data-v="looking">Just looking</button>
+    </fieldset>
+    <fieldset data-q="time" data-for="business" hidden><legend>What eats your time?</legend>
+      <button type="button" data-v="Replying to messages">Replying to messages</button><button type="button" data-v="Social media posts">Social media posts</button><button type="button" data-v="Records and spreadsheets">Records and spreadsheets</button><button type="button" data-v="Something else">Something else</button>
+    </fieldset>
+    <fieldset data-q="stop" data-for="business" hidden><legend>What has stopped you getting help with it?</legend>
+      <button type="button" data-v="Not sure what AI can do for me">Not sure what AI can do for me</button><button type="button" data-v="Worried about the cost">Worried about the cost</button><button type="button" data-v="Hard to find someone I trust">Hard to find someone I trust</button><button type="button" data-v="Nothing, I am ready">Nothing, I am ready</button>
+    </fieldset>
+    <fieldset data-q="role" data-for="hiring" hidden><legend>What is the role?</legend>
+      <button type="button" data-v="Data engineering">Data engineering</button><button type="button" data-v="AI tooling">AI tooling</button><button type="button" data-v="Something else">Something else</button>
+    </fieldset>
+    <fieldset data-q="want" data-for="looking" hidden><legend>What were you hoping to find?</legend>
+      <button type="button" data-v="How the cat work runs">How the cat work runs</button><button type="button" data-v="How I make AI remember">How I make AI remember</button><button type="button" data-v="My background">My background</button><button type="button" data-v="Something else">Something else</button>
+    </fieldset>
+    <a class="btn" id="ask-send" href="mailto:orpita.d@gmail.com?subject=From%20your%20page">Write to me</a>
+    <button type="button" class="ask-share" id="ask-share">Share this page</button>
+    <p class="ask-thanks" id="ask-thanks" hidden>Thank you, that helps me see what people come here for.</p>
+  </div>
   <p class="reach">
     <a href="https://odas.github.io/Orpita_Das_Resume.pdf">Résumé</a>
     <a href="https://www.linkedin.com/in/orpitadas/">LinkedIn</a>
@@ -463,6 +499,59 @@ p, ul { margin: 0; }
     });
   }, { rootMargin: '-45% 0px -45% 0px' });
   stops.forEach(function (s) { io.observe(s); });
+})();
+</script>
+<script>
+/* Write to me: each tap is counted anonymously (GoatCounter event, no personal data) and
+   the answers are written into a mailto. Why: catadoption's prefilled WhatsApp message cut
+   friction; here the phone number stays private and a mailto leaves bots nothing to submit. */
+(function () {
+  var box = document.getElementById('ask'); if (!box) return;
+  var send = document.getElementById('ask-send'), thanks = document.getElementById('ask-thanks');
+  var picked = {};
+  function count(q, v) {
+    try { if (window.goatcounter && window.goatcounter.count)
+      window.goatcounter.count({ path: 'ask-' + q + '-' + v.toLowerCase().replace(/[^a-z]+/g, '-'), title: 'Ask: ' + q + ' = ' + v, event: true });
+    } catch (e) {}
+  }
+  function mail() {
+    var subj = 'From your page', body = 'Hi Orpita,\n\n';
+    if (picked.who === 'business') {
+      subj = 'One task in my business';
+      body += 'I run a business.' + (picked.time ? ' What eats my time: ' + picked.time + '.' : '') +
+        (picked.stop ? ' What has stopped me getting help: ' + picked.stop + '.' : '') + '\n\nMy business, in a line: \n';
+    } else if (picked.who === 'hiring') {
+      subj = 'A role';
+      body += 'I am hiring' + (picked.role ? ' for ' + (picked.role === 'AI tooling' ? picked.role : picked.role.toLowerCase()) : '') + '.\n\nThe role, in a line: \n';
+    }
+    send.href = 'mailto:orpita.d@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(body);
+  }
+  box.addEventListener('click', function (e) {
+    var b = e.target.closest('fieldset button'); if (!b) return;
+    var fs = b.parentNode, q = fs.getAttribute('data-q'), v = b.getAttribute('data-v');
+    fs.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    picked[q] = v; count(q, v);
+    if (q === 'who') {
+      picked = { who: v };
+      box.querySelectorAll('fieldset[data-for]').forEach(function (f) {
+        f.hidden = f.getAttribute('data-for') !== v;
+        f.querySelectorAll('button').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+      });
+      send.hidden = v === 'looking';
+      thanks.hidden = true;
+    }
+    if (q === 'want') thanks.hidden = false;
+    mail();
+  });
+  box.querySelectorAll('fieldset button').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+  send.addEventListener('click', function () { count('send', picked.who || 'none'); });
+  var share = document.getElementById('ask-share');
+  share.addEventListener('click', function () {
+    count('share', 'page');
+    var url = 'https://odas.github.io/', text = 'Orpita Das: data engineer, ex-Snowflake. She builds AI automation.';
+    if (navigator.share) { navigator.share({ text: text, url: url }).catch(function () {}); return; }
+    try { navigator.clipboard.writeText(url); share.textContent = 'Link copied'; } catch (e) {}
+  });
 })();
 </script>
 <script defer src="analytics.js"></script>
