@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Orpita Das — Data Engineer</title>
-<meta name="description" content="Data Engineer, ex-Snowflake, Pune. Resilient data pipelines at Snowflake and in genomics; lately AI-built tools — Noëtone (Kanz GOLD 2026) and the catadoption_pune adoption pipeline.">
+<meta name="description" content="Data engineer, ex-Snowflake, NIT Warangal, Pune. Now builds AI automation: a cat adoption service for Pune run by one person, and Noëtone (Kanz Gold 2026).">
 <link rel="canonical" href="https://odas.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://odas.github.io/">
@@ -12,7 +12,7 @@
 <meta property="og:description" content="Data Engineer, ex-Snowflake, Pune. Resilient data pipelines, and lately AI-built tools: Noëtone (Kanz GOLD 2026), catadoption_pune.">
 <meta property="og:image" content="https://odas.github.io/photo.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231E2024'/%3E%3Ctext x='10' y='44' fill='%23FBFAF7' font-family='Futura,Avenir Next,sans-serif' font-size='34'%3Eod%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml">
 <style>
 :root {
   --paper: #FBFAF7; --paper-2: #F2F0EA; --card: #FFFFFF;
@@ -43,6 +43,7 @@ p, ul { margin: 0; }
 .wrap { max-width: 72rem; margin-left: auto; margin-right: auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 
 /* top bar */
+.bar { align-items: center !important; }
 .bar { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: baseline;
   justify-content: space-between; padding-top: 1.25rem; padding-bottom: 1.25rem; }
 .bar-name { font-family: var(--f-plate); font-size: 1rem; letter-spacing: 0.02em; }
@@ -172,45 +173,63 @@ p, ul { margin: 0; }
   display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; }
 .foot { color: var(--ink-soft); font-size: 0.9rem; padding-top: 1rem; padding-bottom: 3rem; }
 
-/* the od mark and the tagline (from Astra's version, in this palette) */
-.bar-name { display: inline-flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
-.od-mark { display: inline-block; font-family: var(--f-plate); font-size: 0.95rem; line-height: 1; padding: 0.32rem 0.42rem 0.28rem;
-  background: var(--ink); color: var(--paper); border-radius: 0.3rem; letter-spacing: -0.02em; align-self: center; }
-.bar-tag { font-size: 0.78rem; letter-spacing: 0.14em; color: var(--ink-soft); }
+/* the od* mark: brand/od-mark.svg, drawn as shapes so it looks the same on every device */
+.bar-name { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--ink); }
+.bar-name img { height: 2.1rem; width: auto; }
+.bar-name span { display: flex; flex-direction: column; line-height: 1.15; font-family: var(--f-plate); font-size: 0.98rem; letter-spacing: 0.06em; }
+.bar-tag { font-size: 0.72rem; letter-spacing: 0.16em; color: var(--ink-soft); }
 
 /* card I, front line: code in monospace, the prose line in italic */
 .card-line { margin-top: 1rem; font-size: clamp(1.15rem, 2.1vw, 1.4rem); line-height: 1.45; }
 .card-line code { font-family: "SF Mono", ui-monospace, Menlo, Consolas, monospace; font-size: 0.86em; }
 .card-line em { display: block; }
 
-/* card I, back: the four drawers */
-.drawers { list-style: none; padding: 0; margin-top: 1.4rem; display: grid; gap: 0.5rem; max-width: 30rem; }
-.drawers li { display: grid; grid-template-columns: 6.2rem 1fr; gap: 0.8rem; align-items: baseline;
-  border-left: 10px solid var(--d); padding: 0.2rem 0 0.2rem 0.75rem; font-size: 1rem; line-height: 1.35; }
-.drawers b { font-family: var(--f-plate); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.14em; color: var(--d); }
+/* the card's four drawers are now labels over the sections that show them */
+.kicker { display: inline-block; font-family: var(--f-plate); font-size: 0.8rem; letter-spacing: 0.16em;
+  color: var(--k); border-left: 10px solid var(--k); padding-left: 0.6rem; margin-bottom: 0.8rem; }
+.k-cloud { --k: var(--cab-1); } .k-ai { --k: var(--cab-2); } .k-cats { --k: var(--cab-3); } .k-context { --k: var(--cab-4); }
+.drawer { font-style: italic; color: var(--ink-soft); margin-top: 0.35rem; }
 
-/* the path so far */
+/* how the work runs: two rows, each words beside a picture */
+.behind .fact { font-family: var(--f-plate); font-size: 1rem; color: var(--ink-soft); }
+.behind h3 { font-size: clamp(1.45rem, 3vw, 2rem); }
+.stack { font-family: var(--f-plate); max-width: 23rem; width: 100%; justify-self: center; }
+.stack-top { font-size: 0.85rem; letter-spacing: 0.12em; color: var(--ink-soft); margin-bottom: 0.5rem; }
+.stack ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.45rem; }
+.stack li { border: 1.5px solid var(--ink); background: var(--card); padding: 0.6rem 0.85rem; font-size: 1.02rem; line-height: 1.25;
+  border-left: 8px solid var(--cab-4); }
+.stack li small { display: block; font-family: var(--f-body); font-size: 0.86rem; color: var(--ink-soft); margin-top: 0.15rem; }
+
+/* the path so far: research, systems, AI */
 .path { padding-top: clamp(2.5rem, 6vw, 4rem); padding-bottom: clamp(1rem, 3vw, 2rem); }
 .path h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); max-width: 16em; }
 .path > p { margin-top: 0.9rem; max-width: 32em; }
 .path ol { list-style: none; padding: 0; margin-top: 1.6rem; display: grid; gap: 1.25rem; }
 .path li { border-top: 1.5px solid var(--ink); padding-top: 0.7rem; }
 .path li b { display: block; font-family: var(--f-plate); font-weight: 500; font-size: 0.8rem; letter-spacing: 0.14em; color: var(--ink-soft); }
+.path li.sys b { color: var(--cab-1); }
 .path li strong { display: block; font-family: var(--f-plate); font-weight: 500; font-size: 1.25rem; margin-top: 0.2rem; }
 .path li span { display: block; margin-top: 0.3rem; font-size: 1rem; }
 .path .go { margin-top: 1.4rem; font-family: var(--f-plate); }
-@media (min-width: 56rem) { .path ol { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+@media (min-width: 56rem) { .path ol { grid-template-columns: repeat(3, 1fr); gap: 2.5rem; } }
+
+/* phone: the credentials card sits higher and smaller, so it shows on the first screen */
+@media (max-width: 43.99rem) {
+  .open { gap: 1.6rem; padding-top: 0.5rem; }
+  .card { transform: rotate(-1.2deg); padding: 1rem 1.1rem 0.9rem; box-shadow: 6px 6px 0 var(--ink); border-left-width: 10px; }
+  .card-name { display: none; }
+  .card li { font-size: 0.95rem; padding: 0.32rem 0; }
+  .card li:first-child { border-top: 0; }
+  .card-foot { margin-top: 0.4rem; }
+}
 </style>
 </head>
 <body>
 
 <header class="wrap bar">
-  <span class="bar-name"><span class="od-mark" aria-hidden="true">od</span>Orpita Das <span class="bar-tag">RESEARCH · SYSTEMS · AI</span></span>
-  <nav class="bar-links" aria-label="Résumé and profiles">
+  <a class="bar-name" href="./"><img src="brand/od-mark.svg" alt="od"><span>ORPITA DAS <span class="bar-tag">RESEARCH · SYSTEMS · AI</span></span></a>
+  <nav class="bar-links" aria-label="Résumé and email">
     <a href="https://odas.github.io/Orpita_Das_Resume.pdf">Résumé</a>
-    <a href="https://www.linkedin.com/in/orpitadas/">LinkedIn</a>
-    <a href="https://github.com/odas">GitHub</a>
-    <a href="career_map/">Career map</a>
     <a href="mailto:orpita.d@gmail.com">Email</a>
   </nav>
 </header>
@@ -220,14 +239,8 @@ p, ul { margin: 0; }
 <section class="wrap open">
   <div>
     <h1>Orpita Das</h1>
-    <p class="open-role">Data engineer, ex-Snowflake. I now build working tools with AI.</p>
+    <p class="open-role">Data engineer, ex-Snowflake. I now build AI automation.</p>
     <p class="card-line"><code>AI is good at code.</code> <em>I make prose work for me.</em></p>
-    <ul class="drawers" aria-label="What I do">
-      <li style="--d: var(--cab-1)"><b>CLOUD</b>Pipelines and automations on AWS and GCP</li>
-      <li style="--d: var(--cab-2)"><b>AI</b>Teaching AI a job nobody wrote down</li>
-      <li style="--d: var(--cab-3)"><b>CATS</b>A cat-adoption page that runs on a data pipeline</li>
-      <li style="--d: var(--cab-4)"><b>CONTEXT</b>Context management for long LLM work</li>
-    </ul>
   </div>
   <aside class="card" aria-label="Credentials">
     <p class="card-name">Orpita Das</p>
@@ -235,31 +248,31 @@ p, ul { margin: 0; }
       <li><b>NIT Warangal</b>, B.Tech</li>
       <li><b>UBC Vancouver</b>, M.Sc.</li>
       <li><b>Snowflake</b>, data engineer, 2020 to 2023</li>
-      <li><b>Rated Gold</b>, top 5–10% of 3,500, Kanz AI hackathon 2026</li>
+      <li><b>Rated Gold</b>, Kanz AI hackathon 2026</li>
     </ul>
-    <p class="card-foot">Pune, India</p>
+    <p class="card-foot">Pune, India · page updated <time datetime="2026-11-16">16 November 2026</time></p>
   </aside>
 </section>
 
 <section class="wrap doors">
   <div class="door">
     <h2>Hiring?</h2>
-    <p>Data engineer at Snowflake, 2020 to 2023: 20+ ELT pipelines, and SOX-compliance monitoring that saved 100+ audit hours a quarter. SQL, Python, AWS, Snowflake, Airflow.</p>
-    <p>Looking for a full-time data or AI-tooling role, in Pune or Bengaluru.</p>
-    <p><a class="btn" href="Orpita_Das_Resume.pdf">Open my résumé</a></p>
-    <p class="go"><a href="claims.html">Five claims, with evidence</a> · <a href="career_map/">Career map</a></p>
+    <p>I am looking for a full-time data or AI-tooling role, in Pune or Bengaluru. SQL, Python, AWS, GCP, Snowflake, Airflow.</p>
+    <p><a class="btn" href="https://odas.github.io/Orpita_Das_Resume.pdf">Open my résumé</a></p>
+    <p class="go"><a href="https://odas.github.io/claims.html">Five claims, with evidence</a> · <a href="https://odas.github.io/career_map/">Career map</a></p>
   </div>
   <div class="door">
     <h2>Run a business?</h2>
-    <p>You don't need to know which AI tool you need. Tell me one task that eats your time or keeps going wrong.</p>
-    <p class="go"><a href="mailto:orpita.d@gmail.com?subject=One%20task%20in%20my%20business">Email me about one task</a></p>
+    <p>I build AI automation for small businesses, and I have time for a few in December 2026.</p>
+    <p class="go"><a href="#business">How we would start ↓</a></p>
   </div>
 </section>
 
 <section class="walk-head">
   <div class="wrap">
-    <h2>What I built: a cat adoption service for Pune</h2>
-    <p>Rescuers across Pune message me about street cats that need homes. About 120 have found one since May 2024. I do this in my free time, so I built what keeps it going.</p>
+    <span class="kicker k-cats">CATS</span>
+    <h2>A cat adoption service for Pune, run by one person with AI</h2>
+    <p>Rescuers message me about street cats that need homes. About 120 have found one since May 2024. I started building the system behind it in June 2026, and the website was live three weeks later. I run all of it in my free time.</p>
     <p class="swipe-hint">Swipe sideways through it.</p>
   </div>
 </section>
@@ -269,15 +282,15 @@ p, ul { margin: 0; }
 
     <article class="stop">
       <h3>The website</h3>
-      <p>I am not a web developer. I told the AI what I wanted and pushed back when it was wrong. Before anything goes live, it goes through the checks a professional web developer would run.</p>
-      <p class="fact">21 pages. 3,385 visitors in the 30 days to 13 November 2026.</p>
+      <p>I am not a web developer. I told the AI what I wanted and pushed back when it was wrong. Each change gets the checks a professional web developer would run before it goes live.</p>
+      <p class="fact">21 pages · 3,518 visitors in the month to 16 November 2026.</p>
       <p class="go"><a href="https://catadoption.in/">Open catadoption.in</a></p>
       <div class="phone"><div class="shot"><img src="assets/site-home.jpg" alt="The catadoption.in home page on a phone: two kittens in a cat tree under the words Pune's indie cats, one person away from home."></div></div>
     </article>
 
     <article class="stop">
       <h3>The cats looking for homes</h3>
-      <p>Every cat here is real. Rescuers send me photos and details on Instagram, and this page is made from what they send, fresh every week.</p>
+      <p>Every cat here is real. Rescuers send photos and details on Instagram, the AI turns them into this page, and I decide which cats go up.</p>
       <p class="fact">On 12 November 2026: 34 cats looking for a home, 34 gone home.</p>
       <p class="go"><a href="https://catadoption.in/adoptable.html">Open the page</a></p>
       <div class="phone"><div class="shot"><img src="assets/site-board.jpg" alt="The cats looking for homes page on a phone, with photos of kittens." loading="lazy"></div></div>
@@ -292,7 +305,7 @@ p, ul { margin: 0; }
 
     <article class="stop">
       <h3>Instagram</h3>
-      <p>Each post is made from the same facts as the website, so a post and the site always say the same thing about a cat.</p>
+      <p>Photo posts made from the same facts as the website, so a post and the site agree about a cat.</p>
       <p class="fact">1,260 followers on 13 November 2026.</p>
       <p class="go"><a href="https://www.instagram.com/catadoption_pune/">Open Instagram</a></p>
       <div class="phone"><div class="shot">
@@ -312,7 +325,6 @@ p, ul { margin: 0; }
     <article class="stop">
       <h3>YouTube</h3>
       <p>The cats and the footage are mine. The drawings, titles and edits are made with AI, and I approve every cut before it goes up.</p>
-      <p class="fact">28 videos so far.</p>
       <p class="go"><a href="https://www.youtube.com/channel/UCrW1o8IspYhWa-rP7UBQ2bQ">Open the channel</a></p>
       <div class="phone"><div class="shot">
         <div class="app">
@@ -342,23 +354,39 @@ p, ul { margin: 0; }
 
 <section class="wrap behind">
   <div>
-    <h2>The part you can't see</h2>
-    <p>Keeping this running every week is the harder half, and it is the part I am proudest of.</p>
-    <p>The AI reads each new message and sorts it. Before I decide on a cat, it writes down its guess of my decision. Then I decide, and we count how often it guessed right. Its guess is never the decision.</p>
-    <p class="mine">I decide what gets built, I check it, and I say what goes public. AI writes most of the code and the first drafts.</p>
+    <span class="kicker k-ai">AI</span>
+    <h3>Teaching AI a job nobody wrote down</h3>
+    <p>There was no manual for judging a rescuer's message, so I taught the AI from my own decisions. It reads each new message and writes down its guess of what I will decide. Then I decide, and we count how often it was right. Its guess is never the decision.</p>
+    <p class="fact">2,828 Instagram conversations by 10 November 2026.</p>
   </div>
-  <div class="flow" role="img" aria-label="How a message becomes a page: messages arrive, the AI reads and sorts them, I decide, and the page goes public. Below, 30 of 37 dots are filled, for the guesses that matched my decision on 5 October 2026.">
+  <div class="flow" role="img" aria-label="How a message becomes a page: messages arrive, the AI reads them and guesses my decision, I decide, and the page goes public. Below, 30 of 37 dots are filled, for the guesses that matched my decision on 5 October 2026.">
     <div class="flow-box">Messages arrive<small>from rescuers, on Instagram</small></div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-box">AI reads and sorts<small>and writes its guess of my decision</small></div>
+    <div class="flow-box">AI reads them<small>and writes down its guess of my decision</small></div>
     <div class="flow-arrow">↓</div>
-    <div class="flow-box me">I decide<small>every cat, every week</small></div>
+    <div class="flow-box me">I decide<small>every cat</small></div>
     <div class="flow-arrow">↓</div>
     <div class="flow-box">The page goes public<small>only after I say so</small></div>
     <div class="score">
       <div class="dots" id="dots"></div>
-      <p>A filled dot is a guess that matched my decision: about 30 of 37 on 5 October 2026.</p>
+      <p>A filled dot is a guess that matched my decision: 30 of 37 on 5 October 2026.</p>
     </div>
+  </div>
+
+  <div>
+    <span class="kicker k-context">CONTEXT</span>
+    <h3>Context management for long LLM work</h3>
+    <p class="drawer">In plain words: how I make AI remember.</p>
+    <p>Every AI session starts with no memory. I write down what I know (the rules, the reasons, my past decisions) so that a new session finds what it needs and reads only what the task needs. My cat work, my career records and the plan across all my projects run this way.</p>
+    <p class="mine">I decide what gets built, I check it, and I say what goes public. AI writes most of the code and the first drafts.</p>
+  </div>
+  <div class="stack" role="img" aria-label="What a new AI session reads first: what matters and why, what was decided and when, and how the work is checked.">
+    <p class="stack-top">A NEW AI SESSION STARTS HERE</p>
+    <ol>
+      <li>What matters, and why<small>my knowledge, written for the AI</small></li>
+      <li>What was decided, and when<small>so nothing is argued twice</small></li>
+      <li>How we check the work<small>before anything goes public</small></li>
+    </ol>
   </div>
 </section>
 
@@ -375,20 +403,21 @@ p, ul { margin: 0; }
 </section>
 
 <section class="wrap path" id="path">
-  <h2>Research, data engineering, and the work I do now</h2>
-  <p>Molecular biology, then cloud data engineering, and now tools built with AI. The questions stay the same: what is the evidence, what are we missing, what would make this work better?</p>
+  <h2>Research, then systems, then AI</h2>
+  <p>Molecular biology, then cloud data engineering, and now AI. The question stays the same: what is the evidence, and what are we missing?</p>
   <ol>
     <li><b>RESEARCH</b><strong>NIT Warangal · UBC</strong><span>B.Tech in biotechnology, then molecular biology research and an M.Sc. in Vancouver.</span></li>
-    <li><b>DATA ENGINEER</b><strong>Snowflake, 2020 to 2023</strong><span>Data pipelines and compliance monitoring.</span></li>
-    <li><b>CLOUD ENGINEER</b><strong>Algorithmic Biologics, 2023</strong><span>Cloud workflows for genomics work.</span></li>
-    <li><b>BUILDING WITH AI</b><strong>My own work, since 2024</strong><span>catadoption_pune, Noëtone, and the systems behind them.</span></li>
+    <li class="sys"><b>SYSTEMS · CLOUD</b><strong>Snowflake · Algorithmic Biologics</strong><span>Pipelines and automations on AWS and GCP. At Snowflake, 2020 to 2023: 20+ data pipelines, and compliance monitoring that saved auditors 100+ hours a quarter. Then cloud workflows for genomics.</span></li>
+    <li><b>AI</b><strong>My own work, since 2024</strong><span>catadoption_pune, Noëtone, and the notes that let AI carry them.</span></li>
   </ol>
-  <p class="go"><a href="career_map/">The whole path, on the career map</a> · <a href="Orpita_Das_Resume.pdf">Résumé</a></p>
+  <p class="go"><a href="https://odas.github.io/career_map/">The whole path, on the career map</a> · <a href="https://odas.github.io/Orpita_Das_Resume.pdf">Résumé</a></p>
 </section>
 
-<section class="wrap close">
+<section class="wrap close" id="business">
+  <span class="kicker k-cloud">AI AUTOMATION</span>
   <h2>If you run a business</h2>
-  <p>You don't need to know which AI tool you need. Tell me one task that eats your time or keeps going wrong, and we start there. Three I have already solved for the cat work:</p>
+  <p>You don't need to know which AI tool you need. Tell me one task that eats your time or keeps going wrong, and we start there. I have time for a few small businesses in December 2026.</p>
+  <p>Three I have already solved for the cat work:</p>
   <ul>
     <li>Enquiries that arrive on Instagram, sorted so I only read the ones that need me.</li>
     <li>The questions people keep asking, answered once on a page.</li>
@@ -399,7 +428,7 @@ p, ul { margin: 0; }
     <a href="https://odas.github.io/Orpita_Das_Resume.pdf">Résumé</a>
     <a href="https://www.linkedin.com/in/orpitadas/">LinkedIn</a>
     <a href="https://github.com/odas">GitHub</a>
-    <a href="career_map/">Career map</a>
+    <a href="https://odas.github.io/career_map/">Career map</a>
     <a href="mailto:orpita.d@gmail.com">orpita.d@gmail.com</a>
   </p>
 </section>
